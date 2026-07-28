@@ -28,7 +28,6 @@ export interface Dictionary {
   resumeButton: string;
   resumeToast: string;
   catchUpLink: string;
-  catchUpToast: string;
   helpTitle: string;
   currentPositionLabel: string;
   savePositionButton: string;
@@ -36,6 +35,15 @@ export interface Dictionary {
   positionSavedNote: string;
   principalSubtitle: string;
   divisionSubtitle: string;
+  justResumedNote: string;
+  catchupPage: {
+    daysLostLabel: (days: number) => string;
+    targetLabel: (date: string) => string;
+    scheduleSectionLabel: string;
+    statusAdjusted: string;
+    statusNormal: string;
+    fillerLessonTitle: string;
+  };
   settingsPage: {
     title: string;
     gradeSubjectsLabel: string;
@@ -88,7 +96,6 @@ export const dictionaries: Record<Locale, Dictionary> = {
     resumeToast:
       "Nag-resume na ang klase. Available na ang catch-up plan sa bawat subject.",
     catchUpLink: "Tingnan ang catch-up plan",
-    catchUpToast: "Demo: catch-up plan coming soon",
     helpTitle: "Tulong",
     currentPositionLabel: "Kasalukuyang posisyon",
     savePositionButton: "I-save ang bagong posisyon",
@@ -97,6 +104,16 @@ export const dictionaries: Record<Locale, Dictionary> = {
     positionSavedNote: "Na-save ang bagong posisyon ✓",
     principalSubtitle: "Bacacay Central ES — Punong-guro",
     divisionSubtitle: "Division Monitoring — Region V (Bicol)",
+    justResumedNote:
+      "Bumalik na sa normal — mama-mark muli kung may bagong suspensyon.",
+    catchupPage: {
+      daysLostLabel: (days) => `${days} araw na nawala dahil sa disruption`,
+      targetLabel: (date) => `Bagong target na petsa ng pagtapos: ${date}`,
+      scheduleSectionLabel: "Pagbabago sa iskedyul",
+      statusAdjusted: "Naka-adjust",
+      statusNormal: "Normal",
+      fillerLessonTitle: "Karagdagang pagsasanay",
+    },
     settingsPage: {
       title: "Mga Settings",
       gradeSubjectsLabel: "Antas at mga subject",
@@ -147,7 +164,6 @@ export const dictionaries: Record<Locale, Dictionary> = {
     resumeToast:
       "Class has resumed. Catch-up plans are now available for each subject.",
     catchUpLink: "View catch-up plan",
-    catchUpToast: "Demo: catch-up plan coming soon",
     helpTitle: "Help",
     currentPositionLabel: "Current position",
     savePositionButton: "Save new position",
@@ -156,6 +172,16 @@ export const dictionaries: Record<Locale, Dictionary> = {
     positionSavedNote: "New position saved ✓",
     principalSubtitle: "Bacacay Central ES — Principal",
     divisionSubtitle: "Division Monitoring — Region V (Bicol)",
+    justResumedNote:
+      "Back to normal — this will be markable again if a new suspension comes up.",
+    catchupPage: {
+      daysLostLabel: (days) => `${days} days lost to the disruption`,
+      targetLabel: (date) => `New target completion date: ${date}`,
+      scheduleSectionLabel: "Schedule changes",
+      statusAdjusted: "Adjusted",
+      statusNormal: "Normal",
+      fillerLessonTitle: "Additional practice",
+    },
     settingsPage: {
       title: "Settings",
       gradeSubjectsLabel: "Grade & subjects",

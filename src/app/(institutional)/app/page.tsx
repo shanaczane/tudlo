@@ -14,9 +14,9 @@ import {
   getServerPositionsSnapshot,
   subscribePositions,
 } from "@/lib/positionStore";
+import { saveLastDisruption } from "@/lib/disruptionStore";
 
 const SUSPENSION_KEY = "tudlo-suspension";
-const CATCHUP_KEY = "tudlo-catchup";
 
 interface Suspension {
   reasonKey: ReasonKey;
@@ -48,28 +48,11 @@ function getServerSuspensionSnapshot(): string | null {
   return null;
 }
 
-function getCatchUpSnapshot(): boolean {
-  if (typeof window === "undefined") return false;
-  return window.localStorage.getItem(CATCHUP_KEY) === "1";
-}
-function getServerCatchUpSnapshot(): boolean {
-  return false;
-}
-
 function writeSuspension(record: Suspension | null) {
   if (record) {
     window.localStorage.setItem(SUSPENSION_KEY, JSON.stringify(record));
   } else {
     window.localStorage.removeItem(SUSPENSION_KEY);
-  }
-  notify();
-}
-
-function writeCatchUp(value: boolean) {
-  if (value) {
-    window.localStorage.setItem(CATCHUP_KEY, "1");
-  } else {
-    window.localStorage.removeItem(CATCHUP_KEY);
   }
   notify();
 }
@@ -117,16 +100,13 @@ export default function TeacherHomePage() {
   const { locale, setLocale, t } = useLocale();
   const [sheetOpen, setSheetOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  const [justResumed, setJustResumed] = useState(false);
+  const [showCatchUp, setShowCatchUp] = useState(false);
 
   const suspensionRaw = useSyncExternalStore(
     subscribe,
     getSuspensionSnapshot,
     getServerSuspensionSnapshot,
-  );
-  const showCatchUp = useSyncExternalStore(
-    subscribe,
-    getCatchUpSnapshot,
-    getServerCatchUpSnapshot,
   );
   const positionsRaw = useSyncExternalStore(
     subscribePositions,
@@ -154,14 +134,31 @@ export default function TeacherHomePage() {
       date: parseDateInputValue(draft.date).toISOString(),
       customReason: draft.customReason,
     });
-    writeCatchUp(false);
+    setShowCatchUp(false);
     setSheetOpen(false);
   }
 
   function handleResume() {
+    if (suspension) {
+      const startDate = new Date(suspension.date);
+      const endDate = new Date();
+      const daysLost = Math.max(
+        1,
+        Math.round((endDate.getTime() - startDate.getTime()) / 86_400_000),
+      );
+      saveLastDisruption({
+        reasonKey: suspension.reasonKey,
+        customReason: suspension.customReason,
+        startDate: suspension.date,
+        endDate: endDate.toISOString(),
+        daysLost,
+      });
+    }
     writeSuspension(null);
-    writeCatchUp(true);
+    setShowCatchUp(true);
     showToast(t.resumeToast);
+    setJustResumed(true);
+    window.setTimeout(() => setJustResumed(false), 6000);
   }
 
   return (
@@ -280,13 +277,12 @@ export default function TeacherHomePage() {
               ) : null}
 
               {showCatchUp && !suspension ? (
-                <button
-                  type="button"
-                  onClick={() => showToast(t.catchUpToast)}
+                <Link
+                  href={`/app/catchup/${subject.id}`}
                   className="w-fit font-heading text-sm font-semibold text-brand hover:text-link-hover"
                 >
                   {t.catchUpLink} →
-                </button>
+                </Link>
               ) : null}
             </div>
           );
@@ -309,6 +305,10 @@ export default function TeacherHomePage() {
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 5l11 7-11 7z"/></svg>
             {t.resumeButton}
           </button>
+        ) : justResumed ? (
+          <div className="flex min-h-14 w-full items-center justify-center gap-2.5 rounded-btn bg-background px-4 text-center font-heading text-sm font-semibold text-muted">
+            {t.justResumedNote}
+          </div>
         ) : (
           <button
             type="button"
