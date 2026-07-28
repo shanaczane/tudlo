@@ -28,6 +28,19 @@ export interface Dictionary {
   resumeToast: string;
   catchUpLink: string;
   catchUpToast: string;
+  settingsPage: {
+    title: string;
+    backLabel: string;
+    gradeSubjectsLabel: string;
+    languageLabel: string;
+    helpLabel: string;
+    syncSectionLabel: string;
+    lastSyncLabel: string;
+    lastSyncedAt: string;
+    pendingChangesNote: string;
+    syncNowButton: string;
+    logoutButton: string;
+  };
 }
 
 export const dictionaries: Record<Locale, Dictionary> = {
@@ -68,6 +81,20 @@ export const dictionaries: Record<Locale, Dictionary> = {
       "Nag-resume na ang klase. Available na ang catch-up plan sa bawat subject.",
     catchUpLink: "Tingnan ang catch-up plan",
     catchUpToast: "Demo: catch-up plan coming soon",
+    settingsPage: {
+      title: "Mga Settings",
+      backLabel: "Bumalik",
+      gradeSubjectsLabel: "Antas at mga subject",
+      languageLabel: "Wika",
+      helpLabel: "Tulong at FAQ",
+      syncSectionLabel: "Sync at data",
+      lastSyncLabel: "Huling sync:",
+      lastSyncedAt: "22 Enero, 7:41 AM",
+      pendingChangesNote:
+        "3 pagbabago ang nasa telepono pa lang. Awtomatikong ipapadala kapag may signal.",
+      syncNowButton: "I-sync ngayon",
+      logoutButton: "Mag-log out",
+    },
   },
   en: {
     brand: "Tudlo",
@@ -105,5 +132,19 @@ export const dictionaries: Record<Locale, Dictionary> = {
       "Class has resumed. Catch-up plans are now available for each subject.",
     catchUpLink: "View catch-up plan",
     catchUpToast: "Demo: catch-up plan coming soon",
+    settingsPage: {
+      title: "Settings",
+      backLabel: "Back",
+      gradeSubjectsLabel: "Grade & subjects",
+      languageLabel: "Language",
+      helpLabel: "Help & FAQ",
+      syncSectionLabel: "Sync & data",
+      lastSyncLabel: "Last synced:",
+      lastSyncedAt: "January 22, 7:41 AM",
+      pendingChangesNote:
+        "3 changes are still only on your phone. They'll send automatically once you're back online.",
+      syncNowButton: "Sync now",
+      logoutButton: "Log out",
+    },
   },
 };

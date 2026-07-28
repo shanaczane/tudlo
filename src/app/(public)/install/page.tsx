@@ -109,14 +109,53 @@ export default function InstallPage() {
                 </div>
               </div>
             </div>
+          ) : step === 1 ? (
+            <div className="flex items-center justify-center rounded-lg border border-dashed border-border bg-background p-3">
+              <div className="w-65 overflow-hidden rounded-2xl border border-border bg-surface">
+                <div className="flex items-center justify-between border-b border-border px-3 py-2">
+                  <span className="font-heading text-xs font-bold text-brand">
+                    Tudlo
+                  </span>
+                  <span className="rounded-pill bg-warning-bg px-2 py-0.5 text-[10px] font-semibold text-warning-ink">
+                    Walang internet
+                  </span>
+                </div>
+                <div className="flex flex-col gap-2 p-3">
+                  <div className="flex items-center gap-2 rounded-lg border border-border p-2">
+                    <span className="h-6 w-6 flex-none rounded-md bg-tint" />
+                    <div className="flex-1">
+                      <div className="h-2 w-16 rounded-pill bg-ink/60" />
+                      <div className="mt-1.5 h-2 w-24 rounded-pill bg-border" />
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 rounded-lg border border-border p-2">
+                    <span className="h-6 w-6 flex-none rounded-md bg-tint" />
+                    <div className="flex-1">
+                      <div className="h-2 w-20 rounded-pill bg-ink/60" />
+                      <div className="mt-1.5 h-2 w-28 rounded-pill bg-border" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           ) : (
-            <div className="flex h-45 flex-col items-center justify-center gap-1.5 rounded-lg border border-dashed border-border text-center">
-              <span className="font-heading text-base font-semibold text-muted">
-                Device frame placeholder
-              </span>
-              <span className="max-w-60 text-sm text-muted">
-                Screenshot ng menu ng browser na may “Add to Home screen”.
-              </span>
+            <div className="flex items-center justify-center rounded-lg border border-dashed border-border bg-background p-3">
+              <div className="w-65 overflow-hidden rounded-2xl border border-border bg-surface">
+                <div className="flex flex-col items-center gap-2.5 px-4 py-5 text-center">
+                  <span className="font-heading text-xs font-bold text-brand">
+                    Tudlo
+                  </span>
+                  <span className="font-heading text-xs font-semibold text-ink">
+                    Ilagay ang School Code
+                  </span>
+                  <div className="w-full rounded-md border-2 border-brand py-2 text-center font-heading text-sm tracking-[4px] text-ink">
+                    0 0 0 0
+                  </div>
+                  <span className="mt-1 flex min-h-8 w-full items-center justify-center rounded-md bg-brand text-xs font-semibold text-white">
+                    Magpatuloy
+                  </span>
+                </div>
+              </div>
             </div>
           )}
           {current.items.map((item, i) => (

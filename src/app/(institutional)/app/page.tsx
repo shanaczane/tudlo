@@ -3,9 +3,9 @@
 import { useState, useSyncExternalStore, type ReactNode } from "react";
 import Link from "next/link";
 import { useLocale } from "@/lib/i18n/LocaleContext";
-import { formatDate } from "@/lib/i18n/format";
-import type { ReasonKey, SubjectId } from "@/lib/i18n/dictionary";
-import { SuspensionSheet } from "./SuspensionSheet";
+import { formatDate, parseDateInputValue } from "@/lib/i18n/format";
+import type { ReasonKey, SubjectId, Dictionary } from "@/lib/i18n/dictionary";
+import { SuspensionSheet, type SuspensionDraft } from "./SuspensionSheet";
 import { Logo } from "@/ui/Logo";
 
 const SUSPENSION_KEY = "tudlo-suspension";
@@ -14,6 +14,14 @@ const CATCHUP_KEY = "tudlo-catchup";
 interface Suspension {
   reasonKey: ReasonKey;
   date: string;
+  customReason?: string;
+}
+
+function suspensionReasonLabel(suspension: Suspension, t: Dictionary): string {
+  if (suspension.reasonKey === "iba" && suspension.customReason) {
+    return suspension.customReason;
+  }
+  return t.reasons[suspension.reasonKey];
 }
 
 const listeners = new Set<() => void>();
@@ -146,8 +154,12 @@ export default function TeacherHomePage() {
     window.setTimeout(() => setToast(null), 2500);
   }
 
-  function handleConfirmSuspend(reasonKey: ReasonKey) {
-    writeSuspension({ reasonKey, date: new Date().toISOString() });
+  function handleConfirmSuspend(draft: SuspensionDraft) {
+    writeSuspension({
+      reasonKey: draft.reasonKey,
+      date: parseDateInputValue(draft.date).toISOString(),
+      customReason: draft.customReason,
+    });
     writeCatchUp(false);
     setSheetOpen(false);
   }
@@ -197,7 +209,7 @@ export default function TeacherHomePage() {
             aria-label={t.settingsLabel}
             className="flex h-11 w-11 flex-none items-center justify-center rounded-pill border border-border text-ink"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M6 6l1.5 1.5M16.5 16.5 18 18M18 6l-1.5 1.5M7.5 16.5 6 18"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
           </Link>
         </div>
       </div>
@@ -205,7 +217,7 @@ export default function TeacherHomePage() {
       {suspension ? (
         <div className="mx-4 mt-3 flex flex-col gap-1 rounded-card bg-warning-bg p-3.5">
           <span className="font-heading text-sm font-semibold text-warning-ink">
-            {t.suspendedBannerPrefix} {t.reasons[suspension.reasonKey]} ·{" "}
+            {t.suspendedBannerPrefix} {suspensionReasonLabel(suspension, t)} ·{" "}
             {t.suspendedBannerFrom} {formatDate(new Date(suspension.date), locale)}
           </span>
           <span className="text-sm text-warning-ink">{t.preservedNote}</span>
@@ -305,7 +317,6 @@ export default function TeacherHomePage() {
 
       <SuspensionSheet
         open={sheetOpen}
-        locale={locale}
         t={t}
         onClose={() => setSheetOpen(false)}
         onConfirm={handleConfirmSuspend}

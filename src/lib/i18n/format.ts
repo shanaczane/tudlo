@@ -18,3 +18,9 @@ export function formatDate(date: Date, locale: Locale): string {
   }
   return `${EN_MONTHS[date.getMonth()]} ${day}, ${year}`;
 }
+
+/** Parses a "YYYY-MM-DD" value (e.g. from an <input type="date">) as a local date. */
+export function parseDateInputValue(value: string): Date {
+  const [year, month, day] = value.split("-").map(Number);
+  return new Date(year, month - 1, day);
+}
