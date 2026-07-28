@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"><style>body{margin:0;background:#EDEEF1;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#0038A8}a:hover{color:#2F5FC4}</style></helmet>
+
+<section id="t3" style="padding:40px 44px 48px;border-bottom:1px solid rgba(28,35,51,.1);display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;align-items:baseline;gap:12px">
+<a href="#t3" style="font:600 10px ui-monospace,Menlo,monospace;padding:4px 8px;background:#1C2333;color:#fff;border-radius:4px;text-decoration:none">3</a>
+<span style="font:600 15px/1.2 Inter,sans-serif;color:#1C2333">Pulse flat-illustration pass — public-facing pages only</span>
+<span style="font:400 12px/1.4 Inter,sans-serif;color:#6B7280">Indigo structural, accents inside illustrations only, one gradient pill per screen. Teacher app + admin screens stay on the institutional palette — see the note under <a href="#3c">3c</a>.</span>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+
+<div id="3a" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#3a" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">3a</a>A1 Landing — pulse restyle of <a href="#2a">2a</a></div>
+<div style="width:1280px;background:#FBFAFF;border:1px solid #E7E3FA;border-radius:24px;overflow:hidden;display:flex;flex-direction:column">
+<div style="padding:0 48px;min-height:84px;display:flex;align-items:center;justify-content:space-between">
+<div style="display:flex;align-items:center;gap:12px"><span style="width:36px;height:36px;border-radius:999px;background:linear-gradient(135deg,#5B4FE8,#8B5CF6);display:flex;align-items:center;justify-content:center;font:700 16px Poppins,sans-serif;color:#fff">T</span><span style="font:700 22px Poppins,sans-serif;color:#4338CA;letter-spacing:-.4px">Tudlo</span></div>
+<div style="display:flex;align-items:center;gap:32px;font:500 16px Poppins,sans-serif;color:#5B5B75"><span>Paano gumagana</span><span>Para sa DepEd</span><span>Tungkol sa amin</span><span style="min-height:48px;display:flex;align-items:center;padding:0 26px;border-radius:999px;background:linear-gradient(135deg,#5B4FE8,#8B5CF6);box-shadow:0 8px 20px rgba(91,79,232,.28);font:600 16px Poppins,sans-serif;color:#fff">I-install</span></div>
+</div>
+<div style="padding:56px 48px 72px;background:radial-gradient(120% 100% at 78% 30%,#EDE9FE 0%,#F4F2FF 55%,#FBFAFF 100%);display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:22px">
+<div style="font:700 56px/62px Poppins,sans-serif;color:#3A2FB0;letter-spacing:-1.4px;text-wrap:pretty">Hindi dapat matigil ang pag-aaral.</div>
+<div style="font:400 19px/30px Poppins,sans-serif;color:#5B5B75;max-width:440px">Bumalik sa eksaktong pinaghintuan ng klase mo — kahit walang internet.</div>
+<div style="display:flex;align-items:center;gap:18px;margin-top:6px">
+<span style="min-height:60px;display:flex;align-items:center;gap:10px;padding:0 34px;border-radius:999px;background:linear-gradient(135deg,#5B4FE8,#8B5CF6);box-shadow:0 12px 28px rgba(91,79,232,.32);font:600 17px Poppins,sans-serif;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>I-install ang Tudlo</span>
+<span style="min-height:60px;display:flex;align-items:center;padding:0 28px;border-radius:999px;background:#fff;border:1.5px solid #E0DAF8;font:600 17px Poppins,sans-serif;color:#4338CA">Para sa DepEd</span>
+</div>
+<div style="font:400 15px/24px Poppins,sans-serif;color:#6B6B85">Walang app store. Idagdag lang sa home screen.</div>
+</div>
+<div style="position:relative;height:420px;display:flex;align-items:center;justify-content:center">
+<span style="position:absolute;left:6%;top:14%;width:26px;height:26px;border-radius:999px;background:#F5B942"></span>
+<span style="position:absolute;right:10%;top:8%;width:40px;height:40px;border-radius:999px 999px 999px 4px;background:#F0645A"></span>
+<span style="position:absolute;left:14%;bottom:10%;width:34px;height:34px;border-radius:999px 4px 999px 999px;background:#6FA8DC"></span>
+<span style="position:absolute;right:4%;bottom:20%;width:18px;height:18px;border-radius:999px;background:#F5B942"></span>
+<div style="width:78%;height:100%;border:2px dashed #C9BEF3;border-radius:20px;background:rgba(255,255,255,.7);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:24px">
+<div style="font:600 17px Poppins,sans-serif;color:#4338CA">Flat character illustration</div>
+<div style="font:400 15px/22px Poppins,sans-serif;color:#5B5B75;max-width:280px">Isang guro na may telepono sa tabi ng pisara — flat vector, isang coral na damit, indigo ang iba.</div>
+</div>
+</div>
+</div>
+<div style="padding:56px 48px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+<div style="padding:28px 24px;background:#fff;border-radius:20px;box-shadow:0 6px 24px rgba(67,56,202,.07);display:flex;flex-direction:column;gap:12px"><span style="width:44px;height:44px;border-radius:14px;background:#EDE9FE;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4338CA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M7 16V9"/><path d="M12 16V5"/><path d="M17 16v-4"/></svg></span><div style="font:600 19px Poppins,sans-serif;color:#3A2FB0">Track</div><div style="font:400 16px/24px Poppins,sans-serif;color:#5B5B75">Kusang sinusubaybayan tuwing normal na araw.</div></div>
+<div style="padding:28px 24px;background:#fff;border-radius:20px;box-shadow:0 6px 24px rgba(67,56,202,.07);display:flex;flex-direction:column;gap:12px"><span style="width:44px;height:44px;border-radius:14px;background:#EDE9FE;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4338CA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5v14"/><path d="M15 5v14"/></svg></span><div style="font:600 19px Poppins,sans-serif;color:#3A2FB0">Pause</div><div style="font:400 16px/24px Poppins,sans-serif;color:#5B5B75">Isang tap kapag may suspensyon ng klase.</div></div>
+<div style="padding:28px 24px;background:#fff;border-radius:20px;box-shadow:0 6px 24px rgba(67,56,202,.07);display:flex;flex-direction:column;gap:12px"><span style="width:44px;height:44px;border-radius:14px;background:#EDE9FE;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4338CA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5l11 7-11 7z"/></svg></span><div style="font:600 19px Poppins,sans-serif;color:#3A2FB0">Resume</div><div style="font:400 16px/24px Poppins,sans-serif;color:#5B5B75">Eksaktong aralin sa unang araw ng balik.</div></div>
+<div style="padding:28px 24px;background:#fff;border-radius:20px;box-shadow:0 6px 24px rgba(67,56,202,.07);display:flex;flex-direction:column;gap:12px"><span style="width:44px;height:44px;border-radius:14px;background:#EDE9FE;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4338CA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span><div style="font:600 19px Poppins,sans-serif;color:#3A2FB0">Recover</div><div style="font:400 16px/24px Poppins,sans-serif;color:#5B5B75">Catch-up plan sa loob ng 200-araw na quota.</div></div>
+</div>
+</div>
+</div>
+
+<div id="3b" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#3b" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">3b</a>B1 Install carousel — pulse restyle of <a href="#2b">2b</a></div>
+<div style="width:390px;height:780px;background:#F4F2FF;border:1px solid #E7E3FA;border-radius:28px;overflow:hidden;display:flex;flex-direction:column">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;font:500 13px Poppins,sans-serif;color:#6B6B85"><span>7:08</span><span>81%</span></div>
+<div style="padding:8px 20px;display:flex;align-items:center;justify-content:space-between"><span style="width:32px;height:32px;border-radius:999px;background:linear-gradient(135deg,#5B4FE8,#8B5CF6);display:flex;align-items:center;justify-content:center;font:700 15px Poppins,sans-serif;color:#fff">T</span><span style="min-height:44px;display:flex;align-items:center;font:600 16px Poppins,sans-serif;color:#6B6B85">Laktawan</span></div>
+<div style="flex:1;padding:16px 24px 0;display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center;position:relative">
+<span style="position:absolute;left:16px;top:24px;width:22px;height:22px;border-radius:999px;background:#F5B942"></span>
+<span style="position:absolute;right:20px;top:64px;width:30px;height:30px;border-radius:999px 999px 999px 4px;background:#F0645A"></span>
+<span style="position:absolute;left:28px;bottom:120px;width:26px;height:26px;border-radius:999px 4px 999px 999px;background:#6FA8DC"></span>
+<div style="width:100%;height:280px;border:2px dashed #C9BEF3;border-radius:20px;background:rgba(255,255,255,.75);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:20px"><div style="font:600 16px Poppins,sans-serif;color:#4338CA">Illustration placeholder</div><div style="font:400 15px/22px Poppins,sans-serif;color:#5B5B75">Karakter na may telepono, hawak ang home-screen icon.</div></div>
+<div style="font:700 30px/38px Poppins,sans-serif;color:#3A2FB0;letter-spacing:-.8px">Idagdag sa home screen</div>
+<div style="font:400 17px/26px Poppins,sans-serif;color:#5B5B75;max-width:290px">Isang beses lang. Pagkatapos, bubukas ang Tudlo kahit offline.</div>
+</div>
+<div style="padding:24px;display:flex;flex-direction:column;align-items:center;gap:20px">
+<div style="display:flex;gap:8px;align-items:center"><span style="width:28px;height:8px;border-radius:999px;background:#5B4FE8"></span><span style="width:8px;height:8px;border-radius:999px;background:#D6CFF5"></span><span style="width:8px;height:8px;border-radius:999px;background:#D6CFF5"></span></div>
+<div style="width:100%;min-height:60px;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;background:linear-gradient(135deg,#5B4FE8,#8B5CF6);box-shadow:0 12px 26px rgba(91,79,232,.3);font:600 17px Poppins,sans-serif;color:#fff">Susunod<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+</div>
+</div>
+</div>
+
+<div id="3c" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#3c" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">3c</a>C9 offline shell + 404 — pulse restyle of <a href="#2g">2g</a></div>
+<div style="display:flex;gap:16px;align-items:flex-start">
+<div style="width:390px;height:640px;background:#F4F2FF;border:1px solid #E7E3FA;border-radius:28px;overflow:hidden;display:flex;flex-direction:column">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;font:500 13px Poppins,sans-serif;color:#6B6B85"><span>5:12</span><span>44%</span></div>
+<div style="flex:1;padding:32px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center;position:relative">
+<span style="position:absolute;left:22px;top:56px;width:24px;height:24px;border-radius:999px;background:#F5B942"></span>
+<span style="position:absolute;right:24px;top:110px;width:32px;height:32px;border-radius:999px 999px 999px 4px;background:#6FA8DC"></span>
+<span style="position:absolute;left:36px;bottom:96px;width:20px;height:20px;border-radius:999px;background:#F0645A"></span>
+<div style="width:180px;height:180px;border:2px dashed #C9BEF3;border-radius:20px;background:rgba(255,255,255,.75);display:flex;align-items:center;justify-content:center;font:400 14px/20px Poppins,sans-serif;color:#5B5B75;padding:14px">Karakter na nakaupo, naghihintay ng signal</div>
+<div style="font:700 28px/36px Poppins,sans-serif;color:#3A2FB0;letter-spacing:-.7px">Sa unang beses lang</div>
+<div style="font:400 17px/26px Poppins,sans-serif;color:#5B5B75;max-width:290px">Kailangan ng internet para sa unang pag-download. Pagkatapos, offline na ang lahat.</div>
+</div>
+<div style="padding:24px;display:flex;flex-direction:column;gap:12px">
+<div style="min-height:60px;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;background:linear-gradient(135deg,#5B4FE8,#8B5CF6);box-shadow:0 12px 26px rgba(91,79,232,.3);font:600 17px Poppins,sans-serif;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>Subukang muli</div>
+<div style="font:400 14px/22px Poppins,sans-serif;color:#6B6B85;text-align:center">Walang nawalang data.</div>
+</div>
+</div>
+<div style="width:390px;height:640px;background:#F4F2FF;border:1px solid #E7E3FA;border-radius:28px;overflow:hidden;display:flex;flex-direction:column">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;font:500 13px Poppins,sans-serif;color:#6B6B85"><span>5:14</span><span>43%</span></div>
+<div style="flex:1;padding:32px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;position:relative">
+<span style="position:absolute;right:26px;top:70px;width:26px;height:26px;border-radius:999px 4px 999px 999px;background:#F5B942"></span>
+<span style="position:absolute;left:26px;top:130px;width:20px;height:20px;border-radius:999px;background:#F0645A"></span>
+<span style="position:absolute;right:40px;bottom:110px;width:30px;height:30px;border-radius:999px;background:#6FA8DC"></span>
+<div style="font:700 88px/88px Poppins,sans-serif;color:#4338CA;letter-spacing:-3px">404</div>
+<div style="width:150px;height:150px;border:2px dashed #C9BEF3;border-radius:20px;background:rgba(255,255,255,.75);display:flex;align-items:center;justify-content:center;font:400 14px/20px Poppins,sans-serif;color:#5B5B75;padding:14px">Malaking location pin, flat vector</div>
+<div style="font:700 26px/34px Poppins,sans-serif;color:#3A2FB0;letter-spacing:-.6px">Wala rito ang page</div>
+<div style="font:400 17px/26px Poppins,sans-serif;color:#5B5B75;max-width:280px">Maliit na liko lang ito. Ibabalik ka namin sa simula.</div>
+</div>
+<div style="padding:24px;display:flex;flex-direction:column;gap:12px">
+<div style="min-height:60px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:linear-gradient(135deg,#5B4FE8,#8B5CF6);box-shadow:0 12px 26px rgba(91,79,232,.3);font:600 17px Poppins,sans-serif;color:#fff">Bumalik sa home</div>
+<div style="min-height:52px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:#fff;border:1.5px solid #E0DAF8;font:600 16px Poppins,sans-serif;color:#4338CA">Sabihan kami</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<div style="max-width:760px;display:flex;flex-direction:column;gap:8px;font:400 13px/20px Inter,sans-serif;color:#6B7280">
+<div style="font:600 15px Inter,sans-serif;color:#1C2333">Bakit dito lang inilapat</div>
+<div>Ang pulse ay para sa unang impresyon — landing, install, at empty state. Sinasabi mismo ng skill na hindi ito bagay sa dense na internal tool, at hinihingi ng PRD ang kalmadong institusyonal na palette sa loob ng app, kaya nananatili sa asul/pula/ginto ang C1–C6 (<a href="#1e">1e</a>–<a href="#1k">1k</a>) at ang mga dashboard (<a href="#2h">2h</a>, <a href="#1m">1m</a>).</div>
+<div>Indigo lang ang structural: teksto, nav, badge, buton. Coral, mustard at sky-blue ay ornament sa paligid ng illustration — wala sa alinmang UI chrome. Isang gradient pill kada screen.</div>
+<div>Kailangan ng tunay na flat-vector art para sa apat na placeholder. Kung wala, puwedeng unDraw set na kinolor sa palette na ito — accent props lang ang papalitan, hindi ang indigo.</div>
+</div>
+</section>
+
+<section id="t2" style="padding:40px 44px 48px;border-bottom:1px solid rgba(28,35,51,.1);display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;align-items:baseline;gap:12px">
+<a href="#t2" style="font:600 10px ui-monospace,Menlo,monospace;padding:4px 8px;background:#1C2333;color:#fff;border-radius:4px;text-decoration:none">2</a>
+<span style="font:600 15px/1.2 Inter,sans-serif;color:#1C2333">Sitemap coverage — marketing, auth, subject detail, settings, help, offline shell, principal view</span>
+<span style="font:400 12px/1.4 Inter,sans-serif;color:#6B7280">Fills the remaining MVP + Nice-to-Have rows; Future rows live in the roadmap card <a href="#2i">2i</a></span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+
+<div id="2a" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#2a" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">2a</a>A1 Landing page — 1280px desktop</div>
+<div style="width:1280px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+<div style="padding:0 40px;min-height:72px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E4E7EC">
+<span style="font:700 20px Inter,sans-serif;color:#0038A8;letter-spacing:-.3px">Tudlo</span>
+<div style="display:flex;align-items:center;gap:28px;font:400 16px Inter,sans-serif;color:#1C2333"><span>Paano gumagana</span><span>Para sa DepEd</span><span>Tungkol sa amin</span><span style="min-height:44px;display:flex;align-items:center;padding:0 18px;background:#0038A8;color:#fff;border-radius:8px;font-weight:600">I-install ang Tudlo</span></div>
+</div>
+<div style="padding:56px 40px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;background:#F7F8FA;border-bottom:1px solid #E4E7EC">
+<div style="display:flex;flex-direction:column;gap:20px">
+<span style="align-self:flex-start;padding:6px 12px;border-radius:999px;background:#EAF0FB;font:600 13px Inter,sans-serif;color:#0038A8">Offline-first PWA · Region V at VIII</span>
+<div style="font:600 44px/52px Inter,sans-serif;color:#1C2333;letter-spacing:-.8px">Hindi dapat matigil ang pag-aaral.</div>
+<div style="font:400 20px/30px Inter,sans-serif;color:#6B7280;max-width:520px">Tudlo helps teachers resume exactly where they left off, after any disruption — typhoon, flood, or anything else that closes school.</div>
+<div style="display:flex;align-items:center;gap:16px;margin-top:8px">
+<span style="min-height:52px;display:flex;align-items:center;gap:10px;padding:0 24px;background:#0038A8;color:#fff;border-radius:8px;font:600 16px Inter,sans-serif"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>I-install ang Tudlo</span>
+<span style="min-height:52px;display:flex;align-items:center;font:600 16px Inter,sans-serif;color:#0038A8">Para sa DepEd at Paaralan →</span>
+</div>
+<div style="font:400 13px/18px Inter,sans-serif;color:#6B7280">Walang app store. Idagdag lang sa home screen — gumagana kahit offline.</div>
+</div>
+<div style="height:340px;border:1px dashed #C9CFD9;border-radius:12px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px"><div style="font:600 15px Inter,sans-serif;color:#6B7280">Hero image placeholder</div><div style="font:400 13px/18px Inter,sans-serif;color:#6B7280;text-align:center;max-width:260px">Larawan ng gurong may telepono sa loob ng silid-aralan — ipapalit ng tunay na litrato.</div></div>
+</div>
+<div style="padding:56px 40px;display:flex;flex-direction:column;gap:24px;border-bottom:1px solid #E4E7EC">
+<div style="font:600 28px/36px Inter,sans-serif;color:#1C2333;max-width:640px">Bawat bagyo, nawawala ang linaw kung saan huminto ang klase.</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+<div style="padding:24px;border:1px solid #E4E7EC;border-radius:12px;display:flex;flex-direction:column;gap:8px"><div style="font:600 36px/44px Inter,sans-serif;color:#CE1126">20,681+</div><div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">na paaralan ang nagsuspinde ng klase noong Bagyong Tino</div></div>
+<div style="padding:24px;border:1px solid #E4E7EC;border-radius:12px;display:flex;flex-direction:column;gap:8px"><div style="font:600 36px/44px Inter,sans-serif;color:#CE1126">35 araw</div><div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">ang nawala sa ilang rehiyon sa isang school year</div></div>
+<div style="padding:24px;border:1px solid #E4E7EC;border-radius:12px;display:flex;flex-direction:column;gap:8px"><div style="font:600 36px/44px Inter,sans-serif;color:#0038A8">200 araw</div><div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">ang tunay na quota ng DepEd — dito nakabatay ang bawat catch-up plan</div></div>
+</div>
+<div style="font:400 13px/18px Inter,sans-serif;color:#6B7280">Pinagmulan: DepEd situational reports (placeholder — ilalagay ang tumpak na sipi bago i-publish).</div>
+</div>
+<div style="padding:56px 40px;display:flex;flex-direction:column;gap:24px;background:#F7F8FA;border-bottom:1px solid #E4E7EC">
+<div style="font:600 22px/28px Inter,sans-serif;color:#1C2333">Paano gumagana</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+<div style="padding:24px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;display:flex;flex-direction:column;gap:12px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M7 16V9"/><path d="M12 16V5"/><path d="M17 16v-4"/></svg><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Track</div><div style="font:400 16px/24px Inter,sans-serif;color:#6B7280">Pasibong pagsubaybay tuwing normal na araw.</div></div>
+<div style="padding:24px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;display:flex;flex-direction:column;gap:12px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#CE1126" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5v14"/><path d="M15 5v14"/></svg><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Pause</div><div style="font:400 16px/24px Inter,sans-serif;color:#6B7280">Isang tap kapag may suspensyon — nakapreserba ang posisyon.</div></div>
+<div style="padding:24px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;display:flex;flex-direction:column;gap:12px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5l11 7-11 7z"/></svg><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Resume</div><div style="font:400 16px/24px Inter,sans-serif;color:#6B7280">Eksaktong pinaghintuan sa unang araw ng pagbabalik.</div></div>
+<div style="padding:24px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;display:flex;flex-direction:column;gap:12px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8A6B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Recover</div><div style="font:400 16px/24px Inter,sans-serif;color:#6B7280">Catch-up plan batay sa 200-araw na quota.</div></div>
+</div>
+</div>
+<div style="padding:40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E4E7EC">
+<div style="display:flex;align-items:center;gap:24px">
+<div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:20px;border-radius:3px;background:#C5192D"></span><span style="font:400 16px Inter,sans-serif;color:#1C2333">SDG 4 — Quality Education</span></div>
+<div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:20px;border-radius:3px;background:#3F7E44"></span><span style="font:400 16px Inter,sans-serif;color:#1C2333">SDG 13 — Climate Action</span></div>
+<div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:20px;border-radius:3px;background:#DD1367"></span><span style="font:400 16px Inter,sans-serif;color:#1C2333">SDG 10 — Reduced Inequalities</span></div>
+</div>
+<span style="font:400 13px Inter,sans-serif;color:#6B7280">Mga opisyal na kulay ng UN SDG — hiwalay sa palette ng Tudlo</span>
+</div>
+<div style="padding:48px 40px;background:#0A1D4D;display:flex;align-items:center;justify-content:space-between">
+<div style="display:flex;flex-direction:column;gap:8px"><div style="font:600 28px/36px Inter,sans-serif;color:#fff">Simulan sa isang paaralan. Ilang minuto lang.</div><div style="font:400 16px/24px Inter,sans-serif;color:#B9C4DE">Tungkol sa amin at roadmap →</div></div>
+<span style="min-height:52px;display:flex;align-items:center;gap:10px;padding:0 24px;background:#FCD116;color:#8A6B08;border-radius:8px;font:600 16px Inter,sans-serif"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A6B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>I-install ang Tudlo</span>
+</div>
+</div>
+</div>
+
+<div id="2b" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#2b" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">2b</a>B1 Get Started / Install</div>
+<div style="width:390px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280;background:#fff"><span>7:08</span><span>81%</span></div>
+<div style="padding:24px 16px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;gap:6px;align-items:center"><span style="width:24px;height:8px;border-radius:999px;background:#0038A8"></span><span style="width:8px;height:8px;border-radius:999px;background:#E4E7EC"></span><span style="width:8px;height:8px;border-radius:999px;background:#E4E7EC"></span></div>
+<div style="font:600 22px/28px Inter,sans-serif;color:#1C2333">Idagdag sa Home Screen</div>
+<div style="font:400 16px/24px Inter,sans-serif;color:#6B7280">Walang app store. Isang beses lang ito gagawin — pagkatapos, bubukas ang Tudlo kahit walang internet.</div>
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="height:220px;border:1px dashed #C9CFD9;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:16px"><div style="font:600 15px Inter,sans-serif;color:#6B7280">Device frame placeholder</div><div style="font:400 13px/18px Inter,sans-serif;color:#6B7280">Screenshot ng menu ng browser na may “Add to Home screen”.</div></div>
+<div style="display:flex;gap:12px;align-items:flex-start"><span style="width:28px;height:28px;flex:none;border-radius:999px;background:#EAF0FB;color:#0038A8;font:600 16px Inter,sans-serif;display:flex;align-items:center;justify-content:center">1</span><div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">Pindutin ang menu (⋮) sa itaas ng browser.</div></div>
+<div style="display:flex;gap:12px;align-items:flex-start"><span style="width:28px;height:28px;flex:none;border-radius:999px;background:#EAF0FB;color:#0038A8;font:600 16px Inter,sans-serif;display:flex;align-items:center;justify-content:center">2</span><div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">Piliin ang “Add to Home screen”.</div></div>
+<div style="display:flex;gap:12px;align-items:flex-start"><span style="width:28px;height:28px;flex:none;border-radius:999px;background:#EAF0FB;color:#0038A8;font:600 16px Inter,sans-serif;display:flex;align-items:center;justify-content:center">3</span><div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">Buksan ang Tudlo mula sa home screen.</div></div>
+</div>
+</div>
+<div style="padding:16px;background:#fff;border-top:1px solid #E4E7EC;display:flex;gap:8px">
+<div style="min-height:52px;flex:0 0 108px;display:flex;align-items:center;justify-content:center;border:1px solid #E4E7EC;border-radius:8px;font:600 16px Inter,sans-serif;color:#6B7280">Laktawan</div>
+<div style="min-height:52px;flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:#0038A8;border-radius:8px;font:600 16px Inter,sans-serif;color:#fff">Susunod<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+</div>
+</div>
+</div>
+
+<div id="2c" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#2c" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">2c</a>B2 School Code / Sign-in</div>
+<div style="width:390px;background:#fff;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280"><span>7:10</span><span>80%</span></div>
+<div style="padding:48px 24px;display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center">
+<span style="font:700 24px Inter,sans-serif;color:#0038A8;letter-spacing:-.3px">Tudlo</span>
+<div style="font:600 22px/28px Inter,sans-serif;color:#1C2333">Ilagay ang School Code</div>
+<div style="font:400 16px/24px Inter,sans-serif;color:#6B7280;max-width:300px">Nasa DepEd ID o sa punong-guro ang code na ito. Isang beses lang.</div>
+<div style="width:100%;min-height:60px;border:2px solid #0038A8;border-radius:8px;display:flex;align-items:center;justify-content:center;font:600 24px Inter,sans-serif;color:#1C2333;letter-spacing:6px">1 0 4 —</div>
+<div style="width:100%;display:flex;flex-direction:column;gap:6px;text-align:left"><span style="font:400 13px Inter,sans-serif;color:#6B7280">Pangalan ng guro (opsyonal)</span><div style="min-height:52px;border:1px solid #E4E7EC;border-radius:8px;padding:0 12px;display:flex;align-items:center;font:400 16px Inter,sans-serif;color:#9AA1AE">Hal. Elena Ramos</div></div>
+</div>
+<div style="padding:16px;border-top:1px solid #E4E7EC;display:flex;flex-direction:column;gap:12px">
+<div style="min-height:56px;display:flex;align-items:center;justify-content:center;gap:8px;background:#0038A8;border-radius:8px;font:600 16px Inter,sans-serif;color:#fff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="M13 7l5 5-5 5"/></svg>Magpatuloy</div>
+<div style="min-height:44px;display:flex;align-items:center;justify-content:center;font:600 16px Inter,sans-serif;color:#0038A8">Mag-sign in bilang Principal / DepEd</div>
+</div>
+</div>
+</div>
+
+<div id="2d" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#2d" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">2d</a>C2 Subject Detail / Adjust Position</div>
+<div style="width:390px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280;background:#fff"><span>7:46</span><span>60%</span></div>
+<div style="padding:8px 16px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid #E4E7EC">
+<div style="min-height:44px;display:flex;align-items:center;gap:4px;margin-left:-4px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg><span style="font:600 16px Inter,sans-serif;color:#1C2333">Bumalik</span></div>
+<span style="font:600 17px Inter,sans-serif;color:#1C2333">Filipino</span>
+</div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:8px">
+<div style="font:400 13px/18px Inter,sans-serif;color:#6B7280">Ikatlong Markahan · MATATAG</div>
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;overflow:hidden">
+<div style="min-height:56px;padding:12px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #E4E7EC"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2E8B57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-5"/></svg><div style="flex:1"><div style="font:400 16px/24px Inter,sans-serif;color:#6B7280">Aralin 6 — Mga Pangngalan</div></div></div>
+<div style="min-height:56px;padding:12px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #E4E7EC"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2E8B57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-5"/></svg><div style="flex:1"><div style="font:400 16px/24px Inter,sans-serif;color:#6B7280">Aralin 7 — Mga Panghalip</div></div></div>
+<div style="min-height:56px;padding:14px 16px;display:flex;align-items:center;gap:12px;background:#EAF0FB;border-left:3px solid #0038A8"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5" fill="#0038A8" stroke="none"/></svg><div style="flex:1"><div style="font:600 16px/24px Inter,sans-serif;color:#0A1D4D">Aralin 8 — Mga Pang-uri</div><div style="font:400 13px/18px Inter,sans-serif;color:#2F5FC4">Kasalukuyang posisyon</div></div></div>
+<div style="min-height:56px;padding:12px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #E4E7EC;border-top:1px solid #E4E7EC"><span style="width:20px;height:20px;flex:none;border:2px solid #E4E7EC;border-radius:999px"></span><div style="flex:1"><div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">Aralin 9 — Mga Pang-abay</div></div></div>
+<div style="min-height:56px;padding:12px 16px;display:flex;align-items:center;gap:12px"><span style="width:20px;height:20px;flex:none;border:2px solid #E4E7EC;border-radius:999px"></span><div style="flex:1"><div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">Aralin 10 — Pagsasanay sa Pagsulat</div></div></div>
+</div>
+<div style="padding:12px 14px;background:#FFF8DD;border-radius:12px;font:400 13px/18px Inter,sans-serif;color:#8A6B08">Kakailanganin ng kumpirmasyon bago i-save — para hindi masira ang tala sa aksidenteng tap.</div>
+</div>
+<div style="padding:16px;background:#fff;border-top:1px solid #E4E7EC">
+<div style="min-height:56px;display:flex;align-items:center;justify-content:center;gap:8px;background:#0038A8;border-radius:8px;font:600 16px Inter,sans-serif;color:#fff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>I-save ang bagong posisyon</div>
+</div>
+</div>
+</div>
+
+<div id="2e" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#2e" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">2e</a>C7 Settings / Profile</div>
+<div style="width:390px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280;background:#fff"><span>16:32</span><span>39%</span></div>
+<div style="padding:8px 16px;display:flex;align-items:center;gap:8px;background:#fff;border-bottom:1px solid #E4E7EC">
+<div style="min-height:44px;display:flex;align-items:center;gap:4px;margin-left:-4px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg><span style="font:600 16px Inter,sans-serif;color:#1C2333">Bumalik</span></div>
+<span style="font:600 17px Inter,sans-serif;color:#1C2333">Mga setting</span>
+</div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:16px">
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;align-items:center;gap:12px">
+<div style="width:48px;height:48px;border-radius:999px;background:#EAF0FB;display:flex;align-items:center;justify-content:center;font:600 17px Inter,sans-serif;color:#0038A8">ER</div>
+<div style="flex:1"><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Elena Ramos</div><div style="font:400 13px/18px Inter,sans-serif;color:#6B7280">Grade 3 · Bacacay Central ES · Code 104</div></div>
+</div>
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;overflow:hidden">
+<div style="min-height:56px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E4E7EC"><span style="font:400 16px Inter,sans-serif;color:#1C2333">Antas at mga subject</span><span style="display:flex;align-items:center;gap:8px;font:400 16px Inter,sans-serif;color:#6B7280">Grade 3 · 5<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></div>
+<div style="min-height:56px;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E4E7EC"><span style="font:400 16px Inter,sans-serif;color:#1C2333">Wika</span><div style="display:flex;align-items:center;min-height:44px;border:1px solid #E4E7EC;border-radius:999px;overflow:hidden;font:600 13px Inter,sans-serif"><span style="padding:6px 14px;background:#0038A8;color:#fff">FIL</span><span style="padding:6px 14px;color:#6B7280">EN</span></div></div>
+<div style="min-height:56px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between"><span style="font:400 16px Inter,sans-serif;color:#1C2333">Tulong at FAQ</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+</div>
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="font:600 13px Inter,sans-serif;color:#6B7280;letter-spacing:.4px;text-transform:uppercase">Sync at data</div>
+<div style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:999px;background:#2E8B57"></span><span style="font:400 16px/24px Inter,sans-serif;color:#1C2333">Huling sync: 22 Enero, 7:41 AM</span></div>
+<div style="font:400 13px/18px Inter,sans-serif;color:#6B7280">3 pagbabago ang nasa telepono pa lang. Awtomatikong ipapadala kapag may signal.</div>
+<div style="min-height:48px;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid #0038A8;border-radius:8px;font:600 16px Inter,sans-serif;color:#0038A8"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>I-sync ngayon</div>
+</div>
+<div style="min-height:52px;display:flex;align-items:center;justify-content:center;gap:8px;background:#fff;border:1px solid #E4E7EC;border-radius:8px;font:600 16px Inter,sans-serif;color:#CE1126"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CE1126" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5V3h4"/><path d="M14 12h7"/><path d="M18 8l4 4-4 4"/></svg>Mag-log out</div>
+</div>
+</div>
+</div>
+
+<div id="2f" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#2f" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">2f</a>C8 Help / FAQ</div>
+<div style="width:390px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280;background:#fff"><span>16:35</span><span>38%</span></div>
+<div style="padding:8px 16px;display:flex;align-items:center;gap:8px;background:#fff;border-bottom:1px solid #E4E7EC">
+<div style="min-height:44px;display:flex;align-items:center;gap:4px;margin-left:-4px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg><span style="font:600 16px Inter,sans-serif;color:#1C2333">Bumalik</span></div>
+<span style="font:600 17px Inter,sans-serif;color:#1C2333">Tulong</span>
+</div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:8px">
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:flex-start;gap:12px"><div style="flex:1;font:600 16px/24px Inter,sans-serif;color:#1C2333">Ano ang mangyayari kung mawalan ako ng signal?</div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M6 15l6-6 6 6"/></svg></div>
+<div style="font:400 16px/24px Inter,sans-serif;color:#6B7280">Tuloy pa rin ang lahat. Naka-save sa telepono ang bawat pagbabago at awtomatikong ipapadala kapag bumalik ang internet. Wala kang kailangang gawin.</div>
+</div>
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;min-height:56px;display:flex;align-items:center;gap:12px"><div style="flex:1;font:600 16px/24px Inter,sans-serif;color:#1C2333">Paano ko itatama kung mali ang na-save na posisyon?</div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M6 9l6 6 6-6"/></svg></div>
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;min-height:56px;display:flex;align-items:center;gap:12px"><div style="flex:1;font:600 16px/24px Inter,sans-serif;color:#1C2333">Kailangan ko bang i-tap araw-araw?</div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M6 9l6 6 6-6"/></svg></div>
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;min-height:56px;display:flex;align-items:center;gap:12px"><div style="flex:1;font:600 16px/24px Inter,sans-serif;color:#1C2333">Sino ang nakakakita ng data ng klase ko?</div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M6 9l6 6 6-6"/></svg></div>
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;min-height:56px;display:flex;align-items:center;gap:12px"><div style="flex:1;font:600 16px/24px Inter,sans-serif;color:#1C2333">Paano kung nagpalit ako ng telepono?</div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M6 9l6 6 6-6"/></svg></div>
+</div>
+</div>
+</div>
+
+<div id="2g" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#2g" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">2g</a>C9 Offline fallback shell</div>
+<div style="width:390px;background:#fff;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280"><span>5:12</span><span>44%</span></div>
+<div style="padding:56px 24px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center">
+<div style="width:120px;height:120px;border:1px dashed #C9CFD9;border-radius:12px;display:flex;align-items:center;justify-content:center;font:400 13px/18px Inter,sans-serif;color:#6B7280;text-align:center;padding:8px">Calm illustration placeholder</div>
+<div style="font:600 22px/28px Inter,sans-serif;color:#1C2333">Kailangan ng internet sa unang beses lang</div>
+<div style="font:400 16px/24px Inter,sans-serif;color:#6B7280;max-width:300px">Hindi pa nakumpleto ang unang pag-download ng Tudlo. Kapag may signal, isang beses lang itong mangyayari — pagkatapos, gagana na ito offline nang tuluyan.</div>
+<div style="width:100%;padding:12px 14px;background:#FFF8DD;border-radius:12px;font:400 13px/18px Inter,sans-serif;color:#8A6B08;text-align:left">Walang nawalang data. Wala pang naitalang klase sa telepono na ito.</div>
+</div>
+<div style="padding:16px;border-top:1px solid #E4E7EC;display:flex;flex-direction:column;gap:12px">
+<div style="min-height:56px;display:flex;align-items:center;justify-content:center;gap:8px;background:#0038A8;border-radius:8px;font:600 16px Inter,sans-serif;color:#fff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>Subukang muli</div>
+<div style="font:400 13px/18px Inter,sans-serif;color:#6B7280;text-align:center">Hindi ito browser error — bahagi ito ng Tudlo.</div>
+</div>
+</div>
+</div>
+
+<div id="2h" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#2h" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">2h</a>D1 Principal dashboard — 1280px</div>
+<div style="width:1280px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+<div style="min-height:56px;padding:0 20px;background:#fff;border-bottom:1px solid #E4E7EC;display:flex;align-items:center;justify-content:space-between">
+<div style="display:flex;align-items:center;gap:16px"><span style="font:700 17px Inter,sans-serif;color:#0038A8">Tudlo</span><span style="font:400 16px Inter,sans-serif;color:#6B7280">Bacacay Central ES — Punong-guro</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="font:400 13px Inter,sans-serif;color:#6B7280">22 Enero 2026</span><span style="width:32px;height:32px;border-radius:999px;background:#EAF0FB;color:#0038A8;font:600 13px Inter,sans-serif;display:flex;align-items:center;justify-content:center">RM</span></div>
+</div>
+<div style="padding:20px;display:flex;flex-direction:column;gap:16px">
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+<div style="padding:16px;background:#fff;border:1px solid #E4E7EC;border-radius:12px"><div style="font:400 13px Inter,sans-serif;color:#6B7280">Mga guro</div><div style="font:600 28px/36px Inter,sans-serif;color:#1C2333">24</div></div>
+<div style="padding:16px;background:#fff;border:1px solid #CE1126;border-radius:12px"><div style="font:400 13px Inter,sans-serif;color:#6B7280">Aktibong disruption</div><div style="font:600 28px/36px Inter,sans-serif;color:#CE1126">1</div><div style="font:400 13px Inter,sans-serif;color:#6B7280">Bagyong Aghon · 7 araw</div></div>
+<div style="padding:16px;background:#fff;border:1px solid #E4E7EC;border-radius:12px"><div style="font:400 13px Inter,sans-serif;color:#6B7280">Seksyong nahuhuli</div><div style="font:600 28px/36px Inter,sans-serif;color:#8A6B08">6</div></div>
+<div style="padding:16px;background:#fff;border:1px solid #E4E7EC;border-radius:12px"><div style="font:400 13px Inter,sans-serif;color:#6B7280">May catch-up plan</div><div style="font:600 28px/36px Inter,sans-serif;color:#2E8B57">18 / 24</div></div>
+</div>
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;overflow:hidden">
+<div style="padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E4E7EC"><span style="font:600 17px Inter,sans-serif;color:#1C2333">Mga guro at posisyon sa kurikulum</span><span style="font:400 13px Inter,sans-serif;color:#6B7280">Isinunod sa: Kalagayan ↓</span></div>
+<div style="display:grid;grid-template-columns:1.4fr 1fr 1.6fr 1.2fr 1.2fr 1.2fr;padding:10px 20px;background:#F7F8FA;border-bottom:1px solid #E4E7EC;font:600 13px Inter,sans-serif;color:#6B7280"><span>Guro</span><span>Grade / Seksyon</span><span>Mga subject</span><span>Posisyon</span><span>Huling disruption</span><span>Kalagayan</span></div>
+<div style="display:grid;grid-template-columns:1.4fr 1fr 1.6fr 1.2fr 1.2fr 1.2fr;padding:14px 20px;border-bottom:1px solid #E4E7EC;font:400 16px Inter,sans-serif;color:#1C2333;align-items:center;background:#EAF0FB"><span>Elena Ramos</span><span>3 — Sampaguita</span><span style="font-size:13px;color:#6B7280">Fil · Eng · Math · Sci · AP</span><span>Q3 · Aralin 8</span><span style="font-size:13px;color:#6B7280">Bagyo · 14 Ene</span><span><span style="padding:4px 10px;border-radius:999px;background:#FBEAEC;font:600 13px Inter,sans-serif;color:#CE1126">Nahuhuli</span></span></div>
+<div style="display:grid;grid-template-columns:1.4fr 1fr 1.6fr 1.2fr 1.2fr 1.2fr;padding:14px 20px;border-bottom:1px solid #E4E7EC;font:400 16px Inter,sans-serif;color:#1C2333;align-items:center"><span>Marites Delos Santos</span><span>2 — Ilang-Ilang</span><span style="font-size:13px;color:#6B7280">Fil · Eng · Math · AP</span><span>Q3 · Aralin 6</span><span style="font-size:13px;color:#6B7280">Bagyo · 14 Ene</span><span><span style="padding:4px 10px;border-radius:999px;background:#FFF8DD;font:600 13px Inter,sans-serif;color:#8A6B08">Medyo nahuhuli</span></span></div>
+<div style="display:grid;grid-template-columns:1.4fr 1fr 1.6fr 1.2fr 1.2fr 1.2fr;padding:14px 20px;border-bottom:1px solid #E4E7EC;font:400 16px Inter,sans-serif;color:#1C2333;align-items:center"><span>Joel Bautista</span><span>5 — Narra</span><span style="font-size:13px;color:#6B7280">Math · Sci</span><span>Q3 · Aralin 9</span><span style="font-size:13px;color:#6B7280">Bagyo · 14 Ene</span><span><span style="padding:4px 10px;border-radius:999px;background:#EAF0FB;font:600 13px Inter,sans-serif;color:#0038A8">Na-recover</span></span></div>
+<div style="display:grid;grid-template-columns:1.4fr 1fr 1.6fr 1.2fr 1.2fr 1.2fr;padding:14px 20px;border-bottom:1px solid #E4E7EC;font:400 16px Inter,sans-serif;color:#1C2333;align-items:center"><span>Grace Alvarez</span><span>6 — Molave</span><span style="font-size:13px;color:#6B7280">Fil · AP · MAPEH</span><span>Q3 · Aralin 11</span><span style="font-size:13px;color:#6B7280">Bagyo · 14 Ene</span><span><span style="padding:4px 10px;border-radius:999px;background:#E8F3EC;font:600 13px Inter,sans-serif;color:#2E8B57">Nasa track</span></span></div>
+<div style="display:grid;grid-template-columns:1.4fr 1fr 1.6fr 1.2fr 1.2fr 1.2fr;padding:14px 20px;font:400 16px Inter,sans-serif;color:#6B7280;align-items:center"><span>Ana Lopez</span><span>1 — Rosal</span><span style="font-size:13px">Fil · Eng · Math</span><span>—</span><span style="font-size:13px">—</span><span><span style="padding:4px 10px;border-radius:999px;background:#F0F1F4;font:600 13px Inter,sans-serif;color:#6B7280">Hindi pa nag-set up</span></span></div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="2i" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#2i" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">2i</a>Roadmap placeholder — Future rows (D2, E2, E3) + A2–A4</div>
+<div style="width:560px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px">
+<div style="font:600 22px/28px Inter,sans-serif;color:#1C2333">Hindi pa idinidisenyo — sinasadya</div>
+<div style="font:400 16px/24px Inter,sans-serif;color:#6B7280">Ayon sa MoSCoW ng PRD: isang roadmap card lang ang para sa Future rows, hindi buong screen.</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="padding:14px 16px;background:#F7F8FA;border-radius:8px;display:flex;justify-content:space-between;align-items:center"><span style="font:400 16px Inter,sans-serif;color:#1C2333">D2 · Teacher Detail (Principal)</span><span style="padding:4px 10px;border-radius:999px;background:#EFF1F4;font:600 13px Inter,sans-serif;color:#6B7280">Future</span></div>
+<div style="padding:14px 16px;background:#F7F8FA;border-radius:8px;display:flex;justify-content:space-between;align-items:center"><span style="font:400 16px Inter,sans-serif;color:#1C2333">E2 · School Detail drill-down</span><span style="padding:4px 10px;border-radius:999px;background:#EFF1F4;font:600 13px Inter,sans-serif;color:#6B7280">Future</span></div>
+<div style="padding:14px 16px;background:#F7F8FA;border-radius:8px;display:flex;justify-content:space-between;align-items:center"><span style="font:400 16px Inter,sans-serif;color:#1C2333">E3 · Reports / Export (CSV, PDF)</span><span style="padding:4px 10px;border-radius:999px;background:#EFF1F4;font:600 13px Inter,sans-serif;color:#6B7280">Future</span></div>
+<div style="padding:14px 16px;background:#F7F8FA;border-radius:8px;display:flex;justify-content:space-between;align-items:center"><span style="font:400 16px Inter,sans-serif;color:#1C2333">Mission Teacher Deployment · National Heatmap</span><span style="padding:4px 10px;border-radius:999px;background:#EFF1F4;font:600 13px Inter,sans-serif;color:#6B7280">DepEd roadmap</span></div>
+</div>
+<div style="height:1px;background:#E4E7EC"></div>
+<div style="font:600 13px Inter,sans-serif;color:#6B7280;letter-spacing:.4px;text-transform:uppercase">Hindi pa nabuo sa file na ito</div>
+<div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">A2 How It Works · A3 For DepEd / Partners · A4 About &amp; Roadmap — parehong marketing shell ng <a href="#2a">2a</a>, iba lang ang laman. Sabihin lang kung alin ang gusto mong buuin.</div>
+</div>
+</div>
+
+</div>
+<p style="margin:8px 0 0;font:12px/1.5 Inter,sans-serif;color:#6B7280">Susunod: “buuin ang A2–A4” · “gawing tappable prototype ang C1→C5” · “tunay na mapa ng Region V sa <a href="#1m">1m</a>”</p>
+</section>
+
+<section id="t1" style="padding:40px 44px 56px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;align-items:baseline;gap:12px">
+<a href="#t1" style="font:600 10px ui-monospace,Menlo,monospace;padding:4px 8px;background:#1C2333;color:#fff;border-radius:4px;text-decoration:none">1</a>
+<span style="font:600 15px/1.2 Inter,sans-serif;color:#1C2333">Tudlo — teacher PWA + division dashboard</span>
+<span style="font:400 12px/1.4 Inter,sans-serif;color:#6B7280">Filipino-first copy · 390px Android · 16px minimum body · one dominant hue per state</span>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+
+<div id="1a" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#1a" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">1a</a>Onboarding 1 — Antas ng grado</div>
+<div style="width:390px;height:760px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280;background:#fff"><span>7:14</span><span style="display:flex;gap:6px;align-items:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a6 6 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1.2" fill="#6B7280"/></svg><span>78%</span></span></div>
+<div style="padding:16px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid #E4E7EC">
+<div style="display:flex;gap:6px;align-items:center"><span style="width:24px;height:8px;border-radius:999px;background:#0038A8"></span><span style="width:8px;height:8px;border-radius:999px;background:#E4E7EC"></span><span style="width:8px;height:8px;border-radius:999px;background:#E4E7EC"></span><span style="width:8px;height:8px;border-radius:999px;background:#E4E7EC"></span></div>
+<div style="display:flex;align-items:center;min-height:44px;border:1px solid #E4E7EC;border-radius:999px;overflow:hidden;font:600 13px Inter,sans-serif"><span style="padding:6px 12px;background:#0038A8;color:#fff">FIL</span><span style="padding:6px 12px;color:#6B7280;background:#fff">EN</span></div>
+</div>
+<div style="flex:1;padding:24px 16px;display:flex;flex-direction:column;gap:8px;overflow:hidden">
+<div style="font:600 22px/28px Inter,sans-serif;color:#1C2333;margin-bottom:4px">Anong antas ang hinahawakan mo?</div>
+<div style="font:400 16px/24px Inter,sans-serif;color:#6B7280;margin-bottom:16px">Pumili ng isa. Mababago mo ito mamaya.</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="min-height:56px;display:flex;align-items:center;padding:0 16px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;font:400 16px Inter,sans-serif;color:#1C2333">Grade 1</div>
+<div style="min-height:56px;display:flex;align-items:center;padding:0 16px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;font:400 16px Inter,sans-serif;color:#1C2333">Grade 2</div>
+<div style="min-height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:#EAF0FB;border:2px solid #0038A8;border-radius:12px;font:600 16px Inter,sans-serif;color:#0A1D4D">Grade 3<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+<div style="min-height:56px;display:flex;align-items:center;padding:0 16px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;font:400 16px Inter,sans-serif;color:#1C2333">Grade 4</div>
+<div style="min-height:56px;display:flex;align-items:center;padding:0 16px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;font:400 16px Inter,sans-serif;color:#1C2333">Grade 5</div>
+<div style="min-height:56px;display:flex;align-items:center;padding:0 16px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;font:400 16px Inter,sans-serif;color:#1C2333">Grade 6</div>
+</div>
+</div>
+<div style="padding:16px;display:flex;gap:8px;background:#fff;border-top:1px solid #E4E7EC">
+<div style="min-height:52px;flex:0 0 108px;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid #E4E7EC;border-radius:8px;font:600 16px Inter,sans-serif;color:#6B7280"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Bumalik</div>
+<div style="min-height:52px;flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:#0038A8;border-radius:8px;font:600 16px Inter,sans-serif;color:#fff">Susunod<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+</div>
+</div>
+</div>
+
+<div id="1b" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#1b" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">1b</a>Onboarding 2 — Mga subject + validation state</div>
+<div style="width:390px;height:760px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280;background:#fff"><span>7:15</span><span>78%</span></div>
+<div style="padding:16px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid #E4E7EC">
+<div style="display:flex;gap:6px;align-items:center"><span style="width:8px;height:8px;border-radius:999px;background:#2F5FC4"></span><span style="width:24px;height:8px;border-radius:999px;background:#0038A8"></span><span style="width:8px;height:8px;border-radius:999px;background:#E4E7EC"></span><span style="width:8px;height:8px;border-radius:999px;background:#E4E7EC"></span></div>
+<div style="display:flex;align-items:center;min-height:44px;border:1px solid #E4E7EC;border-radius:999px;overflow:hidden;font:600 13px Inter,sans-serif"><span style="padding:6px 12px;background:#0038A8;color:#fff">FIL</span><span style="padding:6px 12px;color:#6B7280;background:#fff">EN</span></div>
+</div>
+<div style="flex:1;padding:24px 16px;display:flex;flex-direction:column;gap:16px;overflow:hidden">
+<div><div style="font:600 22px/28px Inter,sans-serif;color:#1C2333">Anong mga subject ang tinuturo mo?</div><div style="font:400 16px/24px Inter,sans-serif;color:#6B7280;margin-top:4px">Pumili ng lahat ng tugma.</div></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<span style="min-height:48px;display:flex;align-items:center;padding:0 18px;border-radius:999px;background:#fff;border:1px solid #E4E7EC;font:400 16px Inter,sans-serif;color:#1C2333">Filipino</span>
+<span style="min-height:48px;display:flex;align-items:center;padding:0 18px;border-radius:999px;background:#fff;border:1px solid #E4E7EC;font:400 16px Inter,sans-serif;color:#1C2333">English</span>
+<span style="min-height:48px;display:flex;align-items:center;padding:0 18px;border-radius:999px;background:#fff;border:1px solid #E4E7EC;font:400 16px Inter,sans-serif;color:#1C2333">Math</span>
+<span style="min-height:48px;display:flex;align-items:center;padding:0 18px;border-radius:999px;background:#fff;border:1px solid #E4E7EC;font:400 16px Inter,sans-serif;color:#1C2333">Science</span>
+<span style="min-height:48px;display:flex;align-items:center;padding:0 18px;border-radius:999px;background:#fff;border:1px solid #E4E7EC;font:400 16px Inter,sans-serif;color:#1C2333">Araling Panlipunan</span>
+<span style="min-height:48px;display:flex;align-items:center;padding:0 18px;border-radius:999px;background:#fff;border:1px solid #E4E7EC;font:400 16px Inter,sans-serif;color:#1C2333">MAPEH</span>
+</div>
+<div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;background:#FBEAEC;border:1px solid #CE1126;border-radius:12px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CE1126" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M10.3 3.6 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+<div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">Walang subject na napili. Pumili ng kahit isa para makatuloy.</div>
+</div>
+<div style="margin-top:auto;font:400 13px/18px Inter,sans-serif;color:#6B7280">Karaniwan, 5–6 subject ang hawak ng isang self-contained na klase.</div>
+</div>
+<div style="padding:16px;display:flex;gap:8px;background:#fff;border-top:1px solid #E4E7EC">
+<div style="min-height:52px;flex:0 0 108px;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid #E4E7EC;border-radius:8px;font:600 16px Inter,sans-serif;color:#6B7280">Bumalik</div>
+<div style="min-height:52px;flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:#E4E7EC;border-radius:8px;font:600 16px Inter,sans-serif;color:#9AA1AE">Susunod</div>
+</div>
+</div>
+</div>
+
+<div id="1c" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#1c" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">1c</a>Onboarding 3 — Posisyon sa kurikulum</div>
+<div style="width:390px;height:760px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280;background:#fff"><span>7:17</span><span>77%</span></div>
+<div style="padding:16px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid #E4E7EC">
+<div style="display:flex;gap:6px;align-items:center"><span style="width:8px;height:8px;border-radius:999px;background:#2F5FC4"></span><span style="width:8px;height:8px;border-radius:999px;background:#2F5FC4"></span><span style="width:24px;height:8px;border-radius:999px;background:#0038A8"></span><span style="width:8px;height:8px;border-radius:999px;background:#E4E7EC"></span></div>
+<div style="display:flex;align-items:center;min-height:44px;border:1px solid #E4E7EC;border-radius:999px;overflow:hidden;font:600 13px Inter,sans-serif"><span style="padding:6px 12px;background:#0038A8;color:#fff">FIL</span><span style="padding:6px 12px;color:#6B7280;background:#fff">EN</span></div>
+</div>
+<div style="flex:1;padding:24px 16px;display:flex;flex-direction:column;gap:8px;overflow:hidden">
+<div style="font:600 22px/28px Inter,sans-serif;color:#1C2333">Saan na ang klase mo ngayon?</div>
+<div style="font:400 16px/24px Inter,sans-serif;color:#6B7280;margin-bottom:8px">Sundan ang MATATAG na markahan. Tantiya lang ay ayos na.</div>
+
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;justify-content:space-between"><span style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Filipino</span><span style="font:600 13px Inter,sans-serif;color:#0038A8;background:#EAF0FB;padding:4px 10px;border-radius:999px">Q3 · Aralin 8</span></div>
+<div style="display:flex;align-items:center;gap:12px">
+<div style="width:44px;height:44px;border:1px solid #E4E7EC;border-radius:8px;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></div>
+<div style="flex:1;height:8px;border-radius:999px;background:#E4E7EC;position:relative;overflow:hidden"><div style="position:absolute;inset:0 34% 0 0;background:#0038A8;border-radius:999px"></div></div>
+<div style="width:44px;height:44px;border:1px solid #E4E7EC;border-radius:8px;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></div>
+</div>
+<div style="font:400 13px/18px Inter,sans-serif;color:#6B7280">Ikatlong Markahan, Aralin 8 — “Mga Pang-uri”</div>
+<a href="#1c" style="font:600 16px Inter,sans-serif;color:#0038A8;text-decoration:none">Hindi sigurado? Pumili ng linggo →</a>
+</div>
+
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;justify-content:space-between"><span style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Math</span><span style="font:600 13px Inter,sans-serif;color:#0038A8;background:#EAF0FB;padding:4px 10px;border-radius:999px">Q3 · Aralin 5</span></div>
+<div style="display:flex;align-items:center;gap:12px">
+<div style="width:44px;height:44px;border:1px solid #E4E7EC;border-radius:8px;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></div>
+<div style="flex:1;height:8px;border-radius:999px;background:#E4E7EC;position:relative;overflow:hidden"><div style="position:absolute;inset:0 58% 0 0;background:#0038A8;border-radius:999px"></div></div>
+<div style="width:44px;height:44px;border:1px solid #E4E7EC;border-radius:8px;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></div>
+</div>
+<div style="font:400 13px/18px Inter,sans-serif;color:#6B7280">Ikatlong Markahan, Aralin 5 — “Fractions”</div>
+</div>
+
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:space-between">
+<span style="font:600 17px Inter,sans-serif;color:#1C2333">Science</span>
+<span style="font:400 16px Inter,sans-serif;color:#6B7280">Itakda →</span>
+</div>
+</div>
+<div style="padding:16px;display:flex;gap:8px;background:#fff;border-top:1px solid #E4E7EC">
+<div style="min-height:52px;flex:0 0 108px;display:flex;align-items:center;justify-content:center;border:1px solid #E4E7EC;border-radius:8px;font:600 16px Inter,sans-serif;color:#6B7280">Bumalik</div>
+<div style="min-height:52px;flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:#0038A8;border-radius:8px;font:600 16px Inter,sans-serif;color:#fff">Susunod<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+</div>
+</div>
+</div>
+
+<div id="1d" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#1d" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">1d</a>Onboarding 4 — Kumpirmasyon</div>
+<div style="width:390px;height:812px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280;background:#fff"><span>7:19</span><span>77%</span></div>
+<div style="padding:16px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid #E4E7EC">
+<div style="display:flex;gap:6px;align-items:center"><span style="width:8px;height:8px;border-radius:999px;background:#2F5FC4"></span><span style="width:8px;height:8px;border-radius:999px;background:#2F5FC4"></span><span style="width:8px;height:8px;border-radius:999px;background:#2F5FC4"></span><span style="width:24px;height:8px;border-radius:999px;background:#0038A8"></span></div>
+<div style="display:flex;align-items:center;min-height:44px;border:1px solid #E4E7EC;border-radius:999px;overflow:hidden;font:600 13px Inter,sans-serif"><span style="padding:6px 12px;background:#0038A8;color:#fff">FIL</span><span style="padding:6px 12px;color:#6B7280;background:#fff">EN</span></div>
+</div>
+<div style="flex:1;padding:24px 16px;display:flex;flex-direction:column;gap:16px;overflow:hidden">
+<div><div style="font:600 22px/28px Inter,sans-serif;color:#1C2333">Tama ba ang lahat?</div><div style="font:400 16px/24px Inter,sans-serif;color:#6B7280;margin-top:4px">Mababago mo pa ito anumang oras.</div></div>
+<div style="flex:none;background:#fff;border:1px solid #E4E7EC;border-radius:12px;overflow:hidden">
+<div style="padding:16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E4E7EC"><span style="font:400 16px Inter,sans-serif;color:#6B7280">Antas</span><span style="font:600 16px Inter,sans-serif;color:#1C2333">Grade 3</span></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid #E4E7EC"><span style="font:400 16px Inter,sans-serif;color:#6B7280">Mga subject</span><span style="font:600 16px/24px Inter,sans-serif;color:#1C2333">Filipino · English · Math · Science · Araling Panlipunan</span></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<span style="font:400 16px Inter,sans-serif;color:#6B7280">Simulang posisyon</span>
+<div style="display:flex;justify-content:space-between;font:400 16px Inter,sans-serif;color:#1C2333"><span>Filipino</span><span style="font-weight:600">Q3 · Aralin 8</span></div>
+<div style="display:flex;justify-content:space-between;font:400 16px Inter,sans-serif;color:#1C2333"><span>English</span><span style="font-weight:600">Q3 · Aralin 6</span></div>
+<div style="display:flex;justify-content:space-between;font:400 16px Inter,sans-serif;color:#1C2333"><span>Math</span><span style="font-weight:600">Q3 · Aralin 5</span></div>
+<div style="display:flex;justify-content:space-between;font:400 16px Inter,sans-serif;color:#1C2333"><span>Science</span><span style="font-weight:600">Q3 · Aralin 4</span></div>
+<div style="display:flex;justify-content:space-between;font:400 16px Inter,sans-serif;color:#1C2333"><span>Araling Panlipunan</span><span style="font-weight:600">Q3 · Aralin 7</span></div>
+</div>
+</div>
+<div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;background:#EAF0FB;border-radius:12px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div style="font:400 16px/24px Inter,sans-serif;color:#0A1D4D">Gumagana ang Tudlo kahit walang internet. Awtomatiko itong mag-sync.</div></div>
+</div>
+<div style="padding:16px;background:#fff;border-top:1px solid #E4E7EC">
+<div style="min-height:56px;display:flex;align-items:center;justify-content:center;gap:8px;background:#0038A8;border-radius:8px;font:600 16px Inter,sans-serif;color:#fff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Simulan</div>
+</div>
+</div>
+</div>
+
+<div id="1e" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#1e" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">1e</a>Home — ordinaryong araw, naka-sync</div>
+<div style="width:390px;height:800px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;position:relative">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280;background:#fff"><span>7:42</span><span>64%</span></div>
+<div style="padding:12px 16px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid #E4E7EC">
+<span style="font:700 17px Inter,sans-serif;color:#0038A8;letter-spacing:-.2px">Tudlo</span>
+<div style="display:flex;align-items:center;gap:8px">
+<span style="display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#F7F8FA;border:1px solid #E4E7EC;font:500 13px Inter,sans-serif;color:#1C2333"><span style="width:8px;height:8px;border-radius:999px;background:#2E8B57"></span>Naka-sync</span>
+<div style="display:flex;align-items:center;min-height:44px;border:1px solid #E4E7EC;border-radius:999px;overflow:hidden;font:600 13px Inter,sans-serif"><span style="padding:6px 10px;background:#0038A8;color:#fff">FIL</span><span style="padding:6px 10px;color:#6B7280;background:#fff">EN</span></div>
+</div>
+</div>
+<div style="flex:1;padding:16px 16px 96px;display:flex;flex-direction:column;gap:8px;overflow:hidden">
+<div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font:600 22px/28px Inter,sans-serif;color:#1C2333">Martes, 14 Enero</span><span style="font:400 13px Inter,sans-serif;color:#6B7280">Araw 142 / 200</span></div>
+<div style="font:400 13px/18px Inter,sans-serif;color:#6B7280;margin-bottom:8px">Awtomatikong sinusubaybayan. Walang kailangang i-tap sa normal na araw.</div>
+
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:12px">
+<div style="width:40px;height:40px;border-radius:8px;background:#EAF0FB;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/></svg></div>
+<div style="flex:1;min-width:0"><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Filipino</div><div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">Aralin 8 — Mga Pang-uri</div></div>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+</div>
+<div><div style="height:6px;border-radius:999px;background:#E4E7EC;position:relative;overflow:hidden"><div style="position:absolute;inset:0 40% 0 0;background:#0038A8;border-radius:999px"></div></div><div style="font:400 13px/18px Inter,sans-serif;color:#6B7280;margin-top:6px">3 sa 5 araw ng yunit</div></div>
+</div>
+
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:12px">
+<div style="width:40px;height:40px;border-radius:8px;background:#EAF0FB;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M8 15h8"/><path d="M12 11v8"/><path d="M8 7h8"/></svg></div>
+<div style="flex:1;min-width:0"><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Math</div><div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">Aralin 5 — Fractions</div></div>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+</div>
+<div><div style="height:6px;border-radius:999px;background:#E4E7EC;position:relative;overflow:hidden"><div style="position:absolute;inset:0 20% 0 0;background:#0038A8;border-radius:999px"></div></div><div style="font:400 13px/18px Inter,sans-serif;color:#6B7280;margin-top:6px">4 sa 5 araw ng yunit</div></div>
+</div>
+
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:12px">
+<div style="width:40px;height:40px;border-radius:8px;background:#EAF0FB;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M6 6l1.5 1.5M16.5 16.5 18 18M18 6l-1.5 1.5M7.5 16.5 6 18"/></svg></div>
+<div style="flex:1;min-width:0"><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Science</div><div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">Aralin 4 — Mga Hayop sa Tubig</div></div>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+</div>
+<div><div style="height:6px;border-radius:999px;background:#E4E7EC;position:relative;overflow:hidden"><div style="position:absolute;inset:0 70% 0 0;background:#0038A8;border-radius:999px"></div></div><div style="font:400 13px/18px Inter,sans-serif;color:#6B7280;margin-top:6px">1 sa 4 araw ng yunit</div></div>
+</div>
+
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;align-items:center;gap:12px">
+<div style="width:40px;height:40px;border-radius:8px;background:#EAF0FB;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z"/></svg></div>
+<div style="flex:1;min-width:0"><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Araling Panlipunan</div><div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">Aralin 7 — Aming Lalawigan</div></div>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+</div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:16px;background:#fff;border-top:1px solid #E4E7EC">
+<div style="min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;background:#CE1126;border-radius:8px;font:600 16px Inter,sans-serif;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.6 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>I-mark ang Class Suspension</div>
+</div>
+</div>
+</div>
+
+<div id="1f" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#1f" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">1f</a>Home — offline + naka-expand na card</div>
+<div style="width:390px;height:815px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;position:relative">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280;background:#fff"><span>7:44</span><span>61%</span></div>
+<div style="padding:12px 16px;display:flex;align-items:center;justify-content:space-between;background:#fff">
+<span style="font:700 17px Inter,sans-serif;color:#0038A8">Tudlo</span>
+<div style="display:flex;align-items:center;gap:8px">
+<span style="display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#FFF8DD;border:1px solid #FCD116;font:500 13px Inter,sans-serif;color:#8A6B08"><span style="width:8px;height:8px;border-radius:999px;background:#FCD116"></span>Naka-pending</span>
+<div style="display:flex;align-items:center;min-height:44px;border:1px solid #E4E7EC;border-radius:999px;overflow:hidden;font:600 13px Inter,sans-serif"><span style="padding:6px 10px;background:#0038A8;color:#fff">FIL</span><span style="padding:6px 10px;color:#6B7280;background:#fff">EN</span></div>
+</div>
+</div>
+<div style="padding:10px 16px;background:#FFF8DD;display:flex;align-items:center;gap:10px;border-top:1px solid #FCD116;border-bottom:1px solid #FCD116"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A6B08" stroke-width="2" stroke-linecap="round" style="flex:none"><path d="M2 4l20 16"/><path d="M5 12.5a10 10 0 0 1 11.6-1.7"/><path d="M8.5 16a6 6 0 0 1 5.4-.9"/><circle cx="12" cy="19.5" r="1.2" fill="#8A6B08"/></svg><span style="font:400 13px/18px Inter,sans-serif;color:#8A6B08">Offline mode — awtomatikong mag-sync kapag may internet</span></div>
+<div style="padding:8px 16px;display:flex;justify-content:flex-end"><div style="max-width:280px;padding:10px 12px;background:#1C2333;border-radius:8px;font:400 13px/18px Inter,sans-serif;color:#fff">Nasa telepono mo ang lahat ng data. Walang mawawala.</div></div>
+<div style="flex:1;padding:8px 16px 96px;display:flex;flex-direction:column;gap:8px;overflow:hidden">
+<div style="background:#fff;border:2px solid #0038A8;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:12px">
+<div style="width:40px;height:40px;border-radius:8px;background:#EAF0FB;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/></svg></div>
+<div style="flex:1;min-width:0"><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Filipino</div><div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">Aralin 8 — Mga Pang-uri</div></div>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>
+</div>
+<div style="height:6px;border-radius:999px;background:#E4E7EC;position:relative;overflow:hidden"><div style="position:absolute;inset:0 40% 0 0;background:#0038A8;border-radius:999px"></div></div>
+<div style="height:1px;background:#E4E7EC"></div>
+<div style="font:600 13px Inter,sans-serif;color:#6B7280;letter-spacing:.4px;text-transform:uppercase">Iwasto ang posisyon</div>
+<div style="display:flex;align-items:center;gap:12px">
+<div style="width:44px;height:44px;border:1px solid #E4E7EC;border-radius:8px;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></div>
+<div style="flex:1;text-align:center;font:600 16px Inter,sans-serif;color:#1C2333">Aralin 8</div>
+<div style="width:44px;height:44px;border:1px solid #E4E7EC;border-radius:8px;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 13px Inter,sans-serif;color:#6B7280">Tala (para lang sa sarili mo)</span><div style="min-height:52px;border:1px solid #E4E7EC;border-radius:8px;padding:12px;font:400 16px/24px Inter,sans-serif;color:#9AA1AE">Hal. “Kailangan pa ng drill ang Grupo 2”</div></div>
+<div style="min-height:48px;display:flex;align-items:center;justify-content:center;gap:8px;background:#0038A8;border-radius:8px;font:600 16px Inter,sans-serif;color:#fff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>I-save</div>
+</div>
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;align-items:center;gap:12px">
+<div style="width:40px;height:40px;border-radius:8px;background:#EAF0FB;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M8 15h8"/><path d="M12 11v8"/><path d="M8 7h8"/></svg></div>
+<div style="flex:1;min-width:0"><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Math</div><div style="font:400 16px/24px Inter,sans-serif;color:#1C2333">Aralin 5 — Fractions</div></div>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+</div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:16px;background:#fff;border-top:1px solid #E4E7EC">
+<div style="min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;background:#CE1126;border-radius:8px;font:600 16px Inter,sans-serif;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.6 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>I-mark ang Class Suspension</div>
+</div>
+</div>
+</div>
+
+<div id="1g" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#1g" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">1g</a>Mark Disruption A — uri ng disruption</div>
+<div style="width:390px;height:760px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;position:relative">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280;background:#fff"><span>18:03</span><span>52%</span></div>
+<div style="padding:12px 16px;display:flex;align-items:center;gap:12px;background:#fff;border-bottom:1px solid #E4E7EC">
+<div style="min-height:44px;display:flex;align-items:center;gap:4px;padding-right:4px;margin-left:-4px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg><span style="font:600 16px Inter,sans-serif;color:#1C2333">Bumalik</span></div>
+<span style="font:600 17px Inter,sans-serif;color:#1C2333">Class Suspension</span>
+</div>
+<div style="padding:10px 16px;background:#FFF8DD;display:flex;align-items:center;gap:10px;border-bottom:1px solid #FCD116"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A6B08" stroke-width="2" stroke-linecap="round" style="flex:none"><path d="M2 4l20 16"/><path d="M5 12.5a10 10 0 0 1 11.6-1.7"/><circle cx="12" cy="19.5" r="1.2" fill="#8A6B08"/></svg><span style="font:400 13px/18px Inter,sans-serif;color:#8A6B08">Offline — gumagana pa rin ito nang normal</span></div>
+<div style="flex:1;padding:24px 16px 100px;display:flex;flex-direction:column;gap:8px;overflow:hidden">
+<div style="font:600 22px/28px Inter,sans-serif;color:#1C2333">Ano ang sanhi?</div>
+<div style="font:400 16px/24px Inter,sans-serif;color:#6B7280;margin-bottom:16px">Isang tap lang. Aalagaan na ng Tudlo ang iba.</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<div style="aspect-ratio:1;background:#FBEAEC;border:2px solid #CE1126;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#CE1126" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h13a3.5 3.5 0 1 0-3.5-3.5"/><path d="M3 12h9a3 3 0 1 1-3 3"/><path d="M3 18h15"/></svg>
+<span style="font:600 16px Inter,sans-serif;color:#1C2333">Bagyo</span>
+</div>
+<div style="aspect-ratio:1;background:#fff;border:1px solid #E4E7EC;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9c2.5-2 4.5 2 7 0s4.5 2 7 0 4.5 2 6 0"/><path d="M2 15c2.5-2 4.5 2 7 0s4.5 2 7 0 4.5 2 6 0"/><path d="M2 21c2.5-2 4.5 2 7 0s4.5 2 7 0 4.5 2 6 0"/></svg>
+<span style="font:600 16px Inter,sans-serif;color:#1C2333">Baha</span>
+</div>
+<div style="aspect-ratio:1;background:#fff;border:1px solid #E4E7EC;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16h5l3-5 3 8 3-6 2 3h4"/><path d="M4 21h16"/></svg>
+<span style="font:600 16px Inter,sans-serif;color:#1C2333">Lindol</span>
+</div>
+<div style="aspect-ratio:1;background:#fff;border:1px solid #E4E7EC;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:12px;text-align:center">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.6 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+<span style="font:600 16px/20px Inter,sans-serif;color:#1C2333">Iba pa / Di-natural na sanhi</span>
+</div>
+</div>
+<div style="margin-top:16px;font:400 13px/18px Inter,sans-serif;color:#6B7280">Kasama sa “Iba pa” ang sunog, away/armadong sigalot, at pagkukumpuni ng paaralan.</div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:16px;background:#fff;border-top:1px solid #E4E7EC">
+<div style="min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;background:#CE1126;border-radius:8px;font:600 16px Inter,sans-serif;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>I-save ang posisyon ng klase</div>
+</div>
+</div>
+</div>
+
+<div id="1h" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#1h" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">1h</a>Mark Disruption B — kumpirmasyon (offline)</div>
+<div style="width:390px;height:780px;background:#fff;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280"><span>18:04</span><span>52%</span></div>
+<div style="flex:1;padding:32px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;text-align:center">
+<div style="width:96px;height:96px;border-radius:999px;background:#EAF0FB;display:flex;align-items:center;justify-content:center"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+<div style="font:600 22px/28px Inter,sans-serif;color:#1C2333">Naka-save na ang posisyon ng klase</div>
+<div style="font:400 16px/24px Inter,sans-serif;color:#6B7280;max-width:300px">Wala ka nang kailangang gawin. Buksan lang ang Tudlo kapag bumalik na ang klase.</div>
+<div style="width:100%;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;text-align:left">
+<div style="display:flex;justify-content:space-between;font:400 16px Inter,sans-serif;color:#6B7280"><span>Sanhi</span><span style="font-weight:600;color:#1C2333">Bagyo</span></div>
+<div style="display:flex;justify-content:space-between;font:400 16px Inter,sans-serif;color:#6B7280"><span>Petsa ng suspensyon</span><span style="font-weight:600;color:#1C2333">14 Enero 2026</span></div>
+<div style="height:1px;background:#E4E7EC"></div>
+<div style="font:600 13px Inter,sans-serif;color:#6B7280;letter-spacing:.4px;text-transform:uppercase">Nakapreserba</div>
+<div style="display:flex;justify-content:space-between;font:400 16px Inter,sans-serif;color:#1C2333"><span>Filipino</span><span style="font-weight:600">Aralin 8</span></div>
+<div style="display:flex;justify-content:space-between;font:400 16px Inter,sans-serif;color:#1C2333"><span>Math</span><span style="font-weight:600">Aralin 5</span></div>
+<div style="display:flex;justify-content:space-between;font:400 16px Inter,sans-serif;color:#1C2333"><span>Science</span><span style="font-weight:600">Aralin 4</span></div>
+</div>
+<div style="display:flex;align-items:center;gap:8px;font:400 13px/18px Inter,sans-serif;color:#8A6B08;background:#FFF8DD;padding:10px 12px;border-radius:999px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A6B08" stroke-width="2" stroke-linecap="round"><path d="M2 4l20 16"/><circle cx="12" cy="19.5" r="1.2" fill="#8A6B08"/></svg>Naka-save sa telepono. Mag-sync kapag may signal.</div>
+</div>
+<div style="padding:16px;border-top:1px solid #E4E7EC">
+<div style="min-height:56px;display:flex;align-items:center;justify-content:center;gap:8px;background:#0038A8;border-radius:8px;font:600 16px Inter,sans-serif;color:#fff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Tapos</div>
+</div>
+</div>
+</div>
+
+<div id="1i" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#1i" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">1i</a>Resume View — unang araw ng pagbabalik</div>
+<div style="width:390px;height:1030px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;position:relative">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280;background:#fff"><span>6:58</span><span>88%</span></div>
+<div style="padding:20px 16px;background:#fff;border-bottom:1px solid #E4E7EC;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;align-items:center;justify-content:space-between"><span style="font:700 17px Inter,sans-serif;color:#0038A8">Tudlo</span><span style="display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#F7F8FA;border:1px solid #E4E7EC;font:500 13px Inter,sans-serif;color:#1C2333"><span style="width:8px;height:8px;border-radius:999px;background:#2E8B57"></span>Naka-sync</span></div>
+<div style="font:600 22px/28px Inter,sans-serif;color:#1C2333;margin-top:8px">Magandang balik-aral, Ma’am Elena!</div>
+<div style="font:400 16px/24px Inter,sans-serif;color:#6B7280">Narito ang eksaktong pinaghintuan ng klase mo bago ang Bagyong Aghon.</div>
+</div>
+<div style="flex:1;padding:16px 16px 96px;display:flex;flex-direction:column;gap:8px;overflow:hidden">
+<div style="display:flex;align-items:center;gap:8px;padding:12px 14px;background:#FBEAEC;border-radius:12px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CE1126" stroke-width="2" stroke-linecap="round" style="flex:none"><path d="M3 6h13a3.5 3.5 0 1 0-3.5-3.5"/><path d="M3 12h9a3 3 0 1 1-3 3"/><path d="M3 18h15"/></svg><span style="font:400 16px/24px Inter,sans-serif;color:#1C2333"><strong style="font-weight:600">7 araw na nawala</strong> · 14–22 Enero</span></div>
+
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px">
+<div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Filipino</div>
+<div style="font:400 13px Inter,sans-serif;color:#6B7280">Ipagpapatuloy sa:</div>
+<div style="font:600 16px/24px Inter,sans-serif;color:#0038A8">Aralin 8 — Mga Pang-uri</div>
+<div style="font:400 13px/18px Inter,sans-serif;color:#6B7280">Huling natapos: paglalarawan gamit ang pang-uri</div>
+<div style="padding:12px;background:#F7F8FA;border-left:2px solid #E4E7EC;border-radius:0 8px 8px 0;font:italic 400 16px/24px Inter,sans-serif;color:#1C2333">“Kailangan pa ng drill ang Grupo 2 sa paggamit ng pang-uri sa pangungusap.”</div>
+</div>
+
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px">
+<div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Math</div>
+<div style="font:400 13px Inter,sans-serif;color:#6B7280">Ipagpapatuloy sa:</div>
+<div style="font:600 16px/24px Inter,sans-serif;color:#0038A8">Aralin 5 — Fractions</div>
+<div style="font:400 13px/18px Inter,sans-serif;color:#6B7280">Huling natapos: pagkilala sa proper at improper fractions</div>
+</div>
+
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px">
+<div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Science</div>
+<div style="font:400 13px Inter,sans-serif;color:#6B7280">Ipagpapatuloy sa:</div>
+<div style="font:600 16px/24px Inter,sans-serif;color:#0038A8">Aralin 4 — Mga Hayop sa Tubig</div>
+<div style="padding:12px;background:#F7F8FA;border-left:2px solid #E4E7EC;border-radius:0 8px 8px 0;font:italic 400 16px/24px Inter,sans-serif;color:#1C2333">“Hindi pa nagawa ang activity sa aquarium — walang tubig noong Biyernes.”</div>
+</div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:16px;background:#fff;border-top:1px solid #E4E7EC">
+<div style="min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;background:#FCD116;border-radius:8px;font:600 16px Inter,sans-serif;color:#8A6B08"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A6B08" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h13"/><path d="M13 7l5 5-5 5"/></svg>Buuin ang Catch-Up Plan</div>
+</div>
+</div>
+</div>
+
+<div id="1j" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#1j" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">1j</a>Catch-Up Plan — tatlong opsyon vs. 200-araw na quota</div>
+<div style="width:390px;height:840px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;position:relative">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280;background:#fff"><span>7:02</span><span>87%</span></div>
+<div style="padding:12px 16px;display:flex;align-items:center;gap:12px;background:#fff;border-bottom:1px solid #E4E7EC"><div style="min-height:44px;display:flex;align-items:center;gap:4px;padding-right:4px;margin-left:-4px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1C2333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg><span style="font:600 16px Inter,sans-serif;color:#1C2333">Bumalik</span></div><span style="font:600 17px Inter,sans-serif;color:#1C2333">Catch-Up Plan</span></div>
+<div style="padding:12px 16px;background:#fff;border-bottom:1px solid #E4E7EC;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;justify-content:space-between;font:400 13px Inter,sans-serif;color:#6B7280"><span>Ginamit na araw ng pasukan</span><span style="font-weight:600;color:#1C2333">142 / 200</span></div>
+<div style="height:8px;border-radius:999px;background:#E4E7EC;position:relative;overflow:hidden"><div style="position:absolute;inset:0 29% 0 0;background:#0038A8;border-radius:999px"></div><div style="position:absolute;top:0;bottom:0;left:71%;width:3.5%;background:#CE1126"></div></div>
+<div style="font:400 13px/18px Inter,sans-serif;color:#6B7280">7 araw na nawala sa bagyo · 51 araw ang natitira</div>
+</div>
+<div style="flex:1;padding:16px 16px 96px;display:flex;flex-direction:column;gap:8px;overflow:hidden">
+<div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Pumili ng paraan ng pagbawi</div>
+
+<div style="background:#fff;border:2px solid #0038A8;border-radius:12px;padding:16px;display:flex;gap:12px">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-5"/></svg>
+<div style="display:flex;flex-direction:column;gap:6px"><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">I-compress</div><div style="font:400 16px/24px Inter,sans-serif;color:#6B7280">Parehong laman, mas mabilis na turo. Mas kaunting oras para sa practice.</div><div style="font:600 13px Inter,sans-serif;color:#0038A8">Mababawi sa 12 araw ng klase</div></div>
+</div>
+
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;gap:12px">
+<div style="width:24px;height:24px;border:2px solid #E4E7EC;border-radius:999px;flex:none;margin-top:2px"></div>
+<div style="display:flex;flex-direction:column;gap:6px"><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">I-extend</div><div style="font:400 16px/24px Inter,sans-serif;color:#6B7280">Dagdag na araw kung papayag ang paaralan. Pinakamainam pero limitado.</div><div style="font:600 13px Inter,sans-serif;color:#6B7280">Kailangan ng aprubal ng principal</div></div>
+</div>
+
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;gap:12px">
+<div style="width:24px;height:24px;border:2px solid #E4E7EC;border-radius:999px;flex:none;margin-top:2px"></div>
+<div style="display:flex;flex-direction:column;gap:6px"><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">I-deprioritize</div><div style="font:400 16px/24px Inter,sans-serif;color:#6B7280">Laktawan ang karagdagang paksa, panatilihin ang core lessons.</div><div style="font:600 13px Inter,sans-serif;color:#6B7280">4 na paksa ang malalaktawan</div></div>
+</div>
+
+<div style="margin-top:8px;padding:12px 14px;background:#FFF8DD;border-radius:12px;font:400 13px/18px Inter,sans-serif;color:#8A6B08">Batay sa 7 araw na nawala at sa natitirang 51 araw ng pasukan. Puwedeng baguhin anumang oras.</div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:16px;background:#fff;border-top:1px solid #E4E7EC">
+<div style="min-height:56px;display:flex;align-items:center;justify-content:center;gap:8px;background:#0038A8;border-radius:8px;font:600 16px Inter,sans-serif;color:#fff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Kumpirmahin</div>
+</div>
+</div>
+</div>
+
+<div id="1k" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#1k" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">1k</a>Recovery Tracking — kasama ang at-risk na state</div>
+<div style="width:390px;height:760px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;position:relative">
+<div style="height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:500 13px Inter,sans-serif;color:#6B7280;background:#fff"><span>16:20</span><span>41%</span></div>
+<div style="padding:12px 16px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid #E4E7EC"><span style="font:600 17px Inter,sans-serif;color:#1C2333">Pagbawi</span><span style="font:400 13px Inter,sans-serif;color:#6B7280">Ikalawang linggo</span></div>
+<div style="flex:1;padding:16px;display:flex;flex-direction:column;gap:8px;overflow:hidden">
+<div style="padding:14px 16px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;justify-content:space-between"><span style="font:600 17px Inter,sans-serif;color:#1C2333">Filipino</span><span style="padding:6px 12px;border-radius:999px;background:#FFF8DD;font:600 13px Inter,sans-serif;color:#8A6B08">Medyo Nahuhuli</span></div>
+<div style="display:flex;align-items:center;gap:12px"><svg width="120" height="32" viewBox="0 0 120 32" fill="none"><polyline points="0,22 20,20 40,24 60,18 80,20 100,14 120,12" stroke="#FCD116" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font:400 13px/18px Inter,sans-serif;color:#6B7280">↗ 2 aralin ang atraso · umaayos</span></div>
+</div>
+<div style="padding:14px 16px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;justify-content:space-between"><span style="font:600 17px Inter,sans-serif;color:#1C2333">English</span><span style="padding:6px 12px;border-radius:999px;background:#E8F3EC;font:600 13px Inter,sans-serif;color:#2E8B57">Nasa Track</span></div>
+<div style="display:flex;align-items:center;gap:12px"><svg width="120" height="32" viewBox="0 0 120 32" fill="none"><polyline points="0,20 20,18 40,16 60,14 80,12 100,10 120,8" stroke="#2E8B57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font:400 13px/18px Inter,sans-serif;color:#6B7280">↗ Nasa takdang bilis</span></div>
+</div>
+<div style="padding:14px 16px;background:#fff;border:2px solid #CE1126;border-radius:12px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;justify-content:space-between"><span style="display:flex;align-items:center;gap:8px;font:600 17px Inter,sans-serif;color:#1C2333">Math<span style="width:8px;height:8px;border-radius:999px;background:#CE1126"></span></span><span style="padding:6px 12px;border-radius:999px;border:1.5px solid #CE1126;font:600 13px Inter,sans-serif;color:#CE1126">Nahuhuli · 4 na araw</span></div>
+<div style="display:flex;align-items:center;gap:12px"><svg width="120" height="32" viewBox="0 0 120 32" fill="none"><polyline points="0,12 20,14 40,13 60,18 80,22 100,24 120,26" stroke="#CE1126" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font:400 13px/18px Inter,sans-serif;color:#6B7280">↘ Lumalayo sa plano</span></div>
+<div style="min-height:48px;display:flex;align-items:center;justify-content:center;gap:8px;background:#FBEAEC;border-radius:8px;font:600 16px Inter,sans-serif;color:#CE1126"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CE1126" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>I-recalculate ang plano</div>
+</div>
+<div style="padding:14px 16px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;display:flex;align-items:center;justify-content:space-between"><span style="font:600 17px Inter,sans-serif;color:#1C2333">Science</span><span style="padding:6px 12px;border-radius:999px;background:#EAF0FB;font:600 13px Inter,sans-serif;color:#0038A8">Na-recover</span></div>
+<div style="padding:14px 16px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;display:flex;align-items:center;justify-content:space-between"><span style="font:600 17px Inter,sans-serif;color:#1C2333">Araling Panlipunan</span><span style="padding:6px 12px;border-radius:999px;background:#E8F3EC;font:600 13px Inter,sans-serif;color:#2E8B57">Nasa Track</span></div>
+<div style="margin-top:auto;font:400 13px/18px Inter,sans-serif;color:#6B7280">Ang “Nahuhuli” ay lumalabas matapos ang 3 sunod-sunod na araw na wala sa plano.</div>
+</div>
+</div>
+</div>
+
+<sc-if value="{{ showStates }}" hint-placeholder-val="{{ true }}">
+<div id="1l" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#1l" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">1l</a>States — loading, sync failed, 1.3× text scale</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="width:390px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden">
+<div style="padding:12px 16px;background:#fff;border-bottom:1px solid #E4E7EC;display:flex;justify-content:space-between;align-items:center"><span style="font:700 17px Inter,sans-serif;color:#0038A8">Tudlo</span><span style="width:96px;height:28px;border-radius:999px;background:#E4E7EC"></span></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:8px">
+<span style="width:180px;height:24px;border-radius:6px;background:#E4E7EC"></span>
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px"><div style="display:flex;gap:12px;align-items:center"><span style="width:40px;height:40px;border-radius:8px;background:#E4E7EC"></span><span style="flex:1;display:flex;flex-direction:column;gap:6px"><span style="width:70px;height:14px;border-radius:4px;background:#E4E7EC"></span><span style="width:160px;height:14px;border-radius:4px;background:#EFF1F4"></span></span></div><span style="height:6px;border-radius:999px;background:#EFF1F4"></span></div>
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px"><div style="display:flex;gap:12px;align-items:center"><span style="width:40px;height:40px;border-radius:8px;background:#E4E7EC"></span><span style="flex:1;display:flex;flex-direction:column;gap:6px"><span style="width:50px;height:14px;border-radius:4px;background:#E4E7EC"></span><span style="width:130px;height:14px;border-radius:4px;background:#EFF1F4"></span></span></div><span style="height:6px;border-radius:999px;background:#EFF1F4"></span></div>
+<div style="font:400 13px/18px Inter,sans-serif;color:#6B7280;text-align:center;padding-top:8px">Binubuksan ang Tudlo…</div>
+</div>
+</div>
+<div style="width:390px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:20px;overflow:hidden;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;gap:12px;align-items:flex-start"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8A6B08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg><div><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Hindi pa nakapag-sync</div><div style="font:400 16px/24px Inter,sans-serif;color:#6B7280;margin-top:4px">Nasa telepono mo pa ang lahat. Susubukan naming muli mamaya.</div></div></div>
+<div style="display:flex;gap:8px"><div style="min-height:48px;flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:#0038A8;border-radius:8px;font:600 16px Inter,sans-serif;color:#fff">Subukang muli</div><div style="min-height:48px;flex:0 0 120px;display:flex;align-items:center;justify-content:center;border:1px solid #E4E7EC;border-radius:8px;font:600 16px Inter,sans-serif;color:#6B7280">Mamaya na</div></div>
+<div style="font:400 13px/18px Inter,sans-serif;color:#6B7280">Huling sync: 22 Enero, 6:40 AM</div>
+</div>
+<div style="font:600 13px Inter,sans-serif;color:#6B7280;letter-spacing:.4px;text-transform:uppercase;margin-top:8px">Card sa 1.3× text scale</div>
+<div style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:12px">
+<div style="width:44px;height:44px;border-radius:8px;background:#EAF0FB;display:flex;align-items:center;justify-content:center;flex:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0038A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/></svg></div>
+<div style="flex:1;min-width:0"><div style="font:600 22px/30px Inter,sans-serif;color:#1C2333">Filipino</div><div style="font:400 21px/30px Inter,sans-serif;color:#1C2333">Aralin 8 — Mga Pang-uri</div></div>
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M9 6l6 6-6 6"/></svg>
+</div>
+<div><div style="height:6px;border-radius:999px;background:#E4E7EC;position:relative;overflow:hidden"><div style="position:absolute;inset:0 40% 0 0;background:#0038A8;border-radius:999px"></div></div><div style="font:400 17px/24px Inter,sans-serif;color:#6B7280;margin-top:8px">3 sa 5 araw ng yunit</div></div>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+</div>
+
+<sc-if value="{{ showAdmin }}" hint-placeholder-val="{{ true }}">
+<div id="1m" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:#6B7280"><a href="#1m" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(28,35,51,.08);color:#1C2333;border-radius:5px;text-decoration:none">1m</a>Division dashboard — desktop, 1440×900</div>
+<div style="width:1440px;height:992px;background:#F7F8FA;border:1px solid #E4E7EC;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+<div style="height:56px;flex:none;background:#fff;border-bottom:1px solid #E4E7EC;display:flex;align-items:center;justify-content:space-between;padding:0 20px">
+<div style="display:flex;align-items:center;gap:16px"><span style="font:700 17px Inter,sans-serif;color:#0038A8">Tudlo</span><span style="font:400 16px Inter,sans-serif;color:#6B7280">Division Monitoring — Region V (Bicol)</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="font:400 13px Inter,sans-serif;color:#6B7280">Huling update 22 Enero, 07:10</span><span style="display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#E8F3EC;font:500 13px Inter,sans-serif;color:#2E8B57"><span style="width:8px;height:8px;border-radius:999px;background:#2E8B57"></span>Live</span></div>
+</div>
+<div style="flex:1;display:flex;min-height:0">
+<div style="width:248px;flex:none;background:#fff;border-right:1px solid #E4E7EC;padding:20px 16px;display:flex;flex-direction:column;gap:16px">
+<div style="font:600 13px Inter,sans-serif;color:#6B7280;letter-spacing:.4px;text-transform:uppercase">Mga filter</div>
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 13px Inter,sans-serif;color:#6B7280">Rehiyon</span><div style="min-height:44px;border:1px solid #E4E7EC;border-radius:8px;padding:0 12px;display:flex;align-items:center;justify-content:space-between;font:400 16px Inter,sans-serif;color:#1C2333">Region V<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div></div>
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 13px Inter,sans-serif;color:#6B7280">Division</span><div style="min-height:44px;border:1px solid #E4E7EC;border-radius:8px;padding:0 12px;display:flex;align-items:center;justify-content:space-between;font:400 16px Inter,sans-serif;color:#1C2333">Lahat (12)<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div></div>
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 13px Inter,sans-serif;color:#6B7280">Uri ng disruption</span><div style="min-height:44px;border:1px solid #E4E7EC;border-radius:8px;padding:0 12px;display:flex;align-items:center;justify-content:space-between;font:400 16px Inter,sans-serif;color:#1C2333">Bagyo<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div></div>
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 13px Inter,sans-serif;color:#6B7280">Urgency</span><div style="display:flex;flex-direction:column;gap:8px">
+<span style="display:flex;align-items:center;gap:10px;font:400 16px Inter,sans-serif;color:#1C2333"><span style="width:18px;height:18px;border:2px solid #0038A8;border-radius:4px;background:#0038A8;display:flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Mataas</span>
+<span style="display:flex;align-items:center;gap:10px;font:400 16px Inter,sans-serif;color:#1C2333"><span style="width:18px;height:18px;border:2px solid #0038A8;border-radius:4px;background:#0038A8;display:flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Katamtaman</span>
+<span style="display:flex;align-items:center;gap:10px;font:400 16px Inter,sans-serif;color:#6B7280"><span style="width:18px;height:18px;border:2px solid #E4E7EC;border-radius:4px"></span>Mababa</span>
+</div></div>
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 13px Inter,sans-serif;color:#6B7280">Saklaw ng petsa</span><div style="min-height:44px;border:1px solid #E4E7EC;border-radius:8px;padding:0 12px;display:flex;align-items:center;font:400 16px Inter,sans-serif;color:#1C2333">1 Ene – 22 Ene 2026</div></div>
+<div style="margin-top:auto;padding-top:16px;border-top:1px solid #E4E7EC;display:flex;flex-direction:column;gap:8px">
+<div style="font:600 13px Inter,sans-serif;color:#6B7280;letter-spacing:.4px;text-transform:uppercase">Legend</div>
+<span style="display:flex;align-items:center;gap:8px;font:400 13px Inter,sans-serif;color:#1C2333"><span style="width:10px;height:10px;border-radius:999px;background:#FCD116"></span>1–3 araw na sara</span>
+<span style="display:flex;align-items:center;gap:8px;font:400 13px Inter,sans-serif;color:#1C2333"><span style="width:14px;height:14px;border-radius:999px;background:#E8823A"></span>4–7 araw</span>
+<span style="display:flex;align-items:center;gap:8px;font:400 13px Inter,sans-serif;color:#1C2333"><span style="width:18px;height:18px;border-radius:999px;background:#CE1126"></span>8+ araw / malaking gap</span>
+<span style="display:flex;align-items:center;gap:8px;font:400 13px Inter,sans-serif;color:#6B7280"><span style="width:10px;height:10px;border-radius:999px;background:#B6BCC7"></span>Walang naitalang disruption</span>
+</div>
+</div>
+<div style="flex:1;min-width:0;display:flex;flex-direction:column">
+<div style="flex:1;min-height:0;display:flex;gap:1px;background:#E4E7EC">
+<div style="flex:1;background:#EEF1F5;position:relative;display:flex;align-items:center;justify-content:center">
+<div style="position:absolute;inset:0;background-image:linear-gradient(#E1E5EB 1px,transparent 1px),linear-gradient(90deg,#E1E5EB 1px,transparent 1px);background-size:48px 48px"></div>
+<div style="position:absolute;left:24px;top:20px;padding:8px 12px;background:#fff;border:1px solid #E4E7EC;border-radius:8px;font:600 13px Inter,sans-serif;color:#1C2333">Region V · 12 division · 486 na paaralan</div>
+<div style="position:absolute;left:38%;top:26%;width:56px;height:56px;border-radius:999px;background:rgba(206,17,38,.18);display:flex;align-items:center;justify-content:center"><span style="width:34px;height:34px;border-radius:999px;background:#CE1126;color:#fff;font:600 13px Inter,sans-serif;display:flex;align-items:center;justify-content:center">38</span></div>
+<div style="position:absolute;left:57%;top:44%;width:44px;height:44px;border-radius:999px;background:rgba(232,130,58,.18);display:flex;align-items:center;justify-content:center"><span style="width:28px;height:28px;border-radius:999px;background:#E8823A;color:#fff;font:600 13px Inter,sans-serif;display:flex;align-items:center;justify-content:center">21</span></div>
+<div style="position:absolute;left:30%;top:60%;width:34px;height:34px;border-radius:999px;background:rgba(252,209,22,.28);display:flex;align-items:center;justify-content:center"><span style="width:22px;height:22px;border-radius:999px;background:#FCD116;color:#8A6B08;font:600 13px Inter,sans-serif;display:flex;align-items:center;justify-content:center">7</span></div>
+<div style="position:absolute;left:69%;top:70%;width:22px;height:22px;border-radius:999px;background:#B6BCC7"></div>
+<div style="position:absolute;left:24px;bottom:20px;max-width:330px;padding:12px 14px;background:#fff;border:1px solid #E4E7EC;border-radius:8px"><div style="font:600 13px Inter,sans-serif;color:#1C2333">Map placeholder</div><div style="font:400 13px/18px Inter,sans-serif;color:#6B7280;margin-top:4px">Clustered pins sa tunay na regional na mapa ng Pilipinas — ipapalit sa geo data.</div></div>
+</div>
+<div style="width:392px;flex:none;background:#fff;padding:20px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:flex-start;justify-content:space-between"><div><div style="font:600 17px/24px Inter,sans-serif;color:#1C2333">Albay Division</div><div style="font:400 13px Inter,sans-serif;color:#6B7280">38 na paaralan · Bagyong Aghon</div></div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></div>
+<div style="display:flex;gap:8px">
+<div style="flex:1;padding:12px;background:#F7F8FA;border-radius:8px"><div style="font:400 13px Inter,sans-serif;color:#6B7280">Katamtamang araw na nawala</div><div style="font:600 22px/28px Inter,sans-serif;color:#CE1126">9.4</div></div>
+<div style="flex:1;padding:12px;background:#F7F8FA;border-radius:8px"><div style="font:400 13px Inter,sans-serif;color:#6B7280">Nasa track na klase</div><div style="font:600 22px/28px Inter,sans-serif;color:#2E8B57">61%</div></div>
+</div>
+<div><div style="font:600 13px Inter,sans-serif;color:#6B7280;letter-spacing:.4px;text-transform:uppercase;margin-bottom:8px">Tagal ng pagsara sa taon</div>
+<svg width="352" height="180" viewBox="0 0 352 180" fill="none">
+<line x1="34" y1="8" x2="34" y2="150" stroke="#E4E7EC"/><line x1="34" y1="150" x2="344" y2="150" stroke="#E4E7EC"/>
+<line x1="34" y1="40" x2="344" y2="40" stroke="#EFF1F4"/><line x1="34" y1="80" x2="344" y2="80" stroke="#EFF1F4"/><line x1="34" y1="115" x2="344" y2="115" stroke="#EFF1F4"/>
+<polyline points="50,26 92,44 134,38 176,70 218,88 260,104 302,120 340,132" stroke="#CE1126" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="50" cy="26" r="3.5" fill="#CE1126"/><circle cx="176" cy="70" r="3.5" fill="#CE1126"/><circle cx="340" cy="132" r="3.5" fill="#CE1126"/>
+<text x="10" y="30" font-family="Inter" font-size="12" fill="#6B7280">14</text><text x="14" y="84" font-family="Inter" font-size="12" fill="#6B7280">7</text><text x="14" y="154" font-family="Inter" font-size="12" fill="#6B7280">0</text>
+<text x="44" y="170" font-family="Inter" font-size="12" fill="#6B7280">Aug</text><text x="128" y="170" font-family="Inter" font-size="12" fill="#6B7280">Oct</text><text x="212" y="170" font-family="Inter" font-size="12" fill="#6B7280">Dec</text><text x="308" y="170" font-family="Inter" font-size="12" fill="#6B7280">Feb</text>
+</svg>
+<div style="font:400 13px/18px Inter,sans-serif;color:#6B7280;margin-top:4px">Pababa ang linya — humihina ang epekto ng pagsara.</div></div>
+<div style="margin-top:auto;min-height:44px;display:flex;align-items:center;justify-content:center;gap:8px;background:#0038A8;border-radius:8px;font:600 16px Inter,sans-serif;color:#fff">Tingnan ang 38 na paaralan</div>
+</div>
+</div>
+<div style="height:356px;flex:none;background:#fff;border-top:1px solid #E4E7EC;display:flex;flex-direction:column">
+<div style="padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E4E7EC"><span style="font:600 17px Inter,sans-serif;color:#1C2333">Mga paaralan (486)</span><span style="font:400 13px Inter,sans-serif;color:#6B7280">Isinunod sa: Araw na nawala ↓</span></div>
+<div style="display:grid;grid-template-columns:2fr 1.4fr 1fr .8fr 1.2fr 1.4fr;padding:10px 20px;background:#F7F8FA;border-bottom:1px solid #E4E7EC;font:600 13px Inter,sans-serif;color:#6B7280">
+<span>Paaralan</span><span>Division</span><span>Uri</span><span>Araw</span><span>Status</span><span>Kailangang aksyon</span>
+</div>
+<div style="display:grid;grid-template-columns:2fr 1.4fr 1fr .8fr 1.2fr 1.4fr;padding:14px 20px;border-bottom:1px solid #E4E7EC;font:400 16px Inter,sans-serif;color:#1C2333;background:#EAF0FB;align-items:center">
+<span>Bacacay Central ES</span><span>Albay</span><span>Bagyo</span><span>14</span><span><span style="padding:4px 10px;border-radius:999px;background:#FBEAEC;font:600 13px Inter,sans-serif;color:#CE1126">Nahuhuli</span></span><span style="font-size:13px;color:#6B7280">Karagdagang guro</span>
+</div>
+<div style="display:grid;grid-template-columns:2fr 1.4fr 1fr .8fr 1.2fr 1.4fr;padding:14px 20px;border-bottom:1px solid #E4E7EC;font:400 16px Inter,sans-serif;color:#1C2333;align-items:center">
+<span>Malilipot ES</span><span>Albay</span><span>Bagyo</span><span>11</span><span><span style="padding:4px 10px;border-radius:999px;background:#FBEAEC;font:600 13px Inter,sans-serif;color:#CE1126">Nahuhuli</span></span><span style="font-size:13px;color:#6B7280">Aprubal sa extension</span>
+</div>
+<div style="display:grid;grid-template-columns:2fr 1.4fr 1fr .8fr 1.2fr 1.4fr;padding:14px 20px;border-bottom:1px solid #E4E7EC;font:400 16px Inter,sans-serif;color:#1C2333;align-items:center">
+<span>Sorsogon East ES</span><span>Sorsogon</span><span>Baha</span><span>6</span><span><span style="padding:4px 10px;border-radius:999px;background:#FFF8DD;font:600 13px Inter,sans-serif;color:#8A6B08">Medyo nahuhuli</span></span><span style="font-size:13px;color:#6B7280">Sundan sa susunod na linggo</span>
+</div>
+<div style="display:grid;grid-template-columns:2fr 1.4fr 1fr .8fr 1.2fr 1.4fr;padding:14px 20px;border-bottom:1px solid #E4E7EC;font:400 16px Inter,sans-serif;color:#1C2333;align-items:center">
+<span>Naga City ES II</span><span>Camarines Sur</span><span>Bagyo</span><span>3</span><span><span style="padding:4px 10px;border-radius:999px;background:#EAF0FB;font:600 13px Inter,sans-serif;color:#0038A8">Na-recover</span></span><span style="font-size:13px;color:#6B7280">Wala</span>
+</div>
+<div style="display:grid;grid-template-columns:2fr 1.4fr 1fr .8fr 1.2fr 1.4fr;padding:14px 20px;font:400 16px Inter,sans-serif;color:#6B7280;align-items:center">
+<span>Catanduanes North ES</span><span>Catanduanes</span><span>—</span><span>0</span><span><span style="padding:4px 10px;border-radius:999px;background:#F0F1F4;font:600 13px Inter,sans-serif;color:#6B7280">Walang naitalang disruption</span></span><span style="font-size:13px">Wala</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}">
+<div style="max-width:760px;display:flex;flex-direction:column;gap:8px;font:400 13px/20px Inter,sans-serif;color:#6B7280">
+<div style="font:600 15px Inter,sans-serif;color:#1C2333">Mga desisyon sa disenyo</div>
+<div>Isang nangingibabaw na kulay bawat estado: asul sa <a href="#1e">1e</a> araw-araw na pagsubaybay, pula lang sa <a href="#1g">1g</a> disruption, ginto sa <a href="#1i">1i</a> pagbawi. Walang screen na may tatlong accent sa pantay na bigat.</div>
+<div>Walang “Tapos na” na tap sa normal na araw — pasibo ang progress bar sa <a href="#1e">1e</a>; ang chevron lang ang para sa pagwawasto.</div>
+<div>Ang offline ay estado, hindi error: ginto at nakakapanatag (<a href="#1f">1f</a>), at gumagana pa rin ang buong disruption flow (<a href="#1g">1g</a>, <a href="#1h">1h</a>).</div>
+<div>Lahat ng tap target ay 44px pataas, 16px ang pinakamaliit na body text, at hairline border kaysa shadow para sa mabilis na render sa murang Android.</div>
+<div>Pass sa checklist: 4.5:1 na contrast sa bawat pares ng teksto, 44px pataas na tap target (kasama ang FIL/EN at Bumalik), walang icon na walang label, nakikitang label sa bawat field, at may teksto ang bawat sparkline — hindi lang kulay ang nagsasabi ng kalagayan.</div>
+<div>Susunod: tunay na mapa ng Pilipinas para sa <a href="#1m">1m</a>, English na bersyon ng bawat string, at ang tappable prototype ng buong flow.</div>
+</div>
+</sc-if>
+
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showStates&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Scope&quot;},&quot;showAdmin&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Scope&quot;},&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Scope&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showStates: this.props.showStates ?? true,
+      showAdmin: this.props.showAdmin ?? true,
+      showNotes: this.props.showNotes ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>

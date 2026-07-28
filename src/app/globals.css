@@ -1,45 +1,55 @@
 @import "tailwindcss";
 
-/* Public palette: landing, install, sign-in, student-facing */
+/* Institutional palette (mockup sections t1/t2) — used across the entire app */
 :root {
-  --background: #fbfaff;
+  --background: #f7f8fa;
+  --surface: #ffffff;
   --foreground: #1c2333;
-  --border: #e7e3fa;
-  --brand: #4338ca;
-  --brand-from: #5b4fe8;
-  --brand-to: #8b5cf6;
-  --link: #0038a8;
-  --link-hover: #2f5fc4;
   --ink: #1c2333;
-  --surface: #ffffff;
-}
+  --muted: #6b7280;
+  --border: #e4e7ec;
 
-/* Institutional palette: teacher app + admin/principal screens */
-.theme-institutional {
-  --background: #edeef1;
-  --foreground: #1c2333;
-  --border: #d9dce2;
   --brand: #0038a8;
-  --surface: #ffffff;
+  --link-hover: #2f5fc4;
+  --tint: #eaf0fb;
+  --navy: #0a1d4d;
+
+  --danger: #ce1126;
+  --danger-bg: #fbeaec;
+  --warning: #fcd116;
+  --warning-ink: #8a6b08;
+  --warning-bg: #fff8dd;
+  --success: #2e8b57;
+  --success-bg: #e8f3ec;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-border: var(--border);
-  --color-brand: var(--brand);
-  --color-brand-from: var(--brand-from);
-  --color-brand-to: var(--brand-to);
-  --color-link: var(--link);
-  --color-link-hover: var(--link-hover);
-  --color-ink: var(--ink);
   --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+
+  --color-brand: var(--brand);
+  --color-link-hover: var(--link-hover);
+  --color-tint: var(--tint);
+  --color-navy: var(--navy);
+
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-warning: var(--warning);
+  --color-warning-ink: var(--warning-ink);
+  --color-warning-bg: var(--warning-bg);
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
 
   --font-heading: var(--font-poppins);
   --font-sans: var(--font-inter);
 
   --radius-pill: 9999px;
-  --radius-card: 24px;
+  --radius-card: 12px;
+  --radius-btn: 8px;
 }
 
 body {
@@ -55,4 +65,11 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading), var(--font-sans), sans-serif;
+}
+
+a {
+  color: var(--brand);
+}
+a:hover {
+  color: var(--link-hover);
 }
