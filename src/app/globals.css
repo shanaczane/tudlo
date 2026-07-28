@@ -52,24 +52,26 @@
   --radius-btn: 8px;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-}
+@layer base {
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading), var(--font-sans), sans-serif;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading), var(--font-sans), sans-serif;
+  }
 
-a {
-  color: var(--brand);
-}
-a:hover {
-  color: var(--link-hover);
+  a {
+    color: var(--brand);
+  }
+  a:hover {
+    color: var(--link-hover);
+  }
 }

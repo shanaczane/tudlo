@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ExportButton } from "./ExportButton";
 
 const filters = [
   { label: "Rehiyon", value: "Region V" },
@@ -8,9 +9,27 @@ const filters = [
 ];
 
 const clusters = [
-  { count: 38, size: "h-14 w-14", color: "#CE1126", ring: "rgba(206,17,38,.18)" },
-  { count: 21, size: "h-11 w-11", color: "#E8823A", ring: "rgba(232,130,58,.18)" },
-  { count: 7, size: "h-8.5 w-8.5", color: "#FCD116", ring: "rgba(252,209,22,.28)" },
+  {
+    count: 38,
+    size: "h-14 w-14",
+    color: "#CE1126",
+    ring: "rgba(206,17,38,.18)",
+    label: "8+ araw / malaking gap",
+  },
+  {
+    count: 21,
+    size: "h-11 w-11",
+    color: "#E8823A",
+    ring: "rgba(232,130,58,.18)",
+    label: "4–7 araw",
+  },
+  {
+    count: 7,
+    size: "h-8.5 w-8.5",
+    color: "#FCD116",
+    ring: "rgba(252,209,22,.28)",
+    label: "1–3 araw na sara",
+  },
 ];
 
 const statusStyles: Record<string, string> = {
@@ -124,16 +143,20 @@ export default function DivisionPage() {
               </span>
               <div className="flex items-center gap-6">
                 {clusters.map((cluster) => (
-                  <div
-                    key={cluster.count}
-                    className={`flex ${cluster.size} items-center justify-center rounded-pill`}
-                    style={{ background: cluster.ring }}
-                  >
-                    <span
-                      className="flex h-2/3 w-2/3 items-center justify-center rounded-pill font-heading text-sm font-semibold text-white"
-                      style={{ background: cluster.color }}
+                  <div key={cluster.count} className="flex flex-col items-center gap-2">
+                    <div
+                      className={`flex ${cluster.size} items-center justify-center rounded-pill`}
+                      style={{ background: cluster.ring }}
                     >
-                      {cluster.count}
+                      <span
+                        className="flex h-2/3 w-2/3 items-center justify-center rounded-pill font-heading text-sm font-semibold text-white"
+                        style={{ background: cluster.color }}
+                      >
+                        {cluster.count}
+                      </span>
+                    </div>
+                    <span className="max-w-24 text-center text-xs font-medium text-ink">
+                      {cluster.label}
                     </span>
                   </div>
                 ))}
@@ -192,10 +215,7 @@ export default function DivisionPage() {
               </span>
               <div className="flex items-center gap-3">
                 <span className="text-sm text-muted">Isinunod sa: Araw na nawala ↓</span>
-                <button className="flex min-h-9 items-center gap-1.5 rounded-btn border border-border px-3 text-sm font-semibold text-muted">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 15V3"/><path d="M7 10l5 5 5-5"/><path d="M4 21h16"/></svg>
-                  I-export (CSV / PDF)
-                </button>
+                <ExportButton />
               </div>
             </div>
             <div className="overflow-x-auto">

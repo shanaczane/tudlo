@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { buttonClassName } from "@/ui/Button";
 import { Card } from "@/ui/Card";
@@ -98,8 +99,9 @@ export default function LandingPage() {
             Hindi dapat matigil ang pag-aaral.
           </h1>
           <p className="max-w-lg text-lg leading-relaxed text-muted">
-            Tudlo helps teachers resume exactly where they left off, after any
-            disruption — typhoon, flood, or anything else that closes school.
+            Tinutulungan ng Tudlo ang mga guro na magpatuloy sa eksaktong
+            pinaghintuan nila, anuman ang gambala — bagyo, baha, o anumang
+            dahilan ng pagsara ng klase.
           </p>
           <div className="mt-2 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
             <Link href="/install" className={buttonClassName("primary")}>
@@ -115,14 +117,15 @@ export default function LandingPage() {
             offline.
           </p>
         </div>
-        <div className="flex min-h-[280px] flex-col items-center justify-center gap-2 rounded-card border border-dashed border-border bg-surface text-center md:min-h-[340px]">
-          <span className="font-heading text-base font-semibold text-muted">
-            Hero image placeholder
-          </span>
-          <span className="max-w-[260px] text-sm text-muted">
-            Larawan ng gurong may telepono sa loob ng silid-aralan — ipapalit
-            ng tunay na litrato.
-          </span>
+        <div className="relative min-h-70 overflow-hidden rounded-card border border-border bg-surface md:min-h-85">
+          <Image
+            src="/hero-teacher.png"
+            alt="Guro na tumitingin sa telepono sa loob ng silid-aralan"
+            fill
+            priority
+            className="object-cover"
+            sizes="(min-width: 768px) 45vw, 100vw"
+          />
         </div>
       </section>
 

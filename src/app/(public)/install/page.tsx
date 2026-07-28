@@ -51,8 +51,13 @@ export default function InstallPage() {
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-md flex-col bg-background">
       <div className="flex items-center justify-between px-4 py-4">
-        <span className="flex h-8 w-8 items-center justify-center rounded-pill bg-brand font-heading text-sm font-bold text-white">
-          T
+        <span className="flex items-center gap-2">
+          <span className="flex h-8 w-8 items-center justify-center rounded-pill bg-brand font-heading text-sm font-bold text-white">
+            T
+          </span>
+          <span className="font-heading text-lg font-bold tracking-tight text-brand">
+            Tudlo
+          </span>
         </span>
         <button
           onClick={() => router.push("/signin")}
