@@ -7,13 +7,14 @@ export interface Dictionary {
   brand: string;
   synced: string;
   settingsLabel: string;
+  backLabel: string;
   todayHeading: string;
   dayProgress: (day: number) => string;
   autoTrackNote: string;
   lessonWord: string;
   ofWord: string;
   unitDaysSuffix: string;
-  subjects: Record<SubjectId, { name: string; lessonTitle: string }>;
+  subjects: Record<SubjectId, { name: string }>;
   markSuspension: string;
   reasonLabel: string;
   dateLabel: string;
@@ -28,9 +29,15 @@ export interface Dictionary {
   resumeToast: string;
   catchUpLink: string;
   catchUpToast: string;
+  helpTitle: string;
+  currentPositionLabel: string;
+  savePositionButton: string;
+  positionConfirmNote: string;
+  positionSavedNote: string;
+  principalSubtitle: string;
+  divisionSubtitle: string;
   settingsPage: {
     title: string;
-    backLabel: string;
     gradeSubjectsLabel: string;
     languageLabel: string;
     helpLabel: string;
@@ -48,6 +55,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     brand: "Tudlo",
     synced: "Naka-sync",
     settingsLabel: "Mga setting",
+    backLabel: "Bumalik",
     todayHeading: "Martes, 14 Enero",
     dayProgress: (day) => `Araw ${day} / 200`,
     autoTrackNote:
@@ -56,10 +64,10 @@ export const dictionaries: Record<Locale, Dictionary> = {
     ofWord: "sa",
     unitDaysSuffix: "araw ng yunit",
     subjects: {
-      filipino: { name: "Filipino", lessonTitle: "Mga Pang-uri" },
-      math: { name: "Math", lessonTitle: "Fractions" },
-      science: { name: "Science", lessonTitle: "Mga Hayop sa Tubig" },
-      ap: { name: "Araling Panlipunan", lessonTitle: "Aming Lalawigan" },
+      filipino: { name: "Filipino" },
+      math: { name: "Math" },
+      science: { name: "Science" },
+      ap: { name: "Araling Panlipunan" },
     },
     markSuspension: "I-mark ang Class Suspension",
     reasonLabel: "Dahilan",
@@ -81,9 +89,16 @@ export const dictionaries: Record<Locale, Dictionary> = {
       "Nag-resume na ang klase. Available na ang catch-up plan sa bawat subject.",
     catchUpLink: "Tingnan ang catch-up plan",
     catchUpToast: "Demo: catch-up plan coming soon",
+    helpTitle: "Tulong",
+    currentPositionLabel: "Kasalukuyang posisyon",
+    savePositionButton: "I-save ang bagong posisyon",
+    positionConfirmNote:
+      "Kakailanganin ng kumpirmasyon bago i-save — para hindi masira ang tala sa aksidenteng tap.",
+    positionSavedNote: "Na-save ang bagong posisyon ✓",
+    principalSubtitle: "Bacacay Central ES — Punong-guro",
+    divisionSubtitle: "Division Monitoring — Region V (Bicol)",
     settingsPage: {
       title: "Mga Settings",
-      backLabel: "Bumalik",
       gradeSubjectsLabel: "Antas at mga subject",
       languageLabel: "Wika",
       helpLabel: "Tulong at FAQ",
@@ -100,6 +115,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     brand: "Tudlo",
     synced: "Synced",
     settingsLabel: "Settings",
+    backLabel: "Back",
     todayHeading: "Tuesday, January 14",
     dayProgress: (day) => `Day ${day} / 200`,
     autoTrackNote: "Automatically tracked. Nothing to tap on a normal day.",
@@ -107,10 +123,10 @@ export const dictionaries: Record<Locale, Dictionary> = {
     ofWord: "of",
     unitDaysSuffix: "days into the unit",
     subjects: {
-      filipino: { name: "Filipino", lessonTitle: "Adjectives" },
-      math: { name: "Math", lessonTitle: "Fractions" },
-      science: { name: "Science", lessonTitle: "Aquatic Animals" },
-      ap: { name: "Social Studies", lessonTitle: "Our Province" },
+      filipino: { name: "Filipino" },
+      math: { name: "Math" },
+      science: { name: "Science" },
+      ap: { name: "Social Studies" },
     },
     markSuspension: "Mark Class Suspension",
     reasonLabel: "Reason",
@@ -132,9 +148,16 @@ export const dictionaries: Record<Locale, Dictionary> = {
       "Class has resumed. Catch-up plans are now available for each subject.",
     catchUpLink: "View catch-up plan",
     catchUpToast: "Demo: catch-up plan coming soon",
+    helpTitle: "Help",
+    currentPositionLabel: "Current position",
+    savePositionButton: "Save new position",
+    positionConfirmNote:
+      "Confirmation is required before saving — so an accidental tap can't overwrite the record.",
+    positionSavedNote: "New position saved ✓",
+    principalSubtitle: "Bacacay Central ES — Principal",
+    divisionSubtitle: "Division Monitoring — Region V (Bicol)",
     settingsPage: {
       title: "Settings",
-      backLabel: "Back",
       gradeSubjectsLabel: "Grade & subjects",
       languageLabel: "Language",
       helpLabel: "Help & FAQ",

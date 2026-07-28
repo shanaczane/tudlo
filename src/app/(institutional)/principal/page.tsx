@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { Logo } from "@/ui/Logo";
+import { useLocale } from "@/lib/i18n/LocaleContext";
 
 const stats = [
   { label: "Mga guro", value: "24", color: "text-ink", border: "border-border" },
@@ -82,17 +85,17 @@ const teachers = [
 ];
 
 export default function PrincipalPage() {
+  const { t } = useLocale();
+
   return (
     <main className="flex min-h-screen flex-col bg-background">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-surface px-4 py-3 md:px-8">
         <div className="flex flex-wrap items-center gap-4">
           <span className="flex items-center gap-2">
             <Logo size={30} />
-            <span className="font-heading text-lg font-bold text-brand">Tudlo</span>
+            <span className="font-heading text-lg font-bold text-brand">{t.brand}</span>
           </span>
-          <span className="text-base text-muted">
-            Bacacay Central ES — Punong-guro
-          </span>
+          <span className="text-base text-muted">{t.principalSubtitle}</span>
         </div>
         <div className="flex items-center gap-3">
           <span className="text-sm text-muted">22 Enero 2026</span>

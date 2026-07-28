@@ -1,72 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Button } from "@/ui/Button";
-
-const subjectData: Record<
-  string,
-  { name: string; quarter: string; lessons: string[]; currentIndex: number }
-> = {
-  filipino: {
-    name: "Filipino",
-    quarter: "Ikatlong Markahan · MATATAG",
-    lessons: [
-      "Aralin 6 — Mga Pangngalan",
-      "Aralin 7 — Mga Panghalip",
-      "Aralin 8 — Mga Pang-uri",
-      "Aralin 9 — Mga Pang-abay",
-      "Aralin 10 — Pagsasanay sa Pagsulat",
-    ],
-    currentIndex: 2,
-  },
-  math: {
-    name: "Math",
-    quarter: "Ikatlong Markahan · MATATAG",
-    lessons: [
-      "Aralin 3 — Mga Numero",
-      "Aralin 4 — Pagpaparami",
-      "Aralin 5 — Fractions",
-      "Aralin 6 — Decimals",
-      "Aralin 7 — Pagsukat",
-    ],
-    currentIndex: 2,
-  },
-  science: {
-    name: "Science",
-    quarter: "Ikatlong Markahan · MATATAG",
-    lessons: [
-      "Aralin 2 — Mga Halaman",
-      "Aralin 3 — Ekosistema",
-      "Aralin 4 — Mga Hayop sa Tubig",
-      "Aralin 5 — Mga Hayop sa Lupa",
-      "Aralin 6 — Water Cycle",
-    ],
-    currentIndex: 2,
-  },
-  ap: {
-    name: "Araling Panlipunan",
-    quarter: "Ikatlong Markahan · MATATAG",
-    lessons: [
-      "Aralin 5 — Ating Bansa",
-      "Aralin 6 — Mapa ng Pilipinas",
-      "Aralin 7 — Aming Lalawigan",
-      "Aralin 8 — Pamahalaang Lokal",
-      "Aralin 9 — Kultura ng Rehiyon",
-    ],
-    currentIndex: 2,
-  },
-};
+import { useLocale } from "@/lib/i18n/LocaleContext";
+import type { SubjectId } from "@/lib/i18n/dictionary";
+import { SUBJECT_LESSONS } from "@/lib/lessons";
+import {
+  getPositionIndex,
+  getPositionsSnapshot,
+  getServerPositionsSnapshot,
+  savePositionIndex,
+  subscribePositions,
+} from "@/lib/positionStore";
 
 export default function SubjectDetailPage() {
   const params = useParams<{ id: string }>();
-  const subject = subjectData[params.id] ?? subjectData.filipino;
-  const [selected, setSelected] = useState(subject.currentIndex);
+  const { locale, t } = useLocale();
+  const subjectId = (params.id as SubjectId) in SUBJECT_LESSONS
+    ? (params.id as SubjectId)
+    : "filipino";
+  const subjectLessons = SUBJECT_LESSONS[subjectId];
+  const subjectName = t.subjects[subjectId].name;
+
+  const positionsRaw = useSyncExternalStore(
+    subscribePositions,
+    getPositionsSnapshot,
+    getServerPositionsSnapshot,
+  );
+  const savedIndex = getPositionIndex(
+    subjectId,
+    positionsRaw,
+    subjectLessons.defaultIndex,
+  );
+
+  const [pendingIndex, setPendingIndex] = useState<number | null>(null);
   const [saved, setSaved] = useState(false);
-  const changed = selected !== subject.currentIndex;
+
+  const selected = pendingIndex ?? savedIndex;
+  const changed = pendingIndex !== null && pendingIndex !== savedIndex;
 
   function handleSave() {
+    savePositionIndex(subjectId, selected);
+    setPendingIndex(null);
     setSaved(true);
     window.setTimeout(() => setSaved(false), 2200);
   }
@@ -74,27 +51,30 @@ export default function SubjectDetailPage() {
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-md flex-col bg-background">
       <div className="flex items-center justify-between border-b border-border bg-surface px-4 py-2">
-        <Link href="/app" className="-ml-1 flex min-h-11 items-center gap-1 text-ink">
+        <Link
+          href="/app"
+          aria-label={t.backLabel}
+          className="-ml-1 flex h-11 w-11 items-center justify-center text-ink"
+        >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          <span className="font-heading text-base font-semibold">Bumalik</span>
         </Link>
         <span className="font-heading text-lg font-semibold text-ink">
-          {subject.name}
+          {subjectName}
         </span>
         <span className="w-11" />
       </div>
 
       <div className="flex flex-1 flex-col gap-2 p-4">
-        <p className="text-sm text-muted">{subject.quarter}</p>
+        <p className="text-sm text-muted">{subjectLessons.quarter[locale]}</p>
 
         <div className="overflow-hidden rounded-card border border-border bg-surface">
-          {subject.lessons.map((lesson, i) => {
+          {subjectLessons.lessons.map((lesson, i) => {
             const isCurrent = i === selected;
             const isDone = i < selected;
             return (
               <button
-                key={lesson}
-                onClick={() => setSelected(i)}
+                key={lesson.number}
+                onClick={() => setPendingIndex(i)}
                 className={`flex min-h-14 w-full items-center gap-3 border-b border-border px-4 py-3 text-left last:border-b-0 ${
                   isCurrent ? "border-l-[3px] border-l-brand bg-tint" : ""
                 }`}
@@ -116,10 +96,12 @@ export default function SubjectDetailPage() {
                           : "text-base text-ink"
                     }
                   >
-                    {lesson}
+                    {t.lessonWord} {lesson.number} — {lesson.title[locale]}
                   </div>
                   {isCurrent ? (
-                    <div className="text-sm text-link-hover">Kasalukuyang posisyon</div>
+                    <div className="text-sm text-link-hover">
+                      {t.currentPositionLabel}
+                    </div>
                   ) : null}
                 </div>
               </button>
@@ -129,12 +111,11 @@ export default function SubjectDetailPage() {
 
         {saved ? (
           <div className="rounded-card bg-success-bg px-3.5 py-3 text-sm text-success">
-            Na-save ang bagong posisyon ✓
+            {t.positionSavedNote}
           </div>
         ) : (
           <div className="rounded-card bg-warning-bg px-3.5 py-3 text-sm text-warning-ink">
-            Kakailanganin ng kumpirmasyon bago i-save — para hindi masira ang
-            tala sa aksidenteng tap.
+            {t.positionConfirmNote}
           </div>
         )}
       </div>
@@ -142,7 +123,7 @@ export default function SubjectDetailPage() {
       <div className="border-t border-border bg-surface p-4">
         <Button onClick={handleSave} disabled={!changed} className="w-full">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          I-save ang bagong posisyon
+          {t.savePositionButton}
         </Button>
       </div>
     </main>

@@ -112,10 +112,10 @@ export default async function TeacherDetailPage({
       <div className="flex items-center gap-2 border-b border-border bg-surface px-4 py-2">
         <Link
           href="/principal"
-          className="-ml-1 flex min-h-11 items-center gap-1 text-ink"
+          aria-label="Bumalik"
+          className="-ml-1 flex h-11 w-11 items-center justify-center text-ink"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          <span className="font-heading text-base font-semibold">Bumalik</span>
         </Link>
       </div>
 

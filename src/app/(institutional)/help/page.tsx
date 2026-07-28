@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useLocale } from "@/lib/i18n/LocaleContext";
 
 const faqs = [
   {
@@ -28,16 +29,20 @@ const faqs = [
 
 export default function HelpPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { t } = useLocale();
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-md flex-col bg-background">
       <div className="flex items-center gap-2 border-b border-border bg-surface px-4 py-2">
-        <Link href="/settings" className="-ml-1 flex min-h-11 items-center gap-1 text-ink">
+        <Link
+          href="/settings"
+          aria-label={t.backLabel}
+          className="-ml-1 flex h-11 w-11 items-center justify-center text-ink"
+        >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          <span className="font-heading text-base font-semibold">Bumalik</span>
         </Link>
         <span className="font-heading text-lg font-semibold text-ink">
-          Tulong
+          {t.helpTitle}
         </span>
       </div>
 

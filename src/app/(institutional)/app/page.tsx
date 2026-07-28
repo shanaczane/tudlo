@@ -7,6 +7,13 @@ import { formatDate, parseDateInputValue } from "@/lib/i18n/format";
 import type { ReasonKey, SubjectId, Dictionary } from "@/lib/i18n/dictionary";
 import { SuspensionSheet, type SuspensionDraft } from "./SuspensionSheet";
 import { Logo } from "@/ui/Logo";
+import { SUBJECT_LESSONS } from "@/lib/lessons";
+import {
+  getPositionIndex,
+  getPositionsSnapshot,
+  getServerPositionsSnapshot,
+  subscribePositions,
+} from "@/lib/positionStore";
 
 const SUSPENSION_KEY = "tudlo-suspension";
 const CATCHUP_KEY = "tudlo-catchup";
@@ -67,27 +74,15 @@ function writeCatchUp(value: boolean) {
   notify();
 }
 
-const SUBJECTS: {
-  id: SubjectId;
-  lessonNumber: number;
-  done: number | null;
-  total: number | null;
-  icon: ReactNode;
-}[] = [
+const SUBJECTS: { id: SubjectId; icon: ReactNode }[] = [
   {
     id: "filipino",
-    lessonNumber: 8,
-    done: 3,
-    total: 5,
     icon: (
       <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z" />
     ),
   },
   {
     id: "math",
-    lessonNumber: 5,
-    done: 4,
-    total: 5,
     icon: (
       <>
         <path d="M4 19V5" />
@@ -99,9 +94,6 @@ const SUBJECTS: {
   },
   {
     id: "science",
-    lessonNumber: 4,
-    done: 1,
-    total: 4,
     icon: (
       <>
         <circle cx="12" cy="12" r="3" />
@@ -111,9 +103,6 @@ const SUBJECTS: {
   },
   {
     id: "ap",
-    lessonNumber: 7,
-    done: null,
-    total: null,
     icon: (
       <>
         <circle cx="12" cy="12" r="9" />
@@ -138,6 +127,11 @@ export default function TeacherHomePage() {
     subscribe,
     getCatchUpSnapshot,
     getServerCatchUpSnapshot,
+  );
+  const positionsRaw = useSyncExternalStore(
+    subscribePositions,
+    getPositionsSnapshot,
+    getServerPositionsSnapshot,
   );
 
   let suspension: Suspension | null = null;
@@ -235,6 +229,18 @@ export default function TeacherHomePage() {
 
         {SUBJECTS.map((subject) => {
           const info = t.subjects[subject.id];
+          const subjectLessons = SUBJECT_LESSONS[subject.id];
+          const index = getPositionIndex(
+            subject.id,
+            positionsRaw,
+            subjectLessons.defaultIndex,
+          );
+          const lesson = subjectLessons.lessons[index];
+          const positionChanged = index !== subjectLessons.defaultIndex;
+          const progress = positionChanged
+            ? { done: index + 1, total: subjectLessons.lessons.length }
+            : subjectLessons.defaultProgress;
+
           return (
             <div key={subject.id} className="flex flex-col gap-3 rounded-card border border-border bg-surface p-4">
               <Link href={`/app/subject/${subject.id}`} className="flex items-center gap-3">
@@ -248,7 +254,7 @@ export default function TeacherHomePage() {
                     {info.name}
                   </div>
                   <div className="truncate text-base text-ink">
-                    {t.lessonWord} {subject.lessonNumber} — {info.lessonTitle}
+                    {t.lessonWord} {lesson.number} — {lesson.title[locale]}
                   </div>
                 </div>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>
@@ -259,16 +265,16 @@ export default function TeacherHomePage() {
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l3 3 5-5"/></svg>
                   {t.pausedBadge}
                 </span>
-              ) : subject.total ? (
+              ) : progress.total ? (
                 <div>
                   <div className="relative h-1.5 overflow-hidden rounded-pill bg-border">
                     <div
                       className="absolute inset-y-0 left-0 rounded-pill bg-brand"
-                      style={{ width: `${(subject.done! / subject.total) * 100}%` }}
+                      style={{ width: `${(progress.done / progress.total) * 100}%` }}
                     />
                   </div>
                   <div className="mt-1.5 text-sm text-muted">
-                    {subject.done} {t.ofWord} {subject.total} {t.unitDaysSuffix}
+                    {progress.done} {t.ofWord} {progress.total} {t.unitDaysSuffix}
                   </div>
                 </div>
               ) : null}

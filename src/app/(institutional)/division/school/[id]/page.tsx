@@ -84,9 +84,12 @@ export default async function SchoolDetailPage({
   return (
     <main className="flex min-h-screen flex-col bg-background">
       <div className="flex items-center gap-2 border-b border-border bg-surface px-4 py-2 md:px-8">
-        <Link href="/division" className="-ml-1 flex min-h-11 items-center gap-1 text-ink">
+        <Link
+          href="/division"
+          aria-label="Bumalik"
+          className="-ml-1 flex h-11 w-11 items-center justify-center text-ink"
+        >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          <span className="font-heading text-base font-semibold">Bumalik sa Division</span>
         </Link>
       </div>
 

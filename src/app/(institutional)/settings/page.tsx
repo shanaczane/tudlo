@@ -13,7 +13,7 @@ export default function SettingsPage() {
       <div className="flex items-center gap-2 border-b border-border bg-surface px-4 py-2">
         <Link
           href="/app"
-          aria-label={s.backLabel}
+          aria-label={t.backLabel}
           className="flex h-11 w-11 flex-none items-center justify-center rounded-pill text-ink"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
