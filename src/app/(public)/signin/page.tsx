@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/ui/Button";
 import { Logo } from "@/ui/Logo";
+import { saveProfile } from "@/lib/profileStore";
 
 export default function SignInPage() {
   const router = useRouter();
@@ -12,7 +13,14 @@ export default function SignInPage() {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    router.push("/app");
+    // Save the name + school code now; grade/subjects are collected in onboarding
+    saveProfile({
+      name: teacherName.trim() || "Guro",
+      schoolCode: schoolCode.trim(),
+      grade: 0,        // placeholder — onboarding will set the real value
+      subjects: [],    // placeholder — onboarding will set the real value
+    });
+    router.push("/onboarding");
   }
 
   return (

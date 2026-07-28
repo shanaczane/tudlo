@@ -2,6 +2,7 @@
 
 import { useState, useSyncExternalStore, type ReactNode } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useLocale } from "@/lib/i18n/LocaleContext";
 import { formatDate, parseDateInputValue } from "@/lib/i18n/format";
 import type { ReasonKey, SubjectId, Dictionary } from "@/lib/i18n/dictionary";
@@ -15,6 +16,13 @@ import {
   subscribePositions,
 } from "@/lib/positionStore";
 import { saveLastDisruption } from "@/lib/disruptionStore";
+import {
+  getProfile,
+  hasProfile,
+  subscribeProfile,
+  getProfileSnapshot,
+  getServerProfileSnapshot,
+} from "@/lib/profileStore";
 
 const SUSPENSION_KEY = "tudlo-suspension";
 
@@ -94,14 +102,54 @@ const SUBJECTS: { id: SubjectId; icon: ReactNode }[] = [
       </>
     ),
   },
+  {
+    id: "english",
+    icon: (
+      <>
+        <path d="M4 7h16" />
+        <path d="M4 12h10" />
+        <path d="M4 17h14" />
+      </>
+    ),
+  },
+  {
+    id: "mapeh",
+    icon: (
+      <>
+        <path d="M9 18V5l12-2v13" />
+        <circle cx="6" cy="18" r="3" />
+        <circle cx="18" cy="16" r="3" />
+      </>
+    ),
+  },
 ];
 
 export default function TeacherHomePage() {
+  const router = useRouter();
   const { locale, setLocale, t } = useLocale();
   const [sheetOpen, setSheetOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [justResumed, setJustResumed] = useState(false);
   const [showCatchUp, setShowCatchUp] = useState(false);
+
+  // ── Profile — redirect guard ─────────────────────────────────────────────
+  const profileRaw = useSyncExternalStore(
+    subscribeProfile,
+    getProfileSnapshot,
+    getServerProfileSnapshot,
+  );
+  // Client-side redirect if onboarding was never completed
+  if (typeof window !== "undefined" && !hasProfile()) {
+    router.replace("/onboarding");
+    return null;
+  }
+  const profile = getProfile();
+  // Filter SUBJECTS to only those the teacher selected in onboarding
+  const activeSubjectIds = profile?.subjects ?? [];
+  const activeSubjects =
+    activeSubjectIds.length > 0
+      ? SUBJECTS.filter((s) => activeSubjectIds.includes(s.id as SubjectId))
+      : SUBJECTS; // fallback: show all if profile somehow incomplete
 
   const suspensionRaw = useSyncExternalStore(
     subscribe,
@@ -224,7 +272,7 @@ export default function TeacherHomePage() {
         </div>
         <p className="mb-2 text-sm text-muted">{t.autoTrackNote}</p>
 
-        {SUBJECTS.map((subject) => {
+        {activeSubjects.map((subject) => {
           const info = t.subjects[subject.id];
           const subjectLessons = SUBJECT_LESSONS[subject.id];
           const index = getPositionIndex(

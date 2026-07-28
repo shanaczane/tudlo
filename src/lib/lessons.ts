@@ -61,4 +61,28 @@ export const SUBJECT_LESSONS: Record<SubjectId, SubjectLessons> = {
     defaultIndex: 2,
     defaultProgress: { done: 0, total: 0 },
   },
+  english: {
+    quarter: { fil: "Ikatlong Markahan · MATATAG", en: "3rd Quarter · MATATAG" },
+    lessons: [
+      { number: 4, title: { fil: "Pagbabasa ng Teksto", en: "Reading Comprehension" } },
+      { number: 5, title: { fil: "Mga Salitang Katumbas", en: "Synonyms & Antonyms" } },
+      { number: 6, title: { fil: "Mga Uri ng Pangungusap", en: "Types of Sentences" } },
+      { number: 7, title: { fil: "Pagsulat ng Talata", en: "Paragraph Writing" } },
+      { number: 8, title: { fil: "Pag-unawa sa Kuwento", en: "Story Understanding" } },
+    ],
+    defaultIndex: 2,
+    defaultProgress: { done: 2, total: 5 },
+  },
+  mapeh: {
+    quarter: { fil: "Ikatlong Markahan · MATATAG", en: "3rd Quarter · MATATAG" },
+    lessons: [
+      { number: 3, title: { fil: "Ritmo at Melodiya", en: "Rhythm & Melody" } },
+      { number: 4, title: { fil: "Mga Kulay at Hugis", en: "Colors & Shapes" } },
+      { number: 5, title: { fil: "Mga Galaw ng Katawan", en: "Body Movement" } },
+      { number: 6, title: { fil: "Kalinisan at Kalusugan", en: "Cleanliness & Health" } },
+      { number: 7, title: { fil: "Kooperatibong Laro", en: "Cooperative Games" } },
+    ],
+    defaultIndex: 2,
+    defaultProgress: { done: 1, total: 5 },
+  },
 };
