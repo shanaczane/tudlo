@@ -1,7 +1,22 @@
 export type Locale = "fil" | "en";
 
 export type ReasonKey = "bagyo" | "baha" | "init" | "iba";
-export type SubjectId = "filipino" | "math" | "science" | "ap";
+export type SubjectId =
+  | "filipino"
+  | "math"
+  | "science"
+  | "ap"
+  | "english"
+  | "mapeh";
+
+export const ALL_SUBJECTS: SubjectId[] = [
+  "filipino",
+  "math",
+  "science",
+  "ap",
+  "english",
+  "mapeh",
+];
 
 export interface Dictionary {
   brand: string;
@@ -14,7 +29,7 @@ export interface Dictionary {
   lessonWord: string;
   ofWord: string;
   unitDaysSuffix: string;
-  subjects: Record<SubjectId, { name: string }>;
+  subjects: Record<SubjectId, { name: string; description: string }>;
   markSuspension: string;
   reasonLabel: string;
   dateLabel: string;
@@ -56,6 +71,24 @@ export interface Dictionary {
     syncNowButton: string;
     logoutButton: string;
   };
+  onboarding: {
+    stepGrade: string;
+    stepSubjects: string;
+    stepLessons: string;
+    stepOf: (current: number, total: number) => string;
+    gradeHeading: string;
+    gradeSubheading: string;
+    gradeOptions: string[];
+    subjectsHeading: string;
+    subjectsSubheading: string;
+    lessonsHeading: string;
+    lessonsSubheading: string;
+    continueButton: string;
+    backButton: string;
+    finishButton: string;
+    selectAtLeastOne: string;
+    currentLessonPrompt: string;
+  };
 }
 
 export const dictionaries: Record<Locale, Dictionary> = {
@@ -72,10 +105,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     ofWord: "sa",
     unitDaysSuffix: "araw ng yunit",
     subjects: {
-      filipino: { name: "Filipino" },
-      math: { name: "Math" },
-      science: { name: "Science" },
-      ap: { name: "Araling Panlipunan" },
+      filipino: { name: "Filipino", description: "Wika at Panitikan" },
+      math: { name: "Math", description: "Matematika" },
+      science: { name: "Science", description: "Agham" },
+      ap: { name: "Araling Panlipunan", description: "AP" },
+      english: { name: "English", description: "Language Arts" },
+      mapeh: { name: "MAPEH", description: "Music, Arts, PE, Health" },
     },
     markSuspension: "I-mark ang Class Suspension",
     reasonLabel: "Dahilan",
@@ -127,6 +162,32 @@ export const dictionaries: Record<Locale, Dictionary> = {
       syncNowButton: "I-sync ngayon",
       logoutButton: "Mag-log out",
     },
+    onboarding: {
+      stepGrade: "Antas",
+      stepSubjects: "Mga Subject",
+      stepLessons: "Posisyon",
+      stepOf: (current, total) => `Hakbang ${current} sa ${total}`,
+      gradeHeading: "Anong antas ang iyong ituturo?",
+      gradeSubheading: "Pipiliin mo rin ito sa settings kung magbabago.",
+      gradeOptions: [
+        "Grade 1",
+        "Grade 2",
+        "Grade 3",
+        "Grade 4",
+        "Grade 5",
+        "Grade 6",
+      ],
+      subjectsHeading: "Anong mga subject ang iyong tinuturuan?",
+      subjectsSubheading: "Pumili ng isa o marami.",
+      lessonsHeading: "Saan ka natigil sa bawat subject?",
+      lessonsSubheading:
+        "I-tap ang aralin kung saan ka natigil bago ang bakasyon o disruption.",
+      continueButton: "Magpatuloy",
+      backButton: "Bumalik",
+      finishButton: "Magsimula na",
+      selectAtLeastOne: "Pumili ng kahit isang subject.",
+      currentLessonPrompt: "Kasalukuyang aralin",
+    },
   },
   en: {
     brand: "Tudlo",
@@ -140,10 +201,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     ofWord: "of",
     unitDaysSuffix: "days into the unit",
     subjects: {
-      filipino: { name: "Filipino" },
-      math: { name: "Math" },
-      science: { name: "Science" },
-      ap: { name: "Social Studies" },
+      filipino: { name: "Filipino", description: "Language & Literature" },
+      math: { name: "Math", description: "Mathematics" },
+      science: { name: "Science", description: "Science" },
+      ap: { name: "Social Studies", description: "Araling Panlipunan" },
+      english: { name: "English", description: "Language Arts" },
+      mapeh: { name: "MAPEH", description: "Music, Arts, PE, Health" },
     },
     markSuspension: "Mark Class Suspension",
     reasonLabel: "Reason",
@@ -194,6 +257,32 @@ export const dictionaries: Record<Locale, Dictionary> = {
         "3 changes are still only on your phone. They'll send automatically once you're back online.",
       syncNowButton: "Sync now",
       logoutButton: "Log out",
+    },
+    onboarding: {
+      stepGrade: "Grade",
+      stepSubjects: "Subjects",
+      stepLessons: "Position",
+      stepOf: (current, total) => `Step ${current} of ${total}`,
+      gradeHeading: "What grade level do you teach?",
+      gradeSubheading: "You can change this later in settings.",
+      gradeOptions: [
+        "Grade 1",
+        "Grade 2",
+        "Grade 3",
+        "Grade 4",
+        "Grade 5",
+        "Grade 6",
+      ],
+      subjectsHeading: "Which subjects do you teach?",
+      subjectsSubheading: "Select one or more.",
+      lessonsHeading: "Where did you leave off?",
+      lessonsSubheading:
+        "Tap the lesson you were on before the break or disruption.",
+      continueButton: "Continue",
+      backButton: "Back",
+      finishButton: "Get Started",
+      selectAtLeastOne: "Please select at least one subject.",
+      currentLessonPrompt: "Current lesson",
     },
   },
 };
