@@ -84,14 +84,41 @@ export default function InstallPage() {
         <p className="text-base leading-relaxed text-muted">{current.body}</p>
 
         <div className="flex flex-col gap-3 rounded-card border border-border bg-surface p-4">
-          <div className="flex h-45 flex-col items-center justify-center gap-1.5 rounded-lg border border-dashed border-border text-center">
-            <span className="font-heading text-base font-semibold text-muted">
-              Device frame placeholder
-            </span>
-            <span className="max-w-60 text-sm text-muted">
-              Screenshot ng menu ng browser na may “Add to Home screen”.
-            </span>
-          </div>
+          {step === 0 ? (
+            <div className="flex items-center justify-center rounded-lg border border-dashed border-border bg-background p-3">
+              <div className="w-65 overflow-hidden rounded-2xl border border-border bg-surface">
+                <div className="flex items-center gap-1.5 border-b border-border px-3 py-2">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1C2333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-none"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                  <span className="truncate font-sans text-xs text-muted">
+                    tudlo-two.vercel.app
+                  </span>
+                </div>
+                <div className="flex flex-col py-1 font-sans">
+                  <span className="px-3 py-2 text-sm text-muted">Bagong tab</span>
+                  <span className="px-3 py-2 text-sm text-muted">Bookmark</span>
+                  <span className="px-3 py-2 text-sm text-muted">Kasaysayan</span>
+                  <span className="relative flex items-center gap-2 bg-tint px-3 py-2">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0038A8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-none"><path d="M12 4v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+                    <span className="text-sm font-semibold text-brand">
+                      I-add sa Home screen
+                    </span>
+                    <span className="absolute right-3 top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-pill border-2 border-brand/40 bg-brand/15">
+                      <span className="h-2 w-2 rounded-pill bg-brand" />
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="flex h-45 flex-col items-center justify-center gap-1.5 rounded-lg border border-dashed border-border text-center">
+              <span className="font-heading text-base font-semibold text-muted">
+                Device frame placeholder
+              </span>
+              <span className="max-w-60 text-sm text-muted">
+                Screenshot ng menu ng browser na may “Add to Home screen”.
+              </span>
+            </div>
+          )}
           {current.items.map((item, i) => (
             <div key={item} className="flex items-start gap-3">
               <span className="flex h-7 w-7 flex-none items-center justify-center rounded-pill bg-tint font-heading text-base font-semibold text-brand">
