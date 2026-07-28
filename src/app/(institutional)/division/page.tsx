@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ExportButton } from "./ExportButton";
+import { Logo } from "@/ui/Logo";
 
 const filters = [
   { label: "Rehiyon", value: "Region V" },
@@ -93,7 +94,10 @@ export default function DivisionPage() {
     <main className="flex min-h-screen flex-col bg-background">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-surface px-4 py-3 md:px-8">
         <div className="flex flex-wrap items-center gap-4">
-          <span className="font-heading text-lg font-bold text-brand">Tudlo</span>
+          <span className="flex items-center gap-2">
+            <Logo size={30} />
+            <span className="font-heading text-lg font-bold text-brand">Tudlo</span>
+          </span>
           <span className="text-base text-muted">
             Division Monitoring — Region V (Bicol)
           </span>

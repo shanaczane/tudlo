@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/ui/Button";
+import { Logo } from "@/ui/Logo";
 
 const steps = [
   {
@@ -52,9 +53,7 @@ export default function InstallPage() {
     <main className="mx-auto flex min-h-screen w-full max-w-md flex-col bg-background">
       <div className="flex items-center justify-between px-4 py-4">
         <span className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-pill bg-brand font-heading text-sm font-bold text-white">
-            T
-          </span>
+          <Logo size={32} />
           <span className="font-heading text-lg font-bold tracking-tight text-brand">
             Tudlo
           </span>

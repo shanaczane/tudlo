@@ -1,10 +1,74 @@
-import Link from "next/link";
+"use client";
 
-const subjects = [
+import { useState, useSyncExternalStore, type ReactNode } from "react";
+import Link from "next/link";
+import { useLocale } from "@/lib/i18n/LocaleContext";
+import { formatDate } from "@/lib/i18n/format";
+import type { ReasonKey, SubjectId } from "@/lib/i18n/dictionary";
+import { SuspensionSheet } from "./SuspensionSheet";
+import { Logo } from "@/ui/Logo";
+
+const SUSPENSION_KEY = "tudlo-suspension";
+const CATCHUP_KEY = "tudlo-catchup";
+
+interface Suspension {
+  reasonKey: ReasonKey;
+  date: string;
+}
+
+const listeners = new Set<() => void>();
+function notify() {
+  listeners.forEach((listener) => listener());
+}
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+
+function getSuspensionSnapshot(): string | null {
+  if (typeof window === "undefined") return null;
+  return window.localStorage.getItem(SUSPENSION_KEY);
+}
+function getServerSuspensionSnapshot(): string | null {
+  return null;
+}
+
+function getCatchUpSnapshot(): boolean {
+  if (typeof window === "undefined") return false;
+  return window.localStorage.getItem(CATCHUP_KEY) === "1";
+}
+function getServerCatchUpSnapshot(): boolean {
+  return false;
+}
+
+function writeSuspension(record: Suspension | null) {
+  if (record) {
+    window.localStorage.setItem(SUSPENSION_KEY, JSON.stringify(record));
+  } else {
+    window.localStorage.removeItem(SUSPENSION_KEY);
+  }
+  notify();
+}
+
+function writeCatchUp(value: boolean) {
+  if (value) {
+    window.localStorage.setItem(CATCHUP_KEY, "1");
+  } else {
+    window.localStorage.removeItem(CATCHUP_KEY);
+  }
+  notify();
+}
+
+const SUBJECTS: {
+  id: SubjectId;
+  lessonNumber: number;
+  done: number | null;
+  total: number | null;
+  icon: ReactNode;
+}[] = [
   {
     id: "filipino",
-    name: "Filipino",
-    lesson: "Aralin 8 — Mga Pang-uri",
+    lessonNumber: 8,
     done: 3,
     total: 5,
     icon: (
@@ -13,8 +77,7 @@ const subjects = [
   },
   {
     id: "math",
-    name: "Math",
-    lesson: "Aralin 5 — Fractions",
+    lessonNumber: 5,
     done: 4,
     total: 5,
     icon: (
@@ -28,8 +91,7 @@ const subjects = [
   },
   {
     id: "science",
-    name: "Science",
-    lesson: "Aralin 4 — Mga Hayop sa Tubig",
+    lessonNumber: 4,
     done: 1,
     total: 4,
     icon: (
@@ -41,8 +103,7 @@ const subjects = [
   },
   {
     id: "ap",
-    name: "Araling Panlipunan",
-    lesson: "Aralin 7 — Aming Lalawigan",
+    lessonNumber: 7,
     done: null,
     total: null,
     icon: (
@@ -56,24 +117,84 @@ const subjects = [
 ];
 
 export default function TeacherHomePage() {
+  const { locale, setLocale, t } = useLocale();
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
+
+  const suspensionRaw = useSyncExternalStore(
+    subscribe,
+    getSuspensionSnapshot,
+    getServerSuspensionSnapshot,
+  );
+  const showCatchUp = useSyncExternalStore(
+    subscribe,
+    getCatchUpSnapshot,
+    getServerCatchUpSnapshot,
+  );
+
+  let suspension: Suspension | null = null;
+  if (suspensionRaw) {
+    try {
+      suspension = JSON.parse(suspensionRaw);
+    } catch {
+      suspension = null;
+    }
+  }
+
+  function showToast(message: string) {
+    setToast(message);
+    window.setTimeout(() => setToast(null), 2500);
+  }
+
+  function handleConfirmSuspend(reasonKey: ReasonKey) {
+    writeSuspension({ reasonKey, date: new Date().toISOString() });
+    writeCatchUp(false);
+    setSheetOpen(false);
+  }
+
+  function handleResume() {
+    writeSuspension(null);
+    writeCatchUp(true);
+    showToast(t.resumeToast);
+  }
+
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-md flex-col bg-background">
       <div className="flex items-center justify-between border-b border-border bg-surface px-4 py-3">
-        <span className="font-heading text-lg font-bold tracking-tight text-brand">
-          Tudlo
+        <span className="flex items-center gap-2">
+          <Logo size={30} />
+          <span className="font-heading text-lg font-bold tracking-tight text-brand">
+            {t.brand}
+          </span>
         </span>
         <div className="flex items-center gap-2">
           <span className="flex items-center gap-1.5 rounded-pill border border-border bg-background px-2.5 py-1.5 text-sm font-medium text-ink">
             <span className="h-2 w-2 rounded-pill bg-success" />
-            Naka-sync
+            {t.synced}
           </span>
-          <div className="flex min-h-11 items-center overflow-hidden rounded-pill border border-border text-sm font-semibold">
-            <span className="bg-brand px-2.5 py-1.5 text-white">FIL</span>
-            <span className="bg-surface px-2.5 py-1.5 text-muted">EN</span>
+          <div className="flex h-8 w-20 items-center overflow-hidden rounded-pill border border-border text-sm font-semibold">
+            <button
+              type="button"
+              onClick={() => setLocale("fil")}
+              className={`flex h-full flex-1 items-center justify-center ${
+                locale === "fil" ? "bg-brand text-white" : "bg-surface text-muted"
+              }`}
+            >
+              FIL
+            </button>
+            <button
+              type="button"
+              onClick={() => setLocale("en")}
+              className={`flex h-full flex-1 items-center justify-center ${
+                locale === "en" ? "bg-brand text-white" : "bg-surface text-muted"
+              }`}
+            >
+              EN
+            </button>
           </div>
           <Link
             href="/settings"
-            aria-label="Mga setting"
+            aria-label={t.settingsLabel}
             className="flex h-11 w-11 flex-none items-center justify-center rounded-pill border border-border text-ink"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M6 6l1.5 1.5M16.5 16.5 18 18M18 6l-1.5 1.5M7.5 16.5 6 18"/></svg>
@@ -81,61 +202,114 @@ export default function TeacherHomePage() {
         </div>
       </div>
 
+      {suspension ? (
+        <div className="mx-4 mt-3 flex flex-col gap-1 rounded-card bg-warning-bg p-3.5">
+          <span className="font-heading text-sm font-semibold text-warning-ink">
+            {t.suspendedBannerPrefix} {t.reasons[suspension.reasonKey]} ·{" "}
+            {t.suspendedBannerFrom} {formatDate(new Date(suspension.date), locale)}
+          </span>
+          <span className="text-sm text-warning-ink">{t.preservedNote}</span>
+        </div>
+      ) : null}
+
       <div className="flex flex-1 flex-col gap-2 px-4 pb-28 pt-4">
         <div className="flex items-baseline justify-between">
           <span className="font-heading text-2xl font-semibold text-ink">
-            Martes, 14 Enero
+            {t.todayHeading}
           </span>
-          <span className="text-sm text-muted">Araw 142 / 200</span>
+          <span className="text-sm text-muted">{t.dayProgress(142)}</span>
         </div>
-        <p className="mb-2 text-sm text-muted">
-          Awtomatikong sinusubaybayan. Walang kailangang i-tap sa normal na
-          araw.
-        </p>
+        <p className="mb-2 text-sm text-muted">{t.autoTrackNote}</p>
 
-        {subjects.map((subject) => (
-          <Link
-            key={subject.id}
-            href={`/app/subject/${subject.id}`}
-            className="flex flex-col gap-3 rounded-card border border-border bg-surface p-4"
-          >
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-tint">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0038A8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  {subject.icon}
-                </svg>
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="font-heading text-lg font-semibold text-ink">
-                  {subject.name}
+        {SUBJECTS.map((subject) => {
+          const info = t.subjects[subject.id];
+          return (
+            <div key={subject.id} className="flex flex-col gap-3 rounded-card border border-border bg-surface p-4">
+              <Link href={`/app/subject/${subject.id}`} className="flex items-center gap-3">
+                <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-tint">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0038A8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    {subject.icon}
+                  </svg>
                 </div>
-                <div className="truncate text-base text-ink">{subject.lesson}</div>
-              </div>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+                <div className="min-w-0 flex-1">
+                  <div className="font-heading text-lg font-semibold text-ink">
+                    {info.name}
+                  </div>
+                  <div className="truncate text-base text-ink">
+                    {t.lessonWord} {subject.lessonNumber} — {info.lessonTitle}
+                  </div>
+                </div>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </Link>
+
+              {suspension ? (
+                <span className="flex w-fit items-center gap-1.5 rounded-pill bg-warning-bg px-2.5 py-1 text-sm font-semibold text-warning-ink">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l3 3 5-5"/></svg>
+                  {t.pausedBadge}
+                </span>
+              ) : subject.total ? (
+                <div>
+                  <div className="relative h-1.5 overflow-hidden rounded-pill bg-border">
+                    <div
+                      className="absolute inset-y-0 left-0 rounded-pill bg-brand"
+                      style={{ width: `${(subject.done! / subject.total) * 100}%` }}
+                    />
+                  </div>
+                  <div className="mt-1.5 text-sm text-muted">
+                    {subject.done} {t.ofWord} {subject.total} {t.unitDaysSuffix}
+                  </div>
+                </div>
+              ) : null}
+
+              {showCatchUp && !suspension ? (
+                <button
+                  type="button"
+                  onClick={() => showToast(t.catchUpToast)}
+                  className="w-fit font-heading text-sm font-semibold text-brand hover:text-link-hover"
+                >
+                  {t.catchUpLink} →
+                </button>
+              ) : null}
             </div>
-            {subject.total ? (
-              <div>
-                <div className="relative h-1.5 overflow-hidden rounded-pill bg-border">
-                  <div
-                    className="absolute inset-y-0 left-0 rounded-pill bg-brand"
-                    style={{ width: `${(subject.done! / subject.total) * 100}%` }}
-                  />
-                </div>
-                <div className="mt-1.5 text-sm text-muted">
-                  {subject.done} sa {subject.total} araw ng yunit
-                </div>
-              </div>
-            ) : null}
-          </Link>
-        ))}
+          );
+        })}
       </div>
+
+      {toast ? (
+        <div className="fixed inset-x-0 bottom-24 z-40 mx-auto w-fit max-w-[90%] rounded-lg bg-ink px-4 py-2.5 text-sm font-medium text-white shadow-lg">
+          {toast}
+        </div>
+      ) : null}
 
       <div className="fixed inset-x-0 bottom-0 mx-auto max-w-md border-t border-border bg-surface p-4">
-        <button className="flex min-h-14 w-full items-center justify-center gap-2.5 rounded-btn bg-danger font-heading text-base font-semibold text-white">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.3 3.6 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-          I-mark ang Class Suspension
-        </button>
+        {suspension ? (
+          <button
+            type="button"
+            onClick={handleResume}
+            className="flex min-h-14 w-full items-center justify-center gap-2.5 rounded-btn bg-brand font-heading text-base font-semibold text-white"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 5l11 7-11 7z"/></svg>
+            {t.resumeButton}
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setSheetOpen(true)}
+            className="flex min-h-14 w-full items-center justify-center gap-2.5 rounded-btn bg-danger font-heading text-base font-semibold text-white"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.3 3.6 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+            {t.markSuspension}
+          </button>
+        )}
       </div>
+
+      <SuspensionSheet
+        open={sheetOpen}
+        locale={locale}
+        t={t}
+        onClose={() => setSheetOpen(false)}
+        onConfirm={handleConfirmSuspend}
+      />
     </main>
   );
 }

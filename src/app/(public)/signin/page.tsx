@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/ui/Button";
+import { Logo } from "@/ui/Logo";
 
 export default function SignInPage() {
   const router = useRouter();
@@ -20,7 +21,8 @@ export default function SignInPage() {
         onSubmit={handleSubmit}
         className="flex flex-1 flex-col items-center gap-6 px-6 py-12 text-center"
       >
-        <span className="font-heading text-2xl font-bold tracking-tight text-brand">
+        <Logo size={44} />
+        <span className="-mt-3 font-heading text-2xl font-bold tracking-tight text-brand">
           Tudlo
         </span>
         <h1 className="font-heading text-2xl font-semibold text-ink">

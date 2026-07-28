@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
+import { LocaleProvider } from "@/lib/i18n/LocaleContext";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -20,8 +21,8 @@ export const metadata: Metadata = {
     "Tudlo helps Filipino teachers track their exact curriculum position per class and recover with a catch-up plan after disruptions like typhoons.",
   manifest: "/manifest.json",
   icons: {
-    icon: "/icon.svg",
-    apple: "/icon.svg",
+    icon: "/logo.png",
+    apple: "/logo.png",
   },
 };
 
@@ -42,7 +43,9 @@ export default function RootLayout({
       className={`${poppins.variable} ${inter.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <LocaleProvider>{children}</LocaleProvider>
+      </body>
     </html>
   );
 }

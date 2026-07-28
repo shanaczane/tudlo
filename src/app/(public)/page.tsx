@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { buttonClassName } from "@/ui/Button";
 import { Card } from "@/ui/Card";
+import { Logo } from "@/ui/Logo";
 
 const stats = [
   {
@@ -65,8 +66,11 @@ export default function LandingPage() {
   return (
     <div className="bg-surface">
       <header className="flex min-h-[72px] items-center justify-between border-b border-border px-6 md:px-10">
-        <span className="font-heading text-xl font-bold tracking-tight text-brand">
-          Tudlo
+        <span className="flex items-center gap-2.5">
+          <Logo size={36} />
+          <span className="font-heading text-xl font-bold tracking-tight text-brand">
+            Tudlo
+          </span>
         </span>
         <nav className="hidden items-center gap-7 text-base text-ink md:flex">
           <a href="#paano-gumagana" className="hover:text-brand">
