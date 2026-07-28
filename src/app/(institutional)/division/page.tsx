@@ -1,99 +1,43 @@
 "use client";
 
+import { useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ExportButton } from "./ExportButton";
 import { Logo } from "@/ui/Logo";
 import { useLocale } from "@/lib/i18n/LocaleContext";
+import { DIVISIONS, schools, statusStyles } from "@/lib/schools";
+
+const DivisionMap = dynamic(() => import("./DivisionMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-72 w-full items-center justify-center rounded-card border border-border bg-[#EEF1F5] text-sm text-muted md:h-105">
+      Ni-loload ang mapa…
+    </div>
+  ),
+});
 
 const filters = [
   { label: "Rehiyon", value: "Region V" },
-  { label: "Division", value: "Lahat (12)" },
   { label: "Uri ng disruption", value: "Bagyo" },
   { label: "Saklaw ng petsa", value: "1 Ene – 22 Ene 2026" },
 ];
 
-const clusters = [
-  {
-    count: 38,
-    size: "h-14 w-14",
-    color: "#CE1126",
-    ring: "rgba(206,17,38,.18)",
-    label: "8+ araw / malaking gap",
-  },
-  {
-    count: 21,
-    size: "h-11 w-11",
-    color: "#E8823A",
-    ring: "rgba(232,130,58,.18)",
-    label: "4–7 araw",
-  },
-  {
-    count: 7,
-    size: "h-8.5 w-8.5",
-    color: "#FCD116",
-    ring: "rgba(252,209,22,.28)",
-    label: "1–3 araw na sara",
-  },
-];
-
-const statusStyles: Record<string, string> = {
-  Nahuhuli: "bg-danger-bg text-danger",
-  "Medyo nahuhuli": "bg-warning-bg text-warning-ink",
-  "Na-recover": "bg-tint text-brand",
-  "Walang naitalang disruption": "bg-[#F0F1F4] text-muted",
-};
-
-const schools = [
-  {
-    id: "bacacay-central-es",
-    name: "Bacacay Central ES",
-    division: "Albay",
-    type: "Bagyo",
-    days: 14,
-    status: "Nahuhuli",
-    action: "Karagdagang guro",
-    highlighted: true,
-  },
-  {
-    id: "malilipot-es",
-    name: "Malilipot ES",
-    division: "Albay",
-    type: "Bagyo",
-    days: 11,
-    status: "Nahuhuli",
-    action: "Aprubal sa extension",
-  },
-  {
-    id: "sorsogon-east-es",
-    name: "Sorsogon East ES",
-    division: "Sorsogon",
-    type: "Baha",
-    days: 6,
-    status: "Medyo nahuhuli",
-    action: "Sundan sa susunod na linggo",
-  },
-  {
-    id: "naga-city-es-ii",
-    name: "Naga City ES II",
-    division: "Camarines Sur",
-    type: "Bagyo",
-    days: 3,
-    status: "Na-recover",
-    action: "Wala",
-  },
-  {
-    id: "catanduanes-north-es",
-    name: "Catanduanes North ES",
-    division: "Catanduanes",
-    type: "—",
-    days: 0,
-    status: "Walang naitalang disruption",
-    action: "Wala",
-  },
-];
-
 export default function DivisionPage() {
   const { t } = useLocale();
+  const [selectedSchoolId, setSelectedSchoolId] = useState<string | null>(
+    "bacacay-central-es",
+  );
+  const [selectedDivision, setSelectedDivision] = useState<string>("");
+
+  function handleSelectSchool(id: string) {
+    setSelectedSchoolId(id);
+  }
+
+  function handleDivisionChange(value: string) {
+    setSelectedDivision(value);
+    setSelectedSchoolId(null);
+  }
 
   return (
     <main className="flex min-h-screen flex-col bg-background">
@@ -119,6 +63,21 @@ export default function DivisionPage() {
           <span className="font-heading text-sm font-semibold uppercase tracking-wide text-muted">
             Mga filter
           </span>
+          <div className="flex flex-col gap-1.5">
+            <span className="text-sm text-muted">Division</span>
+            <select
+              value={selectedDivision}
+              onChange={(e) => handleDivisionChange(e.target.value)}
+              className="flex min-h-11 items-center justify-between rounded-lg border border-border bg-surface px-3 text-base text-ink outline-none focus:border-brand"
+            >
+              <option value="">Lahat (12)</option>
+              {DIVISIONS.map((division) => (
+                <option key={division} value={division}>
+                  {division}
+                </option>
+              ))}
+            </select>
+          </div>
           {filters.map((filter) => (
             <div key={filter.label} className="flex flex-col gap-1.5">
               <span className="text-sm text-muted">{filter.label}</span>
@@ -144,35 +103,12 @@ export default function DivisionPage() {
 
         <div className="flex flex-col gap-4">
           <div className="grid gap-4 md:grid-cols-[1fr_360px]">
-            <div className="relative flex min-h-65 flex-col items-center justify-center gap-4 rounded-card border border-border bg-[#EEF1F5] p-4">
-              <span className="rounded-lg border border-border bg-surface px-3 py-2 text-sm font-semibold text-ink">
-                Region V · 12 division · 486 na paaralan
-              </span>
-              <div className="flex items-center gap-6">
-                {clusters.map((cluster) => (
-                  <div key={cluster.count} className="flex flex-col items-center gap-2">
-                    <div
-                      className={`flex ${cluster.size} items-center justify-center rounded-pill`}
-                      style={{ background: cluster.ring }}
-                    >
-                      <span
-                        className="flex h-2/3 w-2/3 items-center justify-center rounded-pill font-heading text-sm font-semibold text-white"
-                        style={{ background: cluster.color }}
-                      >
-                        {cluster.count}
-                      </span>
-                    </div>
-                    <span className="max-w-24 text-center text-xs font-medium text-ink">
-                      {cluster.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <span className="max-w-70 text-center text-sm text-muted">
-                Map placeholder — clustered pins sa tunay na regional na mapa
-                ng Pilipinas, ipapalit sa geo data.
-              </span>
-            </div>
+            <DivisionMap
+              schools={schools}
+              selectedSchoolId={selectedSchoolId}
+              onSelectSchool={handleSelectSchool}
+              focusDivision={selectedDivision || null}
+            />
 
             <div className="flex flex-col gap-4 rounded-card border border-border bg-surface p-4">
               <div>
@@ -236,14 +172,24 @@ export default function DivisionPage() {
                   <span>Kailangang aksyon</span>
                 </div>
                 {schools.map((school) => (
-                  <Link
+                  <button
                     key={school.id}
-                    href={`/division/school/${school.id}`}
-                    className={`grid grid-cols-[2fr_1.4fr_1fr_.8fr_1.2fr_1.4fr] items-center gap-2 border-t border-border px-4 py-3.5 text-base text-ink ${
-                      school.highlighted ? "bg-tint" : ""
+                    type="button"
+                    onClick={() => handleSelectSchool(school.id)}
+                    className={`grid w-full grid-cols-[2fr_1.4fr_1fr_.8fr_1.2fr_1.4fr] items-center gap-2 border-t border-border px-4 py-3.5 text-left text-base text-ink ${
+                      school.id === selectedSchoolId ? "bg-tint" : ""
                     }`}
                   >
-                    <span>{school.name}</span>
+                    <span className="flex items-center gap-2">
+                      {school.name}
+                      <Link
+                        href={`/division/school/${school.id}`}
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-sm font-semibold text-brand hover:text-link-hover"
+                      >
+                        →
+                      </Link>
+                    </span>
                     <span>{school.division}</span>
                     <span>{school.type}</span>
                     <span>{school.days}</span>
@@ -253,7 +199,7 @@ export default function DivisionPage() {
                       </span>
                     </span>
                     <span className="text-sm text-muted">{school.action}</span>
-                  </Link>
+                  </button>
                 ))}
               </div>
             </div>

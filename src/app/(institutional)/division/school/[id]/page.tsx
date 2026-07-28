@@ -70,6 +70,52 @@ const schools: Record<
       { name: "Wilma Tan", section: "4 — Ilang-Ilang", position: "Q3 · Aralin 12", status: "Nasa track" },
     ],
   },
+  "legazpi-city-central-es": {
+    name: "Legazpi City Central ES",
+    division: "Albay",
+    daysLost: 9,
+    onTrackPct: 55,
+    teachers: [
+      { name: "Fe Bonifacio", section: "4 — Sampaguita", position: "Q3 · Aralin 7", status: "Nahuhuli" },
+      { name: "Ramil Sotto", section: "5 — Narra", position: "Q3 · Aralin 9", status: "Medyo nahuhuli" },
+    ],
+  },
+  "tabaco-city-es": {
+    name: "Tabaco City ES",
+    division: "Albay",
+    daysLost: 6,
+    onTrackPct: 68,
+    teachers: [
+      { name: "Norma Escobar", section: "3 — Yakal", position: "Q3 · Aralin 8", status: "Medyo nahuhuli" },
+    ],
+  },
+  "daraga-es": {
+    name: "Daraga ES",
+    division: "Albay",
+    daysLost: 5,
+    onTrackPct: 72,
+    teachers: [
+      { name: "Bienvenido Roa", section: "2 — Molave", position: "Q3 · Aralin 8", status: "Medyo nahuhuli" },
+    ],
+  },
+  "iriga-city-es": {
+    name: "Iriga City ES",
+    division: "Camarines Sur",
+    daysLost: 2,
+    onTrackPct: 88,
+    teachers: [
+      { name: "Susan Nierva", section: "6 — Akasya", position: "Q3 · Aralin 10", status: "Na-recover" },
+    ],
+  },
+  "san-andres-es": {
+    name: "San Andres ES",
+    division: "Catanduanes",
+    daysLost: 0,
+    onTrackPct: 95,
+    teachers: [
+      { name: "Arnel Tapel", section: "3 — Ilang-Ilang", position: "Q3 · Aralin 11", status: "Nasa track" },
+    ],
+  },
 };
 
 export default async function SchoolDetailPage({
