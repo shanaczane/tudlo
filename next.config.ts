@@ -1,4 +1,3 @@
-import path from "node:path";
 import type { NextConfig } from "next";
 import withSerwistInit from "@serwist/next";
 
@@ -9,7 +8,7 @@ const withSerwist = withSerwistInit({
 });
 
 const nextConfig: NextConfig = {
-  outputFileTracingRoot: path.join(__dirname),
+  outputFileTracingRoot: process.cwd(),
 };
 
 export default withSerwist(nextConfig);

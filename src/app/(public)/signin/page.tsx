@@ -13,12 +13,11 @@ export default function SignInPage() {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    // Save the name + school code now; grade/subjects are collected in onboarding
+    // Save the name + school code now; grade/section assignments are collected in onboarding
     saveProfile({
       name: teacherName.trim() || "Guro",
       schoolCode: schoolCode.trim(),
-      grade: 0,        // placeholder — onboarding will set the real value
-      subjects: [],    // placeholder — onboarding will set the real value
+      assignments: [], // placeholder — onboarding will set the real value
     });
     router.push("/onboarding");
   }
@@ -76,7 +75,14 @@ export default function SignInPage() {
             onClick={() => router.push("/principal")}
             className="min-h-11 font-heading text-base font-semibold text-brand hover:text-link-hover"
           >
-            Mag-sign in bilang Principal / DepEd
+            Mag-sign in bilang Principal
+          </button>
+          <button
+            type="button"
+            onClick={() => router.push("/division")}
+            className="min-h-11 font-heading text-base font-semibold text-brand hover:text-link-hover"
+          >
+            Tingnan ang DepEd Dashboard
           </button>
         </div>
       </form>

@@ -1,5 +1,3 @@
-import type { SubjectId } from "./i18n/dictionary";
-
 const STORAGE_KEY = "tudlo-positions";
 const listeners = new Set<() => void>();
 
@@ -21,26 +19,26 @@ export function getServerPositionsSnapshot(): string {
   return "{}";
 }
 
-function parsePositions(raw: string): Partial<Record<SubjectId, number>> {
+function parsePositions(raw: string): Record<string, number> {
   try {
-    return JSON.parse(raw) as Partial<Record<SubjectId, number>>;
+    return JSON.parse(raw) as Record<string, number>;
   } catch {
     return {};
   }
 }
 
-export function getPositionIndex(
-  subjectId: SubjectId,
-  raw: string,
-  fallback: number,
-): number {
+/**
+ * `id` is a tracker id (grade+section+subject), not a bare subject id —
+ * every Grade+Section+Subject combination tracks its own position.
+ */
+export function getPositionIndex(id: string, raw: string, fallback: number): number {
   const parsed = parsePositions(raw);
-  return parsed[subjectId] ?? fallback;
+  return parsed[id] ?? fallback;
 }
 
-export function savePositionIndex(subjectId: SubjectId, index: number) {
+export function savePositionIndex(id: string, index: number) {
   const parsed = parsePositions(getPositionsSnapshot());
-  parsed[subjectId] = index;
+  parsed[id] = index;
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
   notify();
 }

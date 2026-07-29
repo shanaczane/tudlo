@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Logo } from "@/ui/Logo";
 import { useLocale } from "@/lib/i18n/LocaleContext";
 import { REGIONS } from "@/lib/regions";
+import Link from "next/link";
 
 const RegionGateMap = dynamic(() => import("./RegionGateMap"), {
   ssr: false,
@@ -19,7 +20,7 @@ const RegionGateMap = dynamic(() => import("./RegionGateMap"), {
 export default function DivisionGatePage() {
   const { t } = useLocale();
   const router = useRouter();
-  
+
   // Default to NCR or Region 5, let's start with Region 5 since it's the active one
   const [selectedRegionId, setSelectedRegionId] = useState("5");
   const [showToast, setShowToast] = useState(false);
@@ -40,17 +41,17 @@ export default function DivisionGatePage() {
     <main className="flex h-screen flex-col bg-background">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-surface px-4 py-3 md:px-8 shrink-0">
         <div className="flex flex-wrap items-center gap-4">
-          <span className="flex items-center gap-2">
+          <Link href="/" aria-label={t.homeLabel} className="flex items-center gap-2">
             <Logo size={30} />
             <span className="font-heading text-lg font-bold text-brand">{t.brand}</span>
-          </span>
+          </Link>
           <span className="text-base text-muted">{t.divisionSubtitle}</span>
         </div>
       </div>
 
       <div className="flex-1 overflow-hidden p-4 md:p-8">
         <div className="mx-auto flex h-full max-w-5xl flex-col gap-6 md:flex-row">
-          
+
           <div className="flex w-full flex-col gap-6 md:w-96 shrink-0">
             <div>
               <h1 className="mb-2 font-heading text-3xl font-bold text-ink">
@@ -80,7 +81,7 @@ export default function DivisionGatePage() {
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M6 9l6 6 6-6"/>
+                    <path d="M6 9l6 6 6-6" />
                   </svg>
                 </div>
               </div>
@@ -102,10 +103,9 @@ export default function DivisionGatePage() {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted">Risk Level:</span>
-                    <span className={`font-semibold ${
-                      selectedRegion.stats.riskLevel === 'High' ? 'text-danger' : 
+                    <span className={`font-semibold ${selectedRegion.stats.riskLevel === 'High' ? 'text-danger' :
                       selectedRegion.stats.riskLevel === 'Moderate' ? 'text-warning-text' : 'text-success'
-                    }`}>
+                      }`}>
                       {selectedRegion.stats.riskLevel}
                     </span>
                   </div>
