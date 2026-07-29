@@ -22,6 +22,7 @@ export interface Dictionary {
   brand: string;
   synced: string;
   settingsLabel: string;
+  homeLabel: string;
   backLabel: string;
   todayHeading: string;
   dayProgress: (day: number) => string;
@@ -96,6 +97,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     brand: "Tudlo",
     synced: "Naka-sync",
     settingsLabel: "Mga setting",
+    homeLabel: "Bumalik sa home",
     backLabel: "Bumalik",
     todayHeading: "Martes, 14 Enero",
     dayProgress: (day) => `Araw ${day} / 200`,
@@ -193,6 +195,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     brand: "Tudlo",
     synced: "Synced",
     settingsLabel: "Settings",
+    homeLabel: "Back to home",
     backLabel: "Back",
     todayHeading: "Tuesday, January 14",
     dayProgress: (day) => `Day ${day} / 200`,
