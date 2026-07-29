@@ -76,7 +76,14 @@ export default function SignInPage() {
             onClick={() => router.push("/principal")}
             className="min-h-11 font-heading text-base font-semibold text-brand hover:text-link-hover"
           >
-            Mag-sign in bilang Principal / DepEd
+            Mag-sign in bilang Principal
+          </button>
+          <button
+            type="button"
+            onClick={() => router.push("/division")}
+            className="min-h-11 font-heading text-base font-semibold text-brand hover:text-link-hover"
+          >
+            Tingnan ang DepEd Dashboard
           </button>
         </div>
       </form>

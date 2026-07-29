@@ -65,13 +65,11 @@ function writeSuspension(record: Suspension | null) {
   notify();
 }
 
+// Only Math is wired up to real Grade 1 MATATAG curriculum data right now
+// (see src/lib/lessons.ts) — the rest still use placeholder lesson data.
+// All subjects stay listed here; which ones a teacher actually sees is
+// controlled by their onboarding subject selection (activeSubjects below).
 const SUBJECTS: { id: SubjectId; icon: ReactNode }[] = [
-  {
-    id: "filipino",
-    icon: (
-      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z" />
-    ),
-  },
   {
     id: "math",
     icon: (
@@ -212,12 +210,12 @@ export default function TeacherHomePage() {
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-md flex-col bg-background">
       <div className="flex items-center justify-between border-b border-border bg-surface px-4 py-3">
-        <span className="flex items-center gap-2">
+        <Link href="/" aria-label={t.homeLabel} className="flex items-center gap-2">
           <Logo size={30} />
           <span className="font-heading text-lg font-bold tracking-tight text-brand">
             {t.brand}
           </span>
-        </span>
+        </Link>
         <div className="flex items-center gap-2">
           <span className="flex items-center gap-1.5 rounded-pill border border-border bg-background px-2.5 py-1.5 text-sm font-medium text-ink">
             <span className="h-2 w-2 rounded-pill bg-success" />

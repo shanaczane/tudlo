@@ -6,7 +6,36 @@ import Link from "next/link";
 import { ExportButton } from "./ExportButton";
 import { Logo } from "@/ui/Logo";
 import { useLocale } from "@/lib/i18n/LocaleContext";
-import { DIVISIONS, schools, statusStyles } from "@/lib/schools";
+import { DIVISIONS, schools, severityColor, statusStyles } from "@/lib/schools";
+
+const ON_TRACK_STATUSES = new Set(["Na-recover", "Walang naitalang disruption"]);
+
+interface DivisionStat {
+  division: string;
+  schoolCount: number;
+  avgDays: number;
+  affectedCount: number;
+  onTrackPct: number;
+}
+
+/** Divisions ranked by average days lost, most in need of recovery support first. */
+function rankDivisionsByNeed(): DivisionStat[] {
+  return DIVISIONS.map((division) => {
+    const divSchools = schools.filter((s) => s.division === division);
+    const avgDays = divSchools.length
+      ? divSchools.reduce((sum, s) => sum + s.days, 0) / divSchools.length
+      : 0;
+    const affectedCount = divSchools.filter((s) => s.days > 0).length;
+    const onTrackCount = divSchools.filter((s) => ON_TRACK_STATUSES.has(s.status)).length;
+    return {
+      division,
+      schoolCount: divSchools.length,
+      avgDays,
+      affectedCount,
+      onTrackPct: divSchools.length ? Math.round((onTrackCount / divSchools.length) * 100) : 0,
+    };
+  }).sort((a, b) => b.avgDays - a.avgDays);
+}
 
 const DivisionMap = dynamic(() => import("./DivisionMap"), {
   ssr: false,
@@ -39,14 +68,21 @@ export default function DivisionPage() {
     setSelectedSchoolId(null);
   }
 
+  const divisionStats = rankDivisionsByNeed();
+  const filteredSchools = selectedDivision
+    ? schools.filter((s) => s.division === selectedDivision)
+    : schools;
+  const sortedSchools = [...filteredSchools].sort((a, b) => b.days - a.days);
+  const selectedStat = divisionStats.find((d) => d.division === selectedDivision) ?? null;
+
   return (
     <main className="flex min-h-screen flex-col bg-background">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-surface px-4 py-3 md:px-8">
         <div className="flex flex-wrap items-center gap-4">
-          <span className="flex items-center gap-2">
+          <Link href="/" aria-label={t.homeLabel} className="flex items-center gap-2">
             <Logo size={30} />
             <span className="font-heading text-lg font-bold text-brand">{t.brand}</span>
-          </span>
+          </Link>
           <span className="text-base text-muted">{t.divisionSubtitle}</span>
         </div>
         <div className="flex items-center gap-3">
@@ -110,51 +146,101 @@ export default function DivisionPage() {
               focusDivision={selectedDivision || null}
             />
 
-            <div className="flex flex-col gap-4 rounded-card border border-border bg-surface p-4">
-              <div>
-                <div className="font-heading text-lg font-semibold text-ink">
-                  Albay Division
+            {selectedStat ? (
+              <div className="flex flex-col gap-4 rounded-card border border-border bg-surface p-4">
+                <div>
+                  <div className="font-heading text-lg font-semibold text-ink">
+                    {selectedStat.division} Division
+                  </div>
+                  <div className="text-sm text-muted">{selectedStat.schoolCount} na paaralan</div>
                 </div>
-                <div className="text-sm text-muted">38 na paaralan · Bagyong Aghon</div>
+                <div className="flex gap-2">
+                  <div className="flex-1 rounded-lg bg-background p-3">
+                    <div className="text-sm text-muted">Katamtamang araw na nawala</div>
+                    <div className="font-heading text-2xl font-semibold text-danger">
+                      {selectedStat.avgDays.toFixed(1)}
+                    </div>
+                  </div>
+                  <div className="flex-1 rounded-lg bg-background p-3">
+                    <div className="text-sm text-muted">Nasa track na klase</div>
+                    <div className="font-heading text-2xl font-semibold text-success">
+                      {selectedStat.onTrackPct}%
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleDivisionChange("")}
+                  className="text-sm font-semibold text-brand hover:text-link-hover"
+                >
+                  ← Tingnan lahat ng division
+                </button>
+                <a
+                  href="#schools-table"
+                  className="mt-auto flex min-h-11 items-center justify-center rounded-btn bg-brand font-heading text-base font-semibold text-white"
+                >
+                  Tingnan ang {sortedSchools.length} na paaralan
+                </a>
               </div>
-              <div className="flex gap-2">
-                <div className="flex-1 rounded-lg bg-background p-3">
-                  <div className="text-sm text-muted">Katamtamang araw na nawala</div>
-                  <div className="font-heading text-2xl font-semibold text-danger">9.4</div>
+            ) : (
+              <div className="flex flex-col gap-3 rounded-card border border-border bg-surface p-4">
+                <div>
+                  <div className="font-heading text-lg font-semibold text-ink">
+                    Mga division ayon sa pangangailangan
+                  </div>
+                  <div className="text-sm text-muted">
+                    Isinunod sa katamtamang araw na nawala — pinaka-apektado sa taas
+                  </div>
                 </div>
-                <div className="flex-1 rounded-lg bg-background p-3">
-                  <div className="text-sm text-muted">Nasa track na klase</div>
-                  <div className="font-heading text-2xl font-semibold text-success">61%</div>
+                <div className="flex flex-col gap-3">
+                  {divisionStats.map((stat, i) => {
+                    const maxAvgDays = Math.max(...divisionStats.map((d) => d.avgDays), 1);
+                    const barPct = (stat.avgDays / maxAvgDays) * 100;
+                    return (
+                      <button
+                        key={stat.division}
+                        type="button"
+                        onClick={() => handleDivisionChange(stat.division)}
+                        className="flex flex-col gap-1.5 rounded-lg px-2 py-1.5 text-left hover:bg-background"
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="flex h-6 w-6 flex-none items-center justify-center rounded-pill bg-background text-sm font-semibold text-muted">
+                            {i + 1}
+                          </span>
+                          <span className="min-w-0 flex-1">
+                            <span className="block truncate text-base font-medium text-ink">
+                              {stat.division}
+                            </span>
+                            <span className="block text-sm text-muted">
+                              {stat.affectedCount} sa {stat.schoolCount} paaralan may sara
+                            </span>
+                          </span>
+                          <span className="flex-none font-heading text-lg font-semibold text-danger">
+                            {stat.avgDays.toFixed(1)} <span className="text-sm font-normal text-muted">araw</span>
+                          </span>
+                        </div>
+                        <div className="ml-9 h-2 overflow-hidden rounded-pill bg-border">
+                          <div
+                            className="h-full rounded-pill"
+                            style={{ width: `${barPct}%`, background: severityColor(stat.avgDays) }}
+                          />
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+                <div className="ml-9 flex items-center justify-between text-xs text-muted">
+                  <span>0 araw</span>
+                  <span>Katamtamang araw na nawala kada paaralan</span>
                 </div>
               </div>
-              <div>
-                <div className="mb-2 font-heading text-sm font-semibold uppercase tracking-wide text-muted">
-                  Tagal ng pagsara sa taon
-                </div>
-                <svg width="100%" height="140" viewBox="0 0 352 140" fill="none">
-                  <line x1="34" y1="8" x2="34" y2="110" stroke="#E4E7EC" />
-                  <line x1="34" y1="110" x2="344" y2="110" stroke="#E4E7EC" />
-                  <polyline points="50,26 92,44 134,38 176,60 218,78 260,90 302,100 340,106" stroke="#CE1126" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                  <circle cx="50" cy="26" r="3.5" fill="#CE1126" />
-                  <circle cx="340" cy="106" r="3.5" fill="#CE1126" />
-                </svg>
-                <div className="mt-1 text-sm text-muted">
-                  Pababa ang linya — humihina ang epekto ng pagsara.
-                </div>
-              </div>
-              <a
-                href="#schools-table"
-                className="mt-auto flex min-h-11 items-center justify-center rounded-btn bg-brand font-heading text-base font-semibold text-white"
-              >
-                Tingnan ang 38 na paaralan
-              </a>
-            </div>
+            )}
           </div>
 
           <div id="schools-table" className="rounded-card border border-border bg-surface">
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-4 py-3.5">
               <span className="font-heading text-lg font-semibold text-ink">
-                Mga paaralan (486)
+                Mga paaralan ({sortedSchools.length})
               </span>
               <div className="flex items-center gap-3">
                 <span className="text-sm text-muted">Isinunod sa: Araw na nawala ↓</span>
@@ -171,7 +257,7 @@ export default function DivisionPage() {
                   <span>Status</span>
                   <span>Kailangang aksyon</span>
                 </div>
-                {schools.map((school) => (
+                {sortedSchools.map((school) => (
                   <button
                     key={school.id}
                     type="button"

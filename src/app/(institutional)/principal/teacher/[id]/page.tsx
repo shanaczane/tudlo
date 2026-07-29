@@ -8,12 +8,25 @@ const statusStyles: Record<string, string> = {
   Nahuhuli: "border border-danger text-danger",
 };
 
+interface SubjectProgress {
+  name: string;
+  status: string;
+  /** Cumulative lesson number reached at each weekly check-in. */
+  weeklyLessons: number[];
+  totalLessons: number;
+  /** Lesson number the pacing guide expects by the latest check-in. */
+  expectedLesson: number;
+  color: string;
+}
+
+// Tudlo only tracks Math right now, so each teacher shows a single Math
+// progress card instead of one per subject they teach in real life.
 const teacherDetails: Record<
   string,
   {
     name: string;
     section: string;
-    subjects: { name: string; status: string; trend: string; points: string; color: string }[];
+    subjects: SubjectProgress[];
   }
 > = {
   "elena-ramos": {
@@ -21,66 +34,126 @@ const teacherDetails: Record<
     section: "Grade 3 — Sampaguita",
     subjects: [
       {
-        name: "Filipino",
-        status: "Medyo Nahuhuli",
-        trend: "↗ 2 aralin ang atraso · umaayos",
-        points: "0,22 20,20 40,24 60,18 80,20 100,14 120,12",
-        color: "#FCD116",
-      },
-      {
-        name: "English",
-        status: "Nasa Track",
-        trend: "↗ Nasa takdang bilis",
-        points: "0,20 20,18 40,16 60,14 80,12 100,10 120,8",
-        color: "#2E8B57",
-      },
-      {
         name: "Math",
         status: "Nahuhuli",
-        trend: "↘ Lumalayo sa plano",
-        points: "0,12 20,14 40,13 60,18 80,22 100,24 120,26",
+        weeklyLessons: [1, 2, 3, 3, 4, 4, 5],
+        totalLessons: 14,
+        expectedLesson: 9,
         color: "#CE1126",
-      },
-      {
-        name: "Science",
-        status: "Na-recover",
-        trend: "Nabawi na ang atraso",
-        points: "0,18 20,16 40,17 60,14 80,11 100,9 120,7",
-        color: "#0038A8",
-      },
-      {
-        name: "Araling Panlipunan",
-        status: "Nasa Track",
-        trend: "↗ Nasa takdang bilis",
-        points: "0,19 20,17 40,15 60,13 80,12 100,10 120,9",
-        color: "#2E8B57",
       },
     ],
   },
 };
 
-const fallbackNames: Record<string, { name: string; section: string; subjects: string }> = {
+const fallbackNames: Record<string, { name: string; section: string }> = {
   "marites-delos-santos": {
     name: "Marites Delos Santos",
     section: "Grade 2 — Ilang-Ilang",
-    subjects: "Filipino · English · Math · Araling Panlipunan",
   },
   "joel-bautista": {
     name: "Joel Bautista",
     section: "Grade 5 — Narra",
-    subjects: "Math · Science",
   },
   "grace-alvarez": {
     name: "Grace Alvarez",
     section: "Grade 6 — Molave",
-    subjects: "Filipino · Araling Panlipunan · MAPEH",
   },
   "ana-lopez": {
     name: "Ana Lopez",
     section: "Grade 1 — Rosal",
-    subjects: "Filipino · English · Math",
   },
 };
+
+/** Small labeled line chart: lesson progress per week against the pacing-guide target. */
+function LessonProgressChart({
+  weeklyLessons,
+  totalLessons,
+  expectedLesson,
+  color,
+}: {
+  weeklyLessons: number[];
+  totalLessons: number;
+  expectedLesson: number;
+  color: string;
+}) {
+  const width = 176;
+  const height = 68;
+  const plotLeft = 22;
+  const plotRight = 20;
+  const plotTop = 8;
+  const plotBottom = 14;
+  const plotWidth = width - plotLeft - plotRight;
+  const plotHeight = height - plotTop - plotBottom;
+
+  const yTicks = [0, Math.round(totalLessons / 2), totalLessons];
+  const yFor = (value: number) => plotTop + plotHeight - (value / totalLessons) * plotHeight;
+  const xFor = (index: number) =>
+    plotLeft + (index / (weeklyLessons.length - 1)) * plotWidth;
+
+  const linePoints = weeklyLessons.map((value, i) => `${xFor(i)},${yFor(value)}`).join(" ");
+  const currentLesson = weeklyLessons[weeklyLessons.length - 1];
+  const endX = xFor(weeklyLessons.length - 1);
+  const endY = yFor(currentLesson);
+  const targetY = yFor(Math.min(expectedLesson, totalLessons));
+
+  return (
+    <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} fill="none" className="flex-none">
+      {yTicks.map((tick) => (
+        <g key={tick}>
+          <line
+            x1={plotLeft}
+            x2={plotLeft + plotWidth}
+            y1={yFor(tick)}
+            y2={yFor(tick)}
+            stroke="var(--border)"
+            strokeWidth="1"
+          />
+          <text x={plotLeft - 4} y={yFor(tick) + 3} textAnchor="end" fontSize="8" fill="var(--muted)">
+            {tick}
+          </text>
+        </g>
+      ))}
+
+      <line
+        x1={plotLeft}
+        x2={plotLeft + plotWidth}
+        y1={targetY}
+        y2={targetY}
+        stroke="var(--muted)"
+        strokeWidth="1"
+        strokeDasharray="3 3"
+      />
+      <text x={plotLeft} y={targetY - 3} textAnchor="start" fontSize="7" fill="var(--muted)">
+        Target: L{expectedLesson}
+      </text>
+
+      {weeklyLessons.map((_, i) => (
+        <text key={i} x={xFor(i)} y={height - 2} textAnchor="middle" fontSize="7" fill="var(--muted)">
+          L{i + 1}
+        </text>
+      ))}
+
+      <polyline
+        points={linePoints}
+        stroke={color}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx={endX} cy={endY} r="4" fill={color} stroke="var(--surface)" strokeWidth="2" />
+      <text
+        x={endX}
+        y={currentLesson >= expectedLesson ? endY - 8 : endY + 14}
+        textAnchor="end"
+        fontSize="9"
+        fontWeight="600"
+        fill="var(--ink)"
+      >
+        L{currentLesson}
+      </text>
+    </svg>
+  );
+}
 
 export default async function TeacherDetailPage({
   params,
@@ -97,15 +170,16 @@ export default async function TeacherDetailPage({
 
   const name = detailed?.name ?? fallback!.name;
   const section = detailed?.section ?? fallback!.section;
-  const subjects =
-    detailed?.subjects ??
-    fallback!.subjects.split(" · ").map((name) => ({
-      name,
+  const subjects: SubjectProgress[] = detailed?.subjects ?? [
+    {
+      name: "Math",
       status: "Nasa Track",
-      trend: "↗ Nasa takdang bilis",
-      points: "0,19 20,17 40,15 60,13 80,12 100,10 120,9",
+      weeklyLessons: [2, 4, 5, 7, 8, 9, 10],
+      totalLessons: 12,
+      expectedLesson: 9,
       color: "#2E8B57",
-    }));
+    },
+  ];
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-md flex-col bg-background">
@@ -126,7 +200,18 @@ export default async function TeacherDetailPage({
         </div>
 
         <div className="flex flex-col gap-2">
-          {subjects.map((subject) => (
+          {subjects.map((subject) => {
+            const currentLesson = subject.weeklyLessons[subject.weeklyLessons.length - 1];
+            const delta = currentLesson - subject.expectedLesson;
+            const deltaLabel =
+              delta > 0
+                ? `↗ ${delta} lesson${delta > 1 ? "s" : ""} nasa unahan ng pacing guide`
+                : delta < 0
+                  ? `↘ ${Math.abs(delta)} lesson${Math.abs(delta) > 1 ? "s" : ""} nasa likod ng pacing guide`
+                  : "Tugma sa pacing guide";
+            const deltaColor = delta > 0 ? "text-success" : delta < 0 ? "text-danger" : "text-muted";
+
+            return (
             <div
               key={subject.name}
               className={`flex flex-col gap-3 rounded-card border border-border bg-surface p-4 ${
@@ -143,17 +228,19 @@ export default async function TeacherDetailPage({
                   {subject.status}
                 </span>
               </div>
-              <div className="flex items-center gap-3">
-                <svg width="120" height="32" viewBox="0 0 120 32" fill="none">
-                  <polyline
-                    points={subject.points}
-                    stroke={subject.color}
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <span className="text-sm text-muted">{subject.trend}</span>
+              <div className="flex flex-col gap-2">
+                <LessonProgressChart
+                  weeklyLessons={subject.weeklyLessons}
+                  totalLessons={subject.totalLessons}
+                  expectedLesson={subject.expectedLesson}
+                  color={subject.color}
+                />
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                  <span className="font-heading text-base font-semibold text-ink">
+                    Lesson {currentLesson} ng {subject.totalLessons}
+                  </span>
+                  <span className={`text-sm font-medium ${deltaColor}`}>{deltaLabel}</span>
+                </div>
               </div>
               {subject.status === "Nahuhuli" ? (
                 <button className="flex min-h-12 items-center justify-center gap-2 rounded-btn bg-danger-bg font-heading text-base font-semibold text-danger">
@@ -162,7 +249,8 @@ export default async function TeacherDetailPage({
                 </button>
               ) : null}
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </main>

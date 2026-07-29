@@ -40,7 +40,7 @@ const teachers = [
     id: "elena-ramos",
     name: "Elena Ramos",
     section: "3 — Sampaguita",
-    subjects: "Fil · Eng · Math · Sci · AP",
+    subjects: "Math",
     position: "Q3 · Aralin 8",
     disruption: "Bagyo · 14 Ene",
     status: "Nahuhuli",
@@ -50,7 +50,7 @@ const teachers = [
     id: "marites-delos-santos",
     name: "Marites Delos Santos",
     section: "2 — Ilang-Ilang",
-    subjects: "Fil · Eng · Math · AP",
+    subjects: "Math",
     position: "Q3 · Aralin 6",
     disruption: "Bagyo · 14 Ene",
     status: "Medyo nahuhuli",
@@ -59,7 +59,7 @@ const teachers = [
     id: "joel-bautista",
     name: "Joel Bautista",
     section: "5 — Narra",
-    subjects: "Math · Sci",
+    subjects: "Math",
     position: "Q3 · Aralin 9",
     disruption: "Bagyo · 14 Ene",
     status: "Na-recover",
@@ -68,7 +68,7 @@ const teachers = [
     id: "grace-alvarez",
     name: "Grace Alvarez",
     section: "6 — Molave",
-    subjects: "Fil · AP · MAPEH",
+    subjects: "Math",
     position: "Q3 · Aralin 11",
     disruption: "Bagyo · 14 Ene",
     status: "Nasa track",
@@ -77,7 +77,7 @@ const teachers = [
     id: "ana-lopez",
     name: "Ana Lopez",
     section: "1 — Rosal",
-    subjects: "Fil · Eng · Math",
+    subjects: "Math",
     position: "—",
     disruption: "—",
     status: "Hindi pa nag-set up",
@@ -91,10 +91,10 @@ export default function PrincipalPage() {
     <main className="flex min-h-screen flex-col bg-background">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-surface px-4 py-3 md:px-8">
         <div className="flex flex-wrap items-center gap-4">
-          <span className="flex items-center gap-2">
+          <Link href="/" aria-label={t.homeLabel} className="flex items-center gap-2">
             <Logo size={30} />
             <span className="font-heading text-lg font-bold text-brand">{t.brand}</span>
-          </span>
+          </Link>
           <span className="text-base text-muted">{t.principalSubtitle}</span>
         </div>
         <div className="flex items-center gap-3">
@@ -135,7 +135,7 @@ export default function PrincipalPage() {
               <div className="grid grid-cols-[1.4fr_1fr_1.6fr_1.2fr_1.2fr_1.2fr] gap-2 bg-background px-4 py-2.5 text-sm font-semibold text-muted md:px-5">
                 <span>Guro</span>
                 <span>Grade / Seksyon</span>
-                <span>Mga subject</span>
+                <span>Subject</span>
                 <span>Posisyon</span>
                 <span>Huling disruption</span>
                 <span>Kalagayan</span>
