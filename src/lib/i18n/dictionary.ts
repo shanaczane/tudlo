@@ -89,6 +89,35 @@ export interface Dictionary {
     selectAtLeastOne: string;
     currentLessonPrompt: string;
   };
+  divisionDashboard: {
+    filtersTitle: string;
+    divisionLabel: string;
+    allLabel: (count: number) => string;
+    disruptionTypeLabel: string;
+    dateRangeLabel: string;
+    legendTitle: string;
+    legend1: string;
+    legend2: string;
+    legend3: string;
+    legend4: string;
+    averageDaysLost: string;
+    classesOnTrack: string;
+    closureTrend: string;
+    closureTrendNote: string;
+    viewSchools: (count: number) => string;
+    schoolsTitle: (count: number) => string;
+    sortedByDays: string;
+    tableHeaders: {
+      school: string;
+      division: string;
+      type: string;
+      days: string;
+      status: string;
+      action: string;
+    };
+    viewDetails: string;
+    daysLostSuffix: string;
+  };
 }
 
 export const dictionaries: Record<Locale, Dictionary> = {
@@ -138,7 +167,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       "Kakailanganin ng kumpirmasyon bago i-save — para hindi masira ang tala sa aksidenteng tap.",
     positionSavedNote: "Na-save ang bagong posisyon ✓",
     principalSubtitle: "Bacacay Central ES — Punong-guro",
-    divisionSubtitle: "Division Monitoring — Region V (Bicol)",
+    divisionSubtitle: "DepED Division Monitoring",
     justResumedNote:
       "Bumalik na sa normal — mama-mark muli kung may bagong suspensyon.",
     catchupPage: {
@@ -188,6 +217,35 @@ export const dictionaries: Record<Locale, Dictionary> = {
       selectAtLeastOne: "Pumili ng kahit isang subject.",
       currentLessonPrompt: "Kasalukuyang aralin",
     },
+    divisionDashboard: {
+      filtersTitle: "Mga filter",
+      divisionLabel: "Division",
+      allLabel: (count) => `Lahat (${count})`,
+      disruptionTypeLabel: "Uri ng disruption",
+      dateRangeLabel: "Saklaw na petsa",
+      legendTitle: "Legend",
+      legend1: "1–3 araw na sara",
+      legend2: "4–7 araw",
+      legend3: "8+ araw / malaking gap",
+      legend4: "Walang naitalang disruption",
+      averageDaysLost: "Katamtamang araw na nawala",
+      classesOnTrack: "Nasa track na klase",
+      closureTrend: "Tagal ng pagsara sa taon",
+      closureTrendNote: "Pababa ang linya — humihina ang epekto ng pagsara.",
+      viewSchools: (count) => `Tingnan ang ${count} na paaralan`,
+      schoolsTitle: (count) => `Mga paaralan (${count})`,
+      sortedByDays: "Isinunod sa: Araw na nawala ↓",
+      tableHeaders: {
+        school: "Paaralan",
+        division: "Division",
+        type: "Uri",
+        days: "Araw",
+        status: "Status",
+        action: "Kailangang aksyon",
+      },
+      viewDetails: "Tingnan ang detalye →",
+      daysLostSuffix: "araw na nawala",
+    },
   },
   en: {
     brand: "Tudlo",
@@ -234,7 +292,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       "Confirmation is required before saving — so an accidental tap can't overwrite the record.",
     positionSavedNote: "New position saved ✓",
     principalSubtitle: "Bacacay Central ES — Principal",
-    divisionSubtitle: "Division Monitoring — Region V (Bicol)",
+    divisionSubtitle: "DepED Division Monitoring",
     justResumedNote:
       "Back to normal — this will be markable again if a new suspension comes up.",
     catchupPage: {
@@ -283,6 +341,35 @@ export const dictionaries: Record<Locale, Dictionary> = {
       finishButton: "Get Started",
       selectAtLeastOne: "Please select at least one subject.",
       currentLessonPrompt: "Current lesson",
+    },
+    divisionDashboard: {
+      filtersTitle: "Filters",
+      divisionLabel: "Division",
+      allLabel: (count) => `All (${count})`,
+      disruptionTypeLabel: "Disruption type",
+      dateRangeLabel: "Date range",
+      legendTitle: "Legend",
+      legend1: "1–3 days closed",
+      legend2: "4–7 days",
+      legend3: "8+ days / severe gap",
+      legend4: "No reported disruption",
+      averageDaysLost: "Average days lost",
+      classesOnTrack: "Classes on track",
+      closureTrend: "Closure duration over the year",
+      closureTrendNote: "Downward trend — closure impact is weakening.",
+      viewSchools: (count) => `View ${count} schools`,
+      schoolsTitle: (count) => `Schools (${count})`,
+      sortedByDays: "Sorted by: Days lost ↓",
+      tableHeaders: {
+        school: "School",
+        division: "Division",
+        type: "Type",
+        days: "Days",
+        status: "Status",
+        action: "Action needed",
+      },
+      viewDetails: "View details →",
+      daysLostSuffix: "days lost",
     },
   },
 };
