@@ -2,82 +2,44 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
-import { ExportButton } from "./ExportButton";
+import { useRouter } from "next/navigation";
 import { Logo } from "@/ui/Logo";
 import { useLocale } from "@/lib/i18n/LocaleContext";
-import { DIVISIONS, schools, severityColor, statusStyles } from "@/lib/schools";
+import { REGIONS } from "@/lib/regions";
+import Link from "next/link";
 
-const ON_TRACK_STATUSES = new Set(["Na-recover", "Walang naitalang disruption"]);
-
-interface DivisionStat {
-  division: string;
-  schoolCount: number;
-  avgDays: number;
-  affectedCount: number;
-  onTrackPct: number;
-}
-
-/** Divisions ranked by average days lost, most in need of recovery support first. */
-function rankDivisionsByNeed(): DivisionStat[] {
-  return DIVISIONS.map((division) => {
-    const divSchools = schools.filter((s) => s.division === division);
-    const avgDays = divSchools.length
-      ? divSchools.reduce((sum, s) => sum + s.days, 0) / divSchools.length
-      : 0;
-    const affectedCount = divSchools.filter((s) => s.days > 0).length;
-    const onTrackCount = divSchools.filter((s) => ON_TRACK_STATUSES.has(s.status)).length;
-    return {
-      division,
-      schoolCount: divSchools.length,
-      avgDays,
-      affectedCount,
-      onTrackPct: divSchools.length ? Math.round((onTrackCount / divSchools.length) * 100) : 0,
-    };
-  }).sort((a, b) => b.avgDays - a.avgDays);
-}
-
-const DivisionMap = dynamic(() => import("./DivisionMap"), {
+const RegionGateMap = dynamic(() => import("./RegionGateMap"), {
   ssr: false,
   loading: () => (
-    <div className="flex h-72 w-full items-center justify-center rounded-card border border-border bg-[#EEF1F5] text-sm text-muted md:h-105">
+    <div className="flex h-full w-full items-center justify-center rounded-card border border-border bg-[#EEF1F5] text-sm text-muted">
       Ni-loload ang mapa…
     </div>
   ),
 });
 
-const filters = [
-  { label: "Rehiyon", value: "Region V" },
-  { label: "Uri ng disruption", value: "Bagyo" },
-  { label: "Saklaw ng petsa", value: "1 Ene – 22 Ene 2026" },
-];
-
-export default function DivisionPage() {
+export default function DivisionGatePage() {
   const { t } = useLocale();
-  const [selectedSchoolId, setSelectedSchoolId] = useState<string | null>(
-    "bacacay-central-es",
-  );
-  const [selectedDivision, setSelectedDivision] = useState<string>("");
+  const router = useRouter();
 
-  function handleSelectSchool(id: string) {
-    setSelectedSchoolId(id);
-  }
+  // Default to NCR or Region 5, let's start with Region 5 since it's the active one
+  const [selectedRegionId, setSelectedRegionId] = useState("5");
+  const [showToast, setShowToast] = useState(false);
 
-  function handleDivisionChange(value: string) {
-    setSelectedDivision(value);
-    setSelectedSchoolId(null);
-  }
+  const selectedRegion = REGIONS.find((r) => r.id === selectedRegionId);
+  const isActive = selectedRegion?.status === "active";
 
-  const divisionStats = rankDivisionsByNeed();
-  const filteredSchools = selectedDivision
-    ? schools.filter((s) => s.division === selectedDivision)
-    : schools;
-  const sortedSchools = [...filteredSchools].sort((a, b) => b.days - a.days);
-  const selectedStat = divisionStats.find((d) => d.division === selectedDivision) ?? null;
+  const handleConfirm = () => {
+    if (isActive) {
+      router.push(`/division/region/${selectedRegionId}`);
+    } else {
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
+    }
+  };
 
   return (
-    <main className="flex min-h-screen flex-col bg-background">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-surface px-4 py-3 md:px-8">
+    <main className="flex h-screen flex-col bg-background">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-surface px-4 py-3 md:px-8 shrink-0">
         <div className="flex flex-wrap items-center gap-4">
           <Link href="/" aria-label={t.homeLabel} className="flex items-center gap-2">
             <Logo size={30} />
@@ -85,213 +47,99 @@ export default function DivisionPage() {
           </Link>
           <span className="text-base text-muted">{t.divisionSubtitle}</span>
         </div>
-        <div className="flex items-center gap-3">
-          <span className="text-sm text-muted">Huling update 22 Enero, 07:10</span>
-          <span className="flex items-center gap-1.5 rounded-pill bg-success-bg px-2.5 py-1.5 text-sm font-medium text-success">
-            <span className="h-2 w-2 rounded-pill bg-success" />
-            Live
-          </span>
-        </div>
       </div>
 
-      <div className="grid flex-1 gap-4 p-4 md:grid-cols-[248px_1fr] md:p-8">
-        <div className="flex flex-col gap-4 rounded-card border border-border bg-surface p-4 md:h-fit">
-          <span className="font-heading text-sm font-semibold uppercase tracking-wide text-muted">
-            Mga filter
-          </span>
-          <div className="flex flex-col gap-1.5">
-            <span className="text-sm text-muted">Division</span>
-            <select
-              value={selectedDivision}
-              onChange={(e) => handleDivisionChange(e.target.value)}
-              className="flex min-h-11 items-center justify-between rounded-lg border border-border bg-surface px-3 text-base text-ink outline-none focus:border-brand"
-            >
-              <option value="">Lahat (12)</option>
-              {DIVISIONS.map((division) => (
-                <option key={division} value={division}>
-                  {division}
-                </option>
-              ))}
-            </select>
-          </div>
-          {filters.map((filter) => (
-            <div key={filter.label} className="flex flex-col gap-1.5">
-              <span className="text-sm text-muted">{filter.label}</span>
-              <div className="flex min-h-11 items-center justify-between rounded-lg border border-border px-3 text-base text-ink">
-                {filter.value}
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      <div className="flex-1 overflow-hidden p-4 md:p-8">
+        <div className="mx-auto flex h-full max-w-5xl flex-col gap-6 md:flex-row">
+
+          <div className="flex w-full flex-col gap-6 md:w-96 shrink-0">
+            <div>
+              <h1 className="mb-2 font-heading text-3xl font-bold text-ink">
+                Piliin ang Rehiyon
+              </h1>
+              <p className="text-base text-muted">
+                Piliin ang rehiyon na nais mong i-monitor para sa mga class disruptions.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="region-select" className="text-sm font-semibold text-ink">
+                Rehiyon
+              </label>
+              <div className="relative">
+                <select
+                  id="region-select"
+                  value={selectedRegionId}
+                  onChange={(e) => setSelectedRegionId(e.target.value)}
+                  className="w-full appearance-none rounded-lg border border-border bg-surface px-4 py-3 text-base text-ink outline-none focus:border-brand"
+                >
+                  {REGIONS.map((region) => (
+                    <option key={region.id} value={region.id}>
+                      {region.name} - {region.fullName}
+                    </option>
+                  ))}
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </div>
               </div>
             </div>
-          ))}
-          <div className="flex flex-col gap-2 border-t border-border pt-3">
-            <span className="font-heading text-sm font-semibold uppercase tracking-wide text-muted">
-              Legend
-            </span>
-            <span className="flex items-center gap-2 text-sm text-ink"><span className="h-2.5 w-2.5 rounded-pill bg-warning" />1–3 araw na sara</span>
-            <span className="flex items-center gap-2 text-sm text-ink"><span className="h-3.5 w-3.5 rounded-pill bg-[#E8823A]" />4–7 araw</span>
-            <span className="flex items-center gap-2 text-sm text-ink"><span className="h-4.5 w-4.5 rounded-pill bg-danger" />8+ araw / malaking gap</span>
-            <span className="flex items-center gap-2 text-sm text-muted"><span className="h-2.5 w-2.5 rounded-pill bg-[#B6BCC7]" />Walang naitalang disruption</span>
-          </div>
-          <Link href="/principal" className="text-sm font-semibold text-brand hover:text-link-hover">
-            ← Principal view
-          </Link>
-        </div>
 
-        <div className="flex flex-col gap-4">
-          <div className="grid gap-4 md:grid-cols-[1fr_360px]">
-            <DivisionMap
-              schools={schools}
-              selectedSchoolId={selectedSchoolId}
-              onSelectSchool={handleSelectSchool}
-              focusDivision={selectedDivision || null}
-            />
-
-            {selectedStat ? (
-              <div className="flex flex-col gap-4 rounded-card border border-border bg-surface p-4">
-                <div>
-                  <div className="font-heading text-lg font-semibold text-ink">
-                    {selectedStat.division} Division
+            {selectedRegion && (
+              <div className="flex flex-col gap-3 rounded-lg border border-border bg-background p-4 mt-2">
+                <span className="font-heading text-sm font-semibold uppercase tracking-wide text-muted">
+                  Status ng Rehiyon
+                </span>
+                <div className="flex flex-col gap-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted">Apektadong Paaralan:</span>
+                    <span className="font-semibold text-ink">{selectedRegion.stats.affectedSchools}</span>
                   </div>
-                  <div className="text-sm text-muted">{selectedStat.schoolCount} na paaralan</div>
-                </div>
-                <div className="flex gap-2">
-                  <div className="flex-1 rounded-lg bg-background p-3">
-                    <div className="text-sm text-muted">Katamtamang araw na nawala</div>
-                    <div className="font-heading text-2xl font-semibold text-danger">
-                      {selectedStat.avgDays.toFixed(1)}
-                    </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted">Disruption:</span>
+                    <span className="font-semibold text-ink">{selectedRegion.stats.activeDisruptions}</span>
                   </div>
-                  <div className="flex-1 rounded-lg bg-background p-3">
-                    <div className="text-sm text-muted">Nasa track na klase</div>
-                    <div className="font-heading text-2xl font-semibold text-success">
-                      {selectedStat.onTrackPct}%
-                    </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted">Risk Level:</span>
+                    <span className={`font-semibold ${selectedRegion.stats.riskLevel === 'High' ? 'text-danger' :
+                      selectedRegion.stats.riskLevel === 'Moderate' ? 'text-warning-text' : 'text-success'
+                      }`}>
+                      {selectedRegion.stats.riskLevel}
+                    </span>
                   </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => handleDivisionChange("")}
-                  className="text-sm font-semibold text-brand hover:text-link-hover"
-                >
-                  ← Tingnan lahat ng division
-                </button>
-                <a
-                  href="#schools-table"
-                  className="mt-auto flex min-h-11 items-center justify-center rounded-btn bg-brand font-heading text-base font-semibold text-white"
-                >
-                  Tingnan ang {sortedSchools.length} na paaralan
-                </a>
-              </div>
-            ) : (
-              <div className="flex flex-col gap-3 rounded-card border border-border bg-surface p-4">
-                <div>
-                  <div className="font-heading text-lg font-semibold text-ink">
-                    Mga division ayon sa pangangailangan
-                  </div>
-                  <div className="text-sm text-muted">
-                    Isinunod sa katamtamang araw na nawala — pinaka-apektado sa taas
-                  </div>
-                </div>
-                <div className="flex flex-col gap-3">
-                  {divisionStats.map((stat, i) => {
-                    const maxAvgDays = Math.max(...divisionStats.map((d) => d.avgDays), 1);
-                    const barPct = (stat.avgDays / maxAvgDays) * 100;
-                    return (
-                      <button
-                        key={stat.division}
-                        type="button"
-                        onClick={() => handleDivisionChange(stat.division)}
-                        className="flex flex-col gap-1.5 rounded-lg px-2 py-1.5 text-left hover:bg-background"
-                      >
-                        <div className="flex items-center gap-3">
-                          <span className="flex h-6 w-6 flex-none items-center justify-center rounded-pill bg-background text-sm font-semibold text-muted">
-                            {i + 1}
-                          </span>
-                          <span className="min-w-0 flex-1">
-                            <span className="block truncate text-base font-medium text-ink">
-                              {stat.division}
-                            </span>
-                            <span className="block text-sm text-muted">
-                              {stat.affectedCount} sa {stat.schoolCount} paaralan may sara
-                            </span>
-                          </span>
-                          <span className="flex-none font-heading text-lg font-semibold text-danger">
-                            {stat.avgDays.toFixed(1)} <span className="text-sm font-normal text-muted">araw</span>
-                          </span>
-                        </div>
-                        <div className="ml-9 h-2 overflow-hidden rounded-pill bg-border">
-                          <div
-                            className="h-full rounded-pill"
-                            style={{ width: `${barPct}%`, background: severityColor(stat.avgDays) }}
-                          />
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-                <div className="ml-9 flex items-center justify-between text-xs text-muted">
-                  <span>0 araw</span>
-                  <span>Katamtamang araw na nawala kada paaralan</span>
                 </div>
               </div>
             )}
+
+            <div className="mt-auto flex flex-col gap-3 pt-4">
+              <button
+                onClick={handleConfirm}
+                className="flex w-full min-h-12 items-center justify-center rounded-btn bg-brand font-heading text-base font-semibold text-white transition-colors hover:bg-brand-hover"
+              >
+                Tingnan ang Dashboard
+              </button>
+            </div>
           </div>
 
-          <div id="schools-table" className="rounded-card border border-border bg-surface">
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-4 py-3.5">
-              <span className="font-heading text-lg font-semibold text-ink">
-                Mga paaralan ({sortedSchools.length})
-              </span>
-              <div className="flex items-center gap-3">
-                <span className="text-sm text-muted">Isinunod sa: Araw na nawala ↓</span>
-                <ExportButton />
-              </div>
-            </div>
-            <div className="overflow-x-auto">
-              <div className="min-w-190">
-                <div className="grid grid-cols-[2fr_1.4fr_1fr_.8fr_1.2fr_1.4fr] gap-2 bg-background px-4 py-2.5 text-sm font-semibold text-muted">
-                  <span>Paaralan</span>
-                  <span>Division</span>
-                  <span>Uri</span>
-                  <span>Araw</span>
-                  <span>Status</span>
-                  <span>Kailangang aksyon</span>
-                </div>
-                {sortedSchools.map((school) => (
-                  <button
-                    key={school.id}
-                    type="button"
-                    onClick={() => handleSelectSchool(school.id)}
-                    className={`grid w-full grid-cols-[2fr_1.4fr_1fr_.8fr_1.2fr_1.4fr] items-center gap-2 border-t border-border px-4 py-3.5 text-left text-base text-ink ${
-                      school.id === selectedSchoolId ? "bg-tint" : ""
-                    }`}
-                  >
-                    <span className="flex items-center gap-2">
-                      {school.name}
-                      <Link
-                        href={`/division/school/${school.id}`}
-                        onClick={(e) => e.stopPropagation()}
-                        className="text-sm font-semibold text-brand hover:text-link-hover"
-                      >
-                        →
-                      </Link>
-                    </span>
-                    <span>{school.division}</span>
-                    <span>{school.type}</span>
-                    <span>{school.days}</span>
-                    <span>
-                      <span className={`inline-flex rounded-pill px-2.5 py-1 text-sm font-semibold ${statusStyles[school.status]}`}>
-                        {school.status}
-                      </span>
-                    </span>
-                    <span className="text-sm text-muted">{school.action}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
+          <div className="h-[400px] w-full flex-1 md:h-full">
+            <RegionGateMap selectedRegionId={selectedRegionId} />
           </div>
+
         </div>
       </div>
+
+      {showToast && (
+        <div className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[9999] flex animate-in fade-in slide-in-from-bottom-4 items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white shadow-lg">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          Coming soon! Hindi pa available ang monitoring dito.
+        </div>
+      )}
     </main>
   );
 }

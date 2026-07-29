@@ -131,7 +131,7 @@ export default async function SchoolDetailPage({
     <main className="flex min-h-screen flex-col bg-background">
       <div className="flex items-center gap-2 border-b border-border bg-surface px-4 py-2 md:px-8">
         <Link
-          href="/division"
+          href="/division/region/5"
           aria-label="Bumalik"
           className="-ml-1 flex h-11 w-11 items-center justify-center text-ink"
         >
