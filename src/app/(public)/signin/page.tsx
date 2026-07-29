@@ -13,12 +13,11 @@ export default function SignInPage() {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    // Save the name + school code now; grade/subjects are collected in onboarding
+    // Save the name + school code now; grade/section assignments are collected in onboarding
     saveProfile({
       name: teacherName.trim() || "Guro",
       schoolCode: schoolCode.trim(),
-      grade: 0,        // placeholder — onboarding will set the real value
-      subjects: [],    // placeholder — onboarding will set the real value
+      assignments: [], // placeholder — onboarding will set the real value
     });
     router.push("/onboarding");
   }

@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useSyncExternalStore, type ReactNode } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLocale } from "@/lib/i18n/LocaleContext";
 import { formatDate, parseDateInputValue } from "@/lib/i18n/format";
 import type { ReasonKey, SubjectId, Dictionary } from "@/lib/i18n/dictionary";
 import { SuspensionSheet, type SuspensionDraft } from "./SuspensionSheet";
+import { CreateTrackerSheet } from "./CreateTrackerSheet";
 import { Logo } from "@/ui/Logo";
 import { SUBJECT_LESSONS } from "@/lib/lessons";
 import {
@@ -23,6 +24,14 @@ import {
   getProfileSnapshot,
   getServerProfileSnapshot,
 } from "@/lib/profileStore";
+import {
+  addTracker,
+  getTrackersFromRaw,
+  getTrackersSnapshot,
+  getServerTrackersSnapshot,
+  subscribeTrackers,
+} from "@/lib/trackerStore";
+import { SUBJECT_ICON_PATHS } from "@/lib/subjectIcons";
 
 const SUSPENSION_KEY = "tudlo-suspension";
 
@@ -65,90 +74,23 @@ function writeSuspension(record: Suspension | null) {
   notify();
 }
 
-// Only Math is wired up to real Grade 1 MATATAG curriculum data right now
-// (see src/lib/lessons.ts) — the rest still use placeholder lesson data.
-// All subjects stay listed here; which ones a teacher actually sees is
-// controlled by their onboarding subject selection (activeSubjects below).
-const SUBJECTS: { id: SubjectId; icon: ReactNode }[] = [
-  {
-    id: "math",
-    icon: (
-      <>
-        <path d="M4 19V5" />
-        <path d="M8 15h8" />
-        <path d="M12 11v8" />
-        <path d="M8 7h8" />
-      </>
-    ),
-  },
-  {
-    id: "science",
-    icon: (
-      <>
-        <circle cx="12" cy="12" r="3" />
-        <path d="M12 3v2M12 19v2M3 12h2M19 12h2M6 6l1.5 1.5M16.5 16.5 18 18M18 6l-1.5 1.5M7.5 16.5 6 18" />
-      </>
-    ),
-  },
-  {
-    id: "ap",
-    icon: (
-      <>
-        <circle cx="12" cy="12" r="9" />
-        <path d="M3 12h18" />
-        <path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z" />
-      </>
-    ),
-  },
-  {
-    id: "english",
-    icon: (
-      <>
-        <path d="M4 7h16" />
-        <path d="M4 12h10" />
-        <path d="M4 17h14" />
-      </>
-    ),
-  },
-  {
-    id: "mapeh",
-    icon: (
-      <>
-        <path d="M9 18V5l12-2v13" />
-        <circle cx="6" cy="18" r="3" />
-        <circle cx="18" cy="16" r="3" />
-      </>
-    ),
-  },
-];
-
 export default function TeacherHomePage() {
   const router = useRouter();
   const { locale, setLocale, t } = useLocale();
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [createSheetOpen, setCreateSheetOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [justResumed, setJustResumed] = useState(false);
   const [showCatchUp, setShowCatchUp] = useState(false);
 
-  // ── Profile — redirect guard ─────────────────────────────────────────────
-  const profileRaw = useSyncExternalStore(
-    subscribeProfile,
-    getProfileSnapshot,
-    getServerProfileSnapshot,
+  // All hooks must run unconditionally, in the same order, on every render —
+  // so every store subscription lives here, before any early return below.
+  useSyncExternalStore(subscribeProfile, getProfileSnapshot, getServerProfileSnapshot);
+  const trackersRaw = useSyncExternalStore(
+    subscribeTrackers,
+    getTrackersSnapshot,
+    getServerTrackersSnapshot,
   );
-  // Client-side redirect if onboarding was never completed
-  if (typeof window !== "undefined" && !hasProfile()) {
-    router.replace("/onboarding");
-    return null;
-  }
-  const profile = getProfile();
-  // Filter SUBJECTS to only those the teacher selected in onboarding
-  const activeSubjectIds = profile?.subjects ?? [];
-  const activeSubjects =
-    activeSubjectIds.length > 0
-      ? SUBJECTS.filter((s) => activeSubjectIds.includes(s.id as SubjectId))
-      : SUBJECTS; // fallback: show all if profile somehow incomplete
-
   const suspensionRaw = useSyncExternalStore(
     subscribe,
     getSuspensionSnapshot,
@@ -159,6 +101,16 @@ export default function TeacherHomePage() {
     getPositionsSnapshot,
     getServerPositionsSnapshot,
   );
+
+  // ── Profile — redirect guard ─────────────────────────────────────────────
+  // Client-side redirect if onboarding was never completed
+  if (typeof window !== "undefined" && !hasProfile()) {
+    router.replace("/onboarding");
+    return null;
+  }
+  const profile = getProfile();
+  const assignments = profile?.assignments ?? [];
+  const trackers = getTrackersFromRaw(trackersRaw);
 
   let suspension: Suspension | null = null;
   if (suspensionRaw) {
@@ -205,6 +157,11 @@ export default function TeacherHomePage() {
     showToast(t.resumeToast);
     setJustResumed(true);
     window.setTimeout(() => setJustResumed(false), 6000);
+  }
+
+  function handleCreateTracker(grade: number, section: string, subjectId: SubjectId) {
+    addTracker(grade, section, subjectId);
+    setCreateSheetOpen(false);
   }
 
   return (
@@ -270,69 +227,106 @@ export default function TeacherHomePage() {
         </div>
         <p className="mb-2 text-sm text-muted">{t.autoTrackNote}</p>
 
-        {activeSubjects.map((subject) => {
-          const info = t.subjects[subject.id];
-          const subjectLessons = SUBJECT_LESSONS[subject.id];
-          const index = getPositionIndex(
-            subject.id,
-            positionsRaw,
-            subjectLessons.defaultIndex,
-          );
-          const lesson = subjectLessons.lessons[index];
-          const positionChanged = index !== subjectLessons.defaultIndex;
-          const progress = positionChanged
-            ? { done: index + 1, total: subjectLessons.lessons.length }
-            : subjectLessons.defaultProgress;
+        {trackers.length === 0 ? (
+          <div className="flex flex-col items-center gap-3 rounded-card border border-dashed border-border bg-surface p-6 text-center">
+            <span className="font-heading text-lg font-semibold text-ink">
+              {t.dashboard.emptyStateTitle}
+            </span>
+            <span className="text-sm text-muted">{t.dashboard.emptyStateBody}</span>
+            <button
+              type="button"
+              onClick={() => setCreateSheetOpen(true)}
+              className="mt-1 flex min-h-12 items-center gap-2 rounded-btn bg-brand px-5 font-heading text-base font-semibold text-white"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4v16"/><path d="M4 12h16"/></svg>
+              {t.dashboard.createTrackerButton}
+            </button>
+          </div>
+        ) : (
+          <>
+            {trackers.map((tracker) => {
+              const info = t.subjects[tracker.subjectId];
+              const subjectLessons = SUBJECT_LESSONS[tracker.subjectId];
+              const index = getPositionIndex(
+                tracker.id,
+                positionsRaw,
+                subjectLessons.defaultIndex,
+              );
+              const lesson = subjectLessons.lessons[index];
+              const positionChanged = index !== subjectLessons.defaultIndex;
+              const progress = positionChanged
+                ? { done: index + 1, total: subjectLessons.lessons.length }
+                : subjectLessons.defaultProgress;
 
-          return (
-            <div key={subject.id} className="flex flex-col gap-3 rounded-card border border-border bg-surface p-4">
-              <Link href={`/app/subject/${subject.id}`} className="flex items-center gap-3">
-                <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-tint">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0038A8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    {subject.icon}
-                  </svg>
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="font-heading text-lg font-semibold text-ink">
-                    {info.name}
-                  </div>
-                  <div className="truncate text-base text-ink">
-                    {t.lessonWord} {lesson.number} — {lesson.title[locale]}
-                  </div>
-                </div>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>
-              </Link>
-
-              {suspension ? (
-                <span className="flex w-fit items-center gap-1.5 rounded-pill bg-warning-bg px-2.5 py-1 text-sm font-semibold text-warning-ink">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l3 3 5-5"/></svg>
-                  {t.pausedBadge}
-                </span>
-              ) : progress.total ? (
-                <div>
-                  <div className="relative h-1.5 overflow-hidden rounded-pill bg-border">
-                    <div
-                      className="absolute inset-y-0 left-0 rounded-pill bg-brand"
-                      style={{ width: `${(progress.done / progress.total) * 100}%` }}
-                    />
-                  </div>
-                  <div className="mt-1.5 text-sm text-muted">
-                    {progress.done} {t.ofWord} {progress.total} {t.unitDaysSuffix}
-                  </div>
-                </div>
-              ) : null}
-
-              {showCatchUp && !suspension ? (
-                <Link
-                  href={`/app/catchup/${subject.id}`}
-                  className="w-fit font-heading text-sm font-semibold text-brand hover:text-link-hover"
+              return (
+                <div
+                  key={tracker.id}
+                  className="flex flex-col gap-3 rounded-card border border-border bg-surface p-4"
                 >
-                  {t.catchUpLink} →
-                </Link>
-              ) : null}
-            </div>
-          );
-        })}
+                  <Link
+                    href={`/app/tracker/${tracker.id}`}
+                    className="flex items-center gap-3"
+                  >
+                    <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-tint">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0038A8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        {SUBJECT_ICON_PATHS[tracker.subjectId]}
+                      </svg>
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="text-sm text-muted">
+                        {t.dashboard.gradeSectionLabel(tracker.grade, tracker.section)}
+                      </div>
+                      <div className="font-heading text-lg font-semibold text-ink">
+                        {info.name}
+                      </div>
+                      <div className="truncate text-base text-ink">
+                        {t.lessonWord} {lesson.number} — {lesson.title[locale]}
+                      </div>
+                    </div>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+                  </Link>
+
+                  {suspension ? (
+                    <span className="flex w-fit items-center gap-1.5 rounded-pill bg-warning-bg px-2.5 py-1 text-sm font-semibold text-warning-ink">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l3 3 5-5"/></svg>
+                      {t.pausedBadge}
+                    </span>
+                  ) : progress.total ? (
+                    <div>
+                      <div className="relative h-1.5 overflow-hidden rounded-pill bg-border">
+                        <div
+                          className="absolute inset-y-0 left-0 rounded-pill bg-brand"
+                          style={{ width: `${(progress.done / progress.total) * 100}%` }}
+                        />
+                      </div>
+                      <div className="mt-1.5 text-sm text-muted">
+                        {progress.done} {t.ofWord} {progress.total} {t.unitDaysSuffix}
+                      </div>
+                    </div>
+                  ) : null}
+
+                  {showCatchUp && !suspension ? (
+                    <Link
+                      href={`/app/catchup/${tracker.id}`}
+                      className="w-fit font-heading text-sm font-semibold text-brand hover:text-link-hover"
+                    >
+                      {t.catchUpLink} →
+                    </Link>
+                  ) : null}
+                </div>
+              );
+            })}
+
+            <button
+              type="button"
+              onClick={() => setCreateSheetOpen(true)}
+              className="flex min-h-14 items-center justify-center gap-2 rounded-card border border-dashed border-border font-heading text-base font-semibold text-brand"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4v16"/><path d="M4 12h16"/></svg>
+              {t.dashboard.createTrackerButton}
+            </button>
+          </>
+        )}
       </div>
 
       {toast ? (
@@ -372,6 +366,13 @@ export default function TeacherHomePage() {
         t={t}
         onClose={() => setSheetOpen(false)}
         onConfirm={handleConfirmSuspend}
+      />
+      <CreateTrackerSheet
+        open={createSheetOpen}
+        t={t}
+        assignments={assignments}
+        onClose={() => setCreateSheetOpen(false)}
+        onCreate={handleCreateTracker}
       />
     </main>
   );

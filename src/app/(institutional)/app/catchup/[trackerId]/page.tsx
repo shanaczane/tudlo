@@ -2,10 +2,9 @@
 
 import { useSyncExternalStore } from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useLocale } from "@/lib/i18n/LocaleContext";
 import { formatDate } from "@/lib/i18n/format";
-import type { SubjectId } from "@/lib/i18n/dictionary";
 import { SUBJECT_LESSONS } from "@/lib/lessons";
 import {
   getPositionIndex,
@@ -19,38 +18,40 @@ import {
   parseLastDisruption,
   subscribeLastDisruption,
 } from "@/lib/disruptionStore";
+import { getTracker } from "@/lib/trackerStore";
 
 const DEFAULT_DAYS_LOST = 7;
 
 export default function CatchUpPlanPage() {
-  const params = useParams<{ subjectId: string }>();
+  const params = useParams<{ trackerId: string }>();
+  const router = useRouter();
   const { locale, t } = useLocale();
 
-  const subjectId: SubjectId =
-    (params.subjectId as SubjectId) in SUBJECT_LESSONS
-      ? (params.subjectId as SubjectId)
-      : "filipino";
-  const subjectLessons = SUBJECT_LESSONS[subjectId];
-  const subjectName = t.subjects[subjectId].name;
+  const tracker = getTracker(params.trackerId);
+  const subjectLessons = tracker ? SUBJECT_LESSONS[tracker.subjectId] : null;
 
   const positionsRaw = useSyncExternalStore(
     subscribePositions,
     getPositionsSnapshot,
     getServerPositionsSnapshot,
   );
-  const currentIndex = getPositionIndex(
-    subjectId,
-    positionsRaw,
-    subjectLessons.defaultIndex,
-  );
-
   const lastDisruptionRaw = useSyncExternalStore(
     subscribeLastDisruption,
     getLastDisruptionSnapshot,
     getServerLastDisruptionSnapshot,
   );
-  const lastDisruption = parseLastDisruption(lastDisruptionRaw);
 
+  if (typeof window !== "undefined" && !tracker) {
+    router.replace("/app");
+    return null;
+  }
+  if (!tracker || !subjectLessons) return null;
+
+  const subjectName = t.subjects[tracker.subjectId].name;
+  const gradeSectionLabel = t.dashboard.gradeSectionLabel(tracker.grade, tracker.section);
+  const currentIndex = getPositionIndex(tracker.id, positionsRaw, subjectLessons.defaultIndex);
+
+  const lastDisruption = parseLastDisruption(lastDisruptionRaw);
   const daysLost = lastDisruption?.daysLost ?? DEFAULT_DAYS_LOST;
   const resumeDate = lastDisruption ? new Date(lastDisruption.endDate) : new Date();
 
@@ -80,9 +81,12 @@ export default function CatchUpPlanPage() {
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
         </Link>
-        <span className="font-heading text-lg font-semibold text-ink">
-          {subjectName}
-        </span>
+        <div className="flex flex-col items-center">
+          <span className="font-heading text-lg font-semibold text-ink">
+            {subjectName}
+          </span>
+          <span className="text-xs text-muted">{gradeSectionLabel}</span>
+        </div>
         <span className="w-11" />
       </div>
 

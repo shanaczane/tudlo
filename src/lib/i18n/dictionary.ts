@@ -63,6 +63,7 @@ export interface Dictionary {
   settingsPage: {
     title: string;
     gradeSubjectsLabel: string;
+    assignmentsSummary: (grades: number, sections: number) => string;
     languageLabel: string;
     helpLabel: string;
     syncSectionLabel: string;
@@ -74,21 +75,34 @@ export interface Dictionary {
   };
   onboarding: {
     stepGrade: string;
-    stepSubjects: string;
-    stepLessons: string;
+    stepSections: string;
     stepOf: (current: number, total: number) => string;
     gradeHeading: string;
     gradeSubheading: string;
     gradeOptions: string[];
-    subjectsHeading: string;
-    subjectsSubheading: string;
-    lessonsHeading: string;
-    lessonsSubheading: string;
+    sectionsHeading: string;
+    sectionsSubheading: string;
+    sectionWord: string;
     continueButton: string;
     backButton: string;
     finishButton: string;
-    selectAtLeastOne: string;
-    currentLessonPrompt: string;
+    selectAtLeastOneGrade: string;
+    selectAtLeastOneSection: string;
+  };
+  dashboard: {
+    createTrackerButton: string;
+    emptyStateTitle: string;
+    emptyStateBody: string;
+    gradeSectionLabel: (grade: number, section: string) => string;
+  };
+  createTrackerSheet: {
+    title: string;
+    gradeLabel: string;
+    sectionLabel: string;
+    subjectLabel: string;
+    createButton: string;
+    alreadyExistsNote: string;
+    noAssignmentsNote: string;
   };
 }
 
@@ -153,7 +167,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     settingsPage: {
       title: "Mga Settings",
-      gradeSubjectsLabel: "Antas at mga subject",
+      gradeSubjectsLabel: "Mga baitang at seksyon",
+      assignmentsSummary: (grades, sections) =>
+        `${grades} grade · ${sections} seksyon`,
       languageLabel: "Wika",
       helpLabel: "Tulong at FAQ",
       syncSectionLabel: "Sync at data",
@@ -166,29 +182,38 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     onboarding: {
       stepGrade: "Antas",
-      stepSubjects: "Mga Subject",
-      stepLessons: "Posisyon",
+      stepSections: "Mga Seksyon",
       stepOf: (current, total) => `Hakbang ${current} sa ${total}`,
-      gradeHeading: "Anong antas ang iyong ituturo?",
-      gradeSubheading: "Pipiliin mo rin ito sa settings kung magbabago.",
-      gradeOptions: [
-        "Grade 1",
-        "Grade 2",
-        "Grade 3",
-        "Grade 4",
-        "Grade 5",
-        "Grade 6",
-      ],
-      subjectsHeading: "Anong mga subject ang iyong tinuturuan?",
-      subjectsSubheading: "Pumili ng isa o marami.",
-      lessonsHeading: "Saan ka natigil sa bawat subject?",
-      lessonsSubheading:
-        "I-tap ang aralin kung saan ka natigil bago ang bakasyon o disruption.",
+      gradeHeading: "Anong mga antas ang iyong tinuturuan?",
+      gradeSubheading:
+        "Pumili ng lahat ng grade level na hawak mo. Mababago mo rin ito mamaya.",
+      gradeOptions: ["Grade 7", "Grade 8", "Grade 9", "Grade 10"],
+      sectionsHeading: "Anong mga seksyon ang hawak mo sa bawat grade?",
+      sectionsSubheading:
+        "Ito ang magiging opsyon kapag gagawa ka ng bagong tracker sa dashboard.",
+      sectionWord: "Seksyon",
       continueButton: "Magpatuloy",
       backButton: "Bumalik",
       finishButton: "Magsimula na",
-      selectAtLeastOne: "Pumili ng kahit isang subject.",
-      currentLessonPrompt: "Kasalukuyang aralin",
+      selectAtLeastOneGrade: "Pumili ng kahit isang grade level.",
+      selectAtLeastOneSection: "Pumili ng kahit isang seksyon.",
+    },
+    dashboard: {
+      createTrackerButton: "Gumawa ng Bagong Tracker",
+      emptyStateTitle: "Wala ka pang tracker",
+      emptyStateBody:
+        "Gumawa ng tracker para sa bawat Grade + Seksyon + Subject na hawak mo.",
+      gradeSectionLabel: (grade, section) => `Grade ${grade} • Seksyon ${section}`,
+    },
+    createTrackerSheet: {
+      title: "Gumawa ng Bagong Tracker",
+      gradeLabel: "Grade",
+      sectionLabel: "Seksyon",
+      subjectLabel: "Subject",
+      createButton: "Gumawa ng Tracker",
+      alreadyExistsNote: "Mayroon nang tracker para sa kombinasyong ito.",
+      noAssignmentsNote:
+        "Wala ka pang grade at seksyon na naitakda. Pumunta sa onboarding o settings para itakda ito.",
     },
   },
   en: {
@@ -250,7 +275,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     settingsPage: {
       title: "Settings",
-      gradeSubjectsLabel: "Grade & subjects",
+      gradeSubjectsLabel: "Grades & sections",
+      assignmentsSummary: (grades, sections) =>
+        `${grades} grade${grades === 1 ? "" : "s"} · ${sections} section${sections === 1 ? "" : "s"}`,
       languageLabel: "Language",
       helpLabel: "Help & FAQ",
       syncSectionLabel: "Sync & data",
@@ -263,29 +290,38 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     onboarding: {
       stepGrade: "Grade",
-      stepSubjects: "Subjects",
-      stepLessons: "Position",
+      stepSections: "Sections",
       stepOf: (current, total) => `Step ${current} of ${total}`,
-      gradeHeading: "What grade level do you teach?",
-      gradeSubheading: "You can change this later in settings.",
-      gradeOptions: [
-        "Grade 1",
-        "Grade 2",
-        "Grade 3",
-        "Grade 4",
-        "Grade 5",
-        "Grade 6",
-      ],
-      subjectsHeading: "Which subjects do you teach?",
-      subjectsSubheading: "Select one or more.",
-      lessonsHeading: "Where did you leave off?",
-      lessonsSubheading:
-        "Tap the lesson you were on before the break or disruption.",
+      gradeHeading: "Which grade levels do you teach?",
+      gradeSubheading:
+        "Select every grade level you handle. You can change this later.",
+      gradeOptions: ["Grade 7", "Grade 8", "Grade 9", "Grade 10"],
+      sectionsHeading: "Which sections do you handle in each grade?",
+      sectionsSubheading:
+        "These become your options when creating a new tracker on the dashboard.",
+      sectionWord: "Section",
       continueButton: "Continue",
       backButton: "Back",
       finishButton: "Get Started",
-      selectAtLeastOne: "Please select at least one subject.",
-      currentLessonPrompt: "Current lesson",
+      selectAtLeastOneGrade: "Please select at least one grade level.",
+      selectAtLeastOneSection: "Please select at least one section.",
+    },
+    dashboard: {
+      createTrackerButton: "Create New Tracker",
+      emptyStateTitle: "No trackers yet",
+      emptyStateBody:
+        "Create a tracker for each Grade + Section + Subject you handle.",
+      gradeSectionLabel: (grade, section) => `Grade ${grade} • Section ${section}`,
+    },
+    createTrackerSheet: {
+      title: "Create New Tracker",
+      gradeLabel: "Grade",
+      sectionLabel: "Section",
+      subjectLabel: "Subject",
+      createButton: "Create Tracker",
+      alreadyExistsNote: "A tracker for this combination already exists.",
+      noAssignmentsNote:
+        "You haven't set up any grades or sections yet. Go to onboarding or settings to set this up.",
     },
   },
 };
