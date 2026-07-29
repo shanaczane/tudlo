@@ -187,7 +187,18 @@ export const dictionaries: Record<Locale, Dictionary> = {
       gradeHeading: "Anong mga antas ang iyong tinuturuan?",
       gradeSubheading:
         "Pumili ng lahat ng grade level na hawak mo. Mababago mo rin ito mamaya.",
-      gradeOptions: ["Grade 7", "Grade 8", "Grade 9", "Grade 10"],
+      gradeOptions: [
+        "Grade 1",
+        "Grade 2",
+        "Grade 3",
+        "Grade 4",
+        "Grade 5",
+        "Grade 6",
+        "Grade 7",
+        "Grade 8",
+        "Grade 9",
+        "Grade 10",
+      ],
       sectionsHeading: "Anong mga seksyon ang hawak mo sa bawat grade?",
       sectionsSubheading:
         "Ito ang magiging opsyon kapag gagawa ka ng bagong tracker sa dashboard.",
@@ -295,7 +306,18 @@ export const dictionaries: Record<Locale, Dictionary> = {
       gradeHeading: "Which grade levels do you teach?",
       gradeSubheading:
         "Select every grade level you handle. You can change this later.",
-      gradeOptions: ["Grade 7", "Grade 8", "Grade 9", "Grade 10"],
+      gradeOptions: [
+        "Grade 1",
+        "Grade 2",
+        "Grade 3",
+        "Grade 4",
+        "Grade 5",
+        "Grade 6",
+        "Grade 7",
+        "Grade 8",
+        "Grade 9",
+        "Grade 10",
+      ],
       sectionsHeading: "Which sections do you handle in each grade?",
       sectionsSubheading:
         "These become your options when creating a new tracker on the dashboard.",

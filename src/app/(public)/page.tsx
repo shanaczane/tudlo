@@ -6,14 +6,14 @@ import { Logo } from "@/ui/Logo";
 
 const stats = [
   {
-    value: "20,681+",
+    value: "377,729",
     color: "text-danger",
-    label: "na paaralan ang nagsuspinde ng klase noong Bagyong Tino",
+    label: "mag-aaral ang naka-classify ng DepEd bilang “very high risk” sa learning loss",
   },
   {
-    value: "35 araw",
+    value: "35",
     color: "text-danger",
-    label: "ang nawala sa ilang rehiyon sa isang school year",
+    label: "class suspension sa CAR ngayong taon — pinakamataas sa buong bansa",
   },
   {
     value: "200 araw",
@@ -97,15 +97,16 @@ export default function LandingPage() {
       <section className="grid gap-10 border-b border-border bg-background px-6 py-12 md:grid-cols-[1.1fr_.9fr] md:items-center md:gap-12 md:px-10 md:py-16">
         <div className="flex flex-col gap-5">
           <span className="inline-flex w-fit items-center rounded-pill bg-tint px-3 py-1.5 text-sm font-semibold text-brand">
-            Offline-first PWA · Region V at VIII
+            Offline-first PWA · CAR, Cagayan Valley, Bicol
           </span>
           <h1 className="text-3xl font-semibold leading-tight tracking-tight text-ink md:text-5xl md:leading-[1.15]">
             Hindi dapat matigil ang pag-aaral.
           </h1>
           <p className="max-w-lg text-lg leading-relaxed text-muted">
             Tinutulungan ng Tudlo ang mga guro na magpatuloy sa eksaktong
-            pinaghintuan nila, anuman ang gambala — bagyo, baha, o anumang
-            dahilan ng pagsara ng klase.
+            pinaghintuan nila pagkatapos ng bagyo, baha, o anumang gambala —
+            simula sa Grade 1 Math, kung saan pinaka-mapanganib ang bawat
+            nawalang aralin.
           </p>
           <div className="mt-2 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
             <Link href="/install" className={buttonClassName("primary")}>
@@ -147,10 +148,20 @@ export default function LandingPage() {
             </Card>
           ))}
         </div>
-        <p className="text-xs text-muted">
-          Pinagmulan: DepEd situational reports (placeholder — ilalagay ang
-          tumpak na sipi bago i-publish).
-        </p>
+        <div className="flex flex-col gap-1 text-xs text-muted">
+          <p>
+            Pinagmulan: DepEd Learning Recovery classification at mga
+            regional na ulat ng class suspension, SY 2025–2026.
+          </p>
+          <p>
+            May pag-aaral (TIMSS 2019) na nagpapakita na bumababa nang
+            hanggang 12.4 puntos ang Math score kada araw ng pagsara — pero
+            Grade 4 ang sinukat doon, ginamit lang bilang proxy. Ang
+            natatanging panganib sa Grade 1 Math ay resulta ng aming
+            pagsusuri sa sunud-sunod na katangian ng curriculum, hindi
+            direktang sinukat ng alinmang pag-aaral.
+          </p>
+        </div>
       </section>
 
       <section id="paano-gumagana" className="flex flex-col gap-6 border-b border-border bg-background px-6 py-12 md:px-10 md:py-14">

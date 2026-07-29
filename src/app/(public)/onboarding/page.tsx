@@ -54,7 +54,7 @@ function StepGrades({
 
       <div className="grid grid-cols-2 gap-3">
         {ob.gradeOptions.map((label, i) => {
-          const grade = i + 7;
+          const grade = i + 1;
           const active = selected.includes(grade);
           return (
             <button
