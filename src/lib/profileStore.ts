@@ -1,5 +1,3 @@
-import type { SubjectId } from "./i18n/dictionary";
-
 const STORAGE_KEY = "tudlo-profile";
 const listeners = new Set<() => void>();
 
@@ -7,11 +5,15 @@ function notify() {
   listeners.forEach((l) => l());
 }
 
+export interface Assignment {
+  grade: number; // 7–10 (Junior High, MATATAG rollout)
+  sections: string[]; // e.g. ["A", "B"]
+}
+
 export interface TeacherProfile {
   name: string;
   schoolCode: string;
-  grade: number; // 1–6
-  subjects: SubjectId[];
+  assignments: Assignment[];
 }
 
 // ── Subscription (useSyncExternalStore-compatible) ─────────────────────────
@@ -37,7 +39,7 @@ export function getServerProfileSnapshot(): string {
 function parseProfile(raw: string): TeacherProfile | null {
   try {
     const parsed = JSON.parse(raw);
-    if (parsed && typeof parsed === "object" && "grade" in parsed) {
+    if (parsed && typeof parsed === "object" && "assignments" in parsed) {
       return parsed as TeacherProfile;
     }
     return null;
@@ -50,14 +52,20 @@ export function getProfile(): TeacherProfile | null {
   return parseProfile(getProfileSnapshot());
 }
 
+/** Total number of grade+section assignments the teacher has configured. */
+export function totalSections(profile: TeacherProfile | null): number {
+  if (!profile) return 0;
+  return profile.assignments.reduce((sum, a) => sum + a.sections.length, 0);
+}
+
 export function hasProfile(): boolean {
   const p = getProfile();
-  // A profile is "complete" when grade + at least one subject is set
-  return p !== null && p.grade > 0 && p.subjects.length > 0;
+  // A profile is "complete" once at least one grade has at least one section.
+  return p !== null && totalSections(p) > 0;
 }
 
 export function saveProfile(profile: Partial<TeacherProfile>) {
-  const existing = getProfile() ?? {};
+  const existing = getProfile() ?? { name: "", schoolCode: "", assignments: [] };
   const merged = { ...existing, ...profile } as TeacherProfile;
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
   notify();

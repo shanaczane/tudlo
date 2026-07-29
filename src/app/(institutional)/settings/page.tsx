@@ -1,12 +1,25 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { Button } from "@/ui/Button";
 import { useLocale } from "@/lib/i18n/LocaleContext";
+import {
+  getProfile,
+  getProfileSnapshot,
+  getServerProfileSnapshot,
+  subscribeProfile,
+  totalSections,
+} from "@/lib/profileStore";
 
 export default function SettingsPage() {
   const { locale, setLocale, t } = useLocale();
   const s = t.settingsPage;
+
+  useSyncExternalStore(subscribeProfile, getProfileSnapshot, getServerProfileSnapshot);
+  const profile = getProfile();
+  const gradeCount = profile?.assignments.length ?? 0;
+  const sectionCount = totalSections(profile);
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-md flex-col bg-background">
@@ -40,7 +53,7 @@ export default function SettingsPage() {
           <div className="flex min-h-14 items-center justify-between border-b border-border px-4 py-3">
             <span className="text-base text-ink">{s.gradeSubjectsLabel}</span>
             <span className="flex items-center gap-2 text-base text-muted">
-              Grade 3 · 5
+              {s.assignmentsSummary(gradeCount, sectionCount)}
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>
             </span>
           </div>
