@@ -2,7 +2,7 @@
 
 Offline-first PWA that helps Filipino public school teachers track their
 exact curriculum position per class and recover with a catch-up plan after
-disruptions like typhoons. Built for SDG 4 (Quality Education).
+disruptions. Built for SDG 4 (Quality Education).
 
 ## Getting started
 
